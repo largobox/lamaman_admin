@@ -1,0 +1,19 @@
+{
+  "name": "amalama-admin",
+  "version": "1.0.0",
+  "author": "largobox",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "d": "webpack serve",
+    "build": "webpack build"
+  },
+  "dependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.6.0",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
