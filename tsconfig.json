@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "jsx": "react",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "noImplicitAny": true,
+    "paths": {
+      "utils": ["utils/index"],
+    },
+    "target": "es6"
+  }
+}
