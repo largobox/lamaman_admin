@@ -1,10 +1,12 @@
 import React from "react"
+import { AppLayout } from "layouts"
+
 
 const App = () => {
 	return (
-		<div>
+		<AppLayout>
 			This is App
-		</div>
+		</AppLayout>
 	)
 }
 
