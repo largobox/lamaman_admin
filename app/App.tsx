@@ -1,11 +1,14 @@
 import React from "react"
 import { AppLayout } from "layouts"
+import { Typography } from "uikit"
 
 
 const App = () => {
 	return (
 		<AppLayout>
-			This is App
+			<Typography
+				text="This is App"
+			/>
 		</AppLayout>
 	)
 }

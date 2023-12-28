@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "jsx": "react",
     "module": "ES2022",
     "moduleResolution": "bundler",
     "noImplicitAny": true,
     "paths": {
-      "utils": ["utils/index"],
-      "layouts": ["layouts/index"],
+      "app-utils": ["app/utils/index"],
+      "system-utils": ["system/utils/index"],
+      "layouts": ["app/layouts/index"],
+      "uikit": ["app/components/uikit/index"],
     },
     "target": "es6"
   }
