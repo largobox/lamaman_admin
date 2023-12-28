@@ -10,6 +10,8 @@
       "system-utils": ["system/utils/index"],
       "layouts": ["app/layouts/index"],
       "uikit": ["app/components/uikit/index"],
+      "unique": ["app/components/unique/index"],
+      "themes": ["app/themes/index"],
     },
     "target": "es6"
   }

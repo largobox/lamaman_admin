@@ -1,6 +1,7 @@
 import React from "react"
 import { Props } from "./AppLayout.types"
 import Box from "./AppLayout.styles"
+import { NavigationMenu } from "unique"
 
 
 const AppLayout = (props: Props) => {
@@ -8,6 +9,8 @@ const AppLayout = (props: Props) => {
 
 	return (
 		<Box>
+			<NavigationMenu />
+
 			{children}
 		</Box>
 	)

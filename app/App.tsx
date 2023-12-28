@@ -1,15 +1,19 @@
 import React from "react"
 import { AppLayout } from "layouts"
 import { Typography } from "uikit"
+import { ThemeProvider } from "styled-components"
+import { defaultTheme } from "themes"
 
 
 const App = () => {
 	return (
-		<AppLayout>
-			<Typography
-				text="This is App"
-			/>
-		</AppLayout>
+	    <ThemeProvider theme={defaultTheme}>
+			<AppLayout>
+				<Typography
+					text="This is App"
+				/>
+			</AppLayout>
+	    </ThemeProvider>
 	)
 }
 
