@@ -6,7 +6,7 @@ module.exports = {
   mode: 'development',
 
   entry: {
-    app: './app/index.tsx',
+    app: path.resolve(__dirname, 'app', 'index.tsx'),
   },
 
   output: {
@@ -31,7 +31,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: './static/index.html',
+      template: path.resolve(__dirname, 'system', 'static', 'index.html'),
       inject: false, 
     }),
   ],
