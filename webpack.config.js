@@ -3,41 +3,41 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+    mode: 'development',
 
-  entry: {
-    app: path.resolve(__dirname, 'app', 'index.tsx'),
-  },
+    entry: {
+        app: path.resolve(__dirname, 'app', 'index.tsx'),
+    },
 
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
 
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.svg$/i,
-        issuer: /\.tsx$/,
-        use: ['@svgr/webpack'],
-      }
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.svg$/i,
+                issuer: /\.tsx$/,
+                use: ['@svgr/webpack'],
+            }
+        ],
+    },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'system', 'static', 'index.html'),
+            inject: false, 
+        }),
     ],
-  },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'system', 'static', 'index.html'),
-      inject: false, 
-    }),
-  ],
-
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-    plugins: [new TsconfigPathsPlugin()]
-  },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+        plugins: [new TsconfigPathsPlugin()]
+    },
 };

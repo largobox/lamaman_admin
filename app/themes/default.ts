@@ -2,66 +2,70 @@ import { DefaultTheme } from 'styled-components';
 
 
 const spacing = (value: number) => {
-  return 4 * value
+    return 4 * value
 }
 
 const theme: DefaultTheme = {
-  borderRadius: 4,
+    borderRadius: 4,
 
-  colors: {
-    primary: {
-      base: '#009BB3',
-      light: '',
-      dark: '',
-    },
+    colors: {
+        primary: {
+            base: '#009BB3',
+            light: '',
+            dark: '',
+        },
 
-    secondary: {
-      base: '#F36B59',
-      light: '',
-      dark: '',
-    },
+        secondary: {
+            base: '#F36B59',
+            light: '',
+            dark: '',
+        },
 
-    neutral: {
-      base: '#DFE5B3',
-      light: '',
-      dark: '#CBDAA4',
-    },
+        neutral: {
+            base: '#DFE5B3',
+            light: '',
+            dark: '#CBDAA4',
+        },
 
-    danger: {
-      base: '',
-      dark: '',
-      light: '',
-    },
+        danger: {
+            base: '',
+            dark: '',
+            light: '',
+        },
   
-    success: {
-      base: '',
-      dark: '',
-      light: '',
-    },
+        success: {
+            base: '',
+            dark: '',
+            light: '',
+        },
   
-    text: {
-      base: '',
-      dark: '',
-      light: '',
-    },
+        text: {
+            base: '',
+            dark: '',
+            light: '',
+        },
   
-    paper: '#CCCCCC',
-  },
+        paper: '#CCCCCC',
+    },
 
-  constants: {},
+    constants: {
+        leftPanel: 260,
+    },
 
-  fontSizes: {
-    base: 16,
-    h1: 24,
-  },
+    fontSizes: {
+        base: 16,
+        h1: 24,
+    },
 
-  spacing,
+    spacing,
 
-  transition: {
-    duration: 500
-  },
+    transition: {
+        duration: 500
+    },
 
-  zIndex: {},
+    zIndex: {
+        modal: 1,
+    },
 }
 
 export default theme

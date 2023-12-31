@@ -14,5 +14,6 @@
       "themes": ["app/themes/index"],
     },
     "target": "es6"
-  }
+  },
+  "include": ["system/utils/**/*", "app/**/*"],
 }

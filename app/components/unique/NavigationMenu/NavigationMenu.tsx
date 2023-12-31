@@ -3,11 +3,11 @@ import Box from "./NavigationMenu.styles"
 
 
 const NavigationMenu = () => {
-	return (
-		<Box>
+    return (
+        <Box>
 			NavigationMenu
-		</Box>
-	)
+        </Box>
+    )
 }
 
 export default NavigationMenu

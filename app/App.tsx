@@ -6,15 +6,15 @@ import { defaultTheme } from "themes"
 
 
 const App = () => {
-	return (
-	    <ThemeProvider theme={defaultTheme}>
-			<AppLayout>
-				<Typography
-					text="This is App"
-				/>
-			</AppLayout>
-	    </ThemeProvider>
-	)
+    return (
+        <ThemeProvider theme={defaultTheme}>
+            <AppLayout>
+                <Typography
+                    text="This is App"
+                />
+            </AppLayout>
+        </ThemeProvider>
+    )
 }
 
 export default App

@@ -4,13 +4,13 @@ import { Props } from "./Typography.types"
 
 
 const Typography = (props: Props) => {
-	const { text } = props
+    const { text } = props
 
-	return (
-		<div>
-			{text}
-		</div>
-	)
+    return (
+        <div>
+            {text}
+        </div>
+    )
 }
 
 export default Typography

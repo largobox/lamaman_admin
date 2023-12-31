@@ -6,11 +6,11 @@ import { cssBaseline } from 'system-utils'
 import App from './App'
 
 const main = async () => {
-	cssBaseline()
+    cssBaseline()
 
-	const rootElement = document.getElementById(ROOT_DIV_ID)
+    const rootElement = document.getElementById(ROOT_DIV_ID)
 
-	createRoot(rootElement).render(<App />)
+    createRoot(rootElement).render(<App />)
 }
 
 main()

@@ -5,15 +5,15 @@ import { NavigationMenu } from "unique"
 
 
 const AppLayout = (props: Props) => {
-	const { children } = props
+    const { children } = props
 
-	return (
-		<Box>
-			<NavigationMenu />
+    return (
+        <Box>
+            <NavigationMenu />
 
-			{children}
-		</Box>
-	)
+            {children}
+        </Box>
+    )
 }
 
 export default AppLayout
