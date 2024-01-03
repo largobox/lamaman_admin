@@ -1,11 +1,11 @@
-import { DefaultTheme } from 'styled-components';
+import { CustomTheme } from 'styled-components';
 
 
 const spacing = (value: number) => {
     return 4 * value
 }
 
-const theme: DefaultTheme = {
+const theme: CustomTheme = {
     borderRadius: 4,
 
     colors: {
@@ -22,9 +22,9 @@ const theme: DefaultTheme = {
         },
 
         neutral: {
-            base: '#DFE5B3',
-            light: '',
-            dark: '#CBDAA4',
+            base: '#9FA5B7',
+            light: '#C9CEDB',
+            dark: '#A7ABB7',
         },
 
         danger: {
@@ -39,13 +39,10 @@ const theme: DefaultTheme = {
             light: '',
         },
   
-        text: {
-            base: '',
-            dark: '',
-            light: '',
-        },
-  
-        paper: '#CCCCCC',
+        base: '#619D9D',
+        dark: '#2F4F4F',
+        light: '#FFFFFF',
+        paper: '#E1D7CE',
     },
 
     constants: {

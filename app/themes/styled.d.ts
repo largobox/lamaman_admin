@@ -4,7 +4,7 @@ import 'styled-components'
 
 // расширяем этот оригинальный модуль
 declare module 'styled-components' {
-    export interface DefaultTheme {
+    export interface CustomTheme {
         borderRadius: number
 
         colors: {
@@ -33,11 +33,10 @@ declare module 'styled-components' {
                 dark: string
                 light: string
             }
-            text: {
-                base: string
-                dark: string
-                light: string
-            }
+
+            base: string
+            dark: string
+            light: string
             paper: string
         }
 

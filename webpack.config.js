@@ -7,6 +7,10 @@ const Dotenv = require('dotenv-webpack')
 module.exports = {
     mode: 'development',
 
+    devServer: {
+        historyApiFallback: true,
+    },
+
     entry: {
         app: path.resolve(__dirname, 'app', 'index.tsx'),
     },

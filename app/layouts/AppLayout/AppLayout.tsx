@@ -1,17 +1,17 @@
 import React from "react"
-import { Props } from "./AppLayout.types"
-import Box from "./AppLayout.styles"
+import Box, { ContentBox } from "./AppLayout.styles"
 import { NavigationMenu } from "unique"
+import { Outlet } from 'react-router-dom'
 
 
-const AppLayout = (props: Props) => {
-    const { children } = props
-
+const AppLayout = () => {
     return (
         <Box>
             <NavigationMenu />
 
-            {children}
+            <ContentBox>
+                <Outlet />
+            </ContentBox>
         </Box>
     )
 }

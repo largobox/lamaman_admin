@@ -1,13 +1,11 @@
 import { CustomTheme } from "styled-components"
 
-type FontSize = 'base' | 'h1'
-
 export type Props = {
-    text: string
-    size?: FontSize
+    label: string
+    value: string
 }
 
 export type BoxProps = {
     theme: CustomTheme
-    $size: FontSize
+    $isSelected: boolean
 }

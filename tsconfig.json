@@ -11,6 +11,7 @@
       "layouts": ["app/layouts/index"],
       "uikit": ["app/components/uikit/index"],
       "unique": ["app/components/unique/index"],
+      "pages": ["app/pages/index"],
       "themes": ["app/themes/index"],
     },
     "target": "es6"

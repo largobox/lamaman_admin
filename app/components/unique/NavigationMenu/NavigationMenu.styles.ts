@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
+import { BoxProps } from "./NavigationMenu.types";
 
-const Box = styled.div`
-	background-color: ${props => props.theme.colors.paper};
+
+const Box = styled.div<BoxProps>`
 	height: 100%;
-	width: 260px;
+	width: ${props => props.theme.constants.leftPanel}px;
 `
 
 export default Box

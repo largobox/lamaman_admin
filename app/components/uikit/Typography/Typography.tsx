@@ -1,15 +1,21 @@
 import React from "react"
 
 import { Props } from "./Typography.types"
+import Box from "./Typography.styles"
 
 
 const Typography = (props: Props) => {
-    const { text } = props
+    const {
+        text,
+        size = 'base',
+    } = props
 
     return (
-        <div>
+        <Box
+            $size={size}
+        >
             {text}
-        </div>
+        </Box>
     )
 }
 
