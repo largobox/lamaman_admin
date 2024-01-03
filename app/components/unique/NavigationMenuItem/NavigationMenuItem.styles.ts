@@ -1,37 +1,42 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
-import { BoxProps } from "./NavigationMenuItem.types";
+import { BoxProps } from './NavigationMenuItem.types'
 
 
-const colorStyles = (props: BoxProps) => {
+const isSelectedStyles = (props: BoxProps) => {
     const { $isSelected } = props
 
     if ($isSelected) {
         return css`
-			background-color: ${props=> props.theme.colors.neutral.dark};
-		`
+            background-color: ${(props) => props.theme.colors.neutral.dark};
+            box-shadow: ${(props) => props.theme.shadow.base};
+            color: ${(props) => props.theme.colors.light};
+        `
     }
 
     return css`
-		&:hover {
-			background-color: ${props=> props.theme.colors.neutral.light};
-		}
-	`
+        background-color: ${(props) => props.theme.colors.neutral.light};
+        box-shadow: ${(props) => props.theme.shadow.base};
+
+        &:hover {
+            background-color: ${(props) => props.theme.colors.neutral.base};
+        }
+    `
 }
 
 const Box = styled.div<BoxProps>`
-	padding: ${props=> props.theme.spacing(2)}px;
-	cursor: pointer;
-    border-radius: ${props => props.theme.borderRadius}px;
+    padding: ${(props) => props.theme.spacing(3)}px;
+    cursor: pointer;
+    border-radius: ${(props) => props.theme.borderRadius}px;
 
-    transition-duration: ${props => props.theme.transition.duration}ms;
+    transition-duration: ${(props) => props.theme.transition.duration}ms;
     transition-property: background-color;
 
     &:not(:first-child) {
-    	margin-top: ${props => props.theme.spacing(1)}px;
+        margin-top: ${(props) => props.theme.spacing(4)}px;
     }
 
-    ${colorStyles}
- `
+    ${isSelectedStyles}
+`
 
 export default Box

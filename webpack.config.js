@@ -1,8 +1,7 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
-
 
 module.exports = {
     mode: 'development',
@@ -31,7 +30,7 @@ module.exports = {
                 test: /\.svg$/i,
                 issuer: /\.tsx$/,
                 use: ['@svgr/webpack'],
-            }
+            },
         ],
     },
 
@@ -39,12 +38,12 @@ module.exports = {
         new Dotenv({ path: './.env' }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'system', 'static', 'index.html'),
-            inject: false, 
+            inject: false,
         }),
     ],
 
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
-        plugins: [new TsconfigPathsPlugin()]
+        plugins: [new TsconfigPathsPlugin()],
     },
-};
+}

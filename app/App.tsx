@@ -1,31 +1,31 @@
-import React from "react"
-import { AppLayout } from "layouts"
-import { ThemeProvider } from "styled-components"
-import { defaultTheme } from "themes"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { CategoriesListPage, NotFound, TracksListPage } from "pages"
+import React from 'react'
+import { AppLayout } from 'layouts'
+import { ThemeProvider } from 'styled-components'
+import { defaultTheme } from 'themes'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { CategoriesListPage, NotFound, TracksListPage } from 'pages'
 
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: '/',
         element: <AppLayout />,
         children: [
             {
-                path: "/categories",
+                path: '/categories',
                 element: <CategoriesListPage />,
             },
             {
-                path: "/tracks",
+                path: '/tracks',
                 element: <TracksListPage />,
             },
             {
-                path: "/*",
+                path: '/*',
                 element: <NotFound />,
             },
         ],
     },
-]);
+])
 
 const App = () => {
     return (

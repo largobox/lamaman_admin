@@ -1,4 +1,4 @@
-import { CustomTheme } from 'styled-components';
+import { CustomTheme } from 'styled-components'
 
 
 const spacing = (value: number) => {
@@ -24,7 +24,7 @@ const theme: CustomTheme = {
         neutral: {
             base: '#9FA5B7',
             light: '#C9CEDB',
-            dark: '#A7ABB7',
+            dark: '#5C616D;',
         },
 
         danger: {
@@ -32,13 +32,13 @@ const theme: CustomTheme = {
             dark: '',
             light: '',
         },
-  
+
         success: {
             base: '',
             dark: '',
             light: '',
         },
-  
+
         base: '#619D9D',
         dark: '#2F4F4F',
         light: '#FFFFFF',
@@ -54,10 +54,14 @@ const theme: CustomTheme = {
         h1: 24,
     },
 
+    shadow: {
+        base: 'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px',
+    },
+
     spacing,
 
     transition: {
-        duration: 500
+        duration: 500,
     },
 
     zIndex: {

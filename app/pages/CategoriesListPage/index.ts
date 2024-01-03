@@ -1,1 +1,1 @@
-export { default } from "./CategoriesListPage";
+export { default } from './CategoriesListPage'

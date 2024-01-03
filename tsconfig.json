@@ -1,20 +1,20 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "jsx": "react",
-    "module": "ES2022",
-    "moduleResolution": "bundler",
-    "noImplicitAny": true,
-    "paths": {
-      "app-utils": ["app/utils/index"],
-      "system-utils": ["system/utils/index"],
-      "layouts": ["app/layouts/index"],
-      "uikit": ["app/components/uikit/index"],
-      "unique": ["app/components/unique/index"],
-      "pages": ["app/pages/index"],
-      "themes": ["app/themes/index"],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "jsx": "react",
+        "module": "ES2022",
+        "moduleResolution": "bundler",
+        "noImplicitAny": true,
+        "paths": {
+            "app-utils": ["app/utils/index"],
+            "system-utils": ["system/utils/index"],
+            "layouts": ["app/layouts/index"],
+            "uikit": ["app/components/uikit/index"],
+            "unique": ["app/components/unique/index"],
+            "pages": ["app/pages/index"],
+            "themes": ["app/themes/index"]
+        },
+        "target": "es6"
     },
-    "target": "es6"
-  },
-  "include": ["system/utils/**/*", "app/**/*"],
+    "include": ["system/utils/**/*", "app/**/*"]
 }

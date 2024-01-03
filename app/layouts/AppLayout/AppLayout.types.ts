@@ -1,4 +1,4 @@
-import { CustomTheme } from "styled-components"
+import { CustomTheme } from 'styled-components'
 
 
 export type BoxProps = {

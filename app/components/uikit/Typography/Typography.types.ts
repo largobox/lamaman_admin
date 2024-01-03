@@ -1,13 +1,17 @@
-import { CustomTheme } from "styled-components"
+import { CustomTheme } from 'styled-components'
 
-type FontSize = 'base' | 'h1'
+
+type Size = 'base' | 'h1'
+type Color = 'base' | 'inherit'
 
 export type Props = {
+    color?: Color
     text: string
-    size?: FontSize
+    size?: Size
 }
 
 export type BoxProps = {
     theme: CustomTheme
-    $size: FontSize
+    $size: Size
+    $color: Color
 }

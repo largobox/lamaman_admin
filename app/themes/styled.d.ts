@@ -1,7 +1,6 @@
 // импортируем оригинальный модуль
 import 'styled-components'
 
-
 // расширяем этот оригинальный модуль
 declare module 'styled-components' {
     export interface CustomTheme {
@@ -47,6 +46,10 @@ declare module 'styled-components' {
         fontSizes: {
             h1: number
             base: number
+        }
+
+        shadow: {
+            base: string
         }
 
         spacing: (value: number) => number

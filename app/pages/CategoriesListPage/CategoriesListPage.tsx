@@ -1,12 +1,10 @@
-import React from "react"
+import React from 'react'
 
-import { Typography } from "uikit"
+import { Typography } from 'uikit'
 
 
 const CategoriesListPage = () => {
-    return (
-        <Typography text="CategoriesListPage"/>
-    )
+    return <Typography text="CategoriesListPage" />
 }
 
 export default CategoriesListPage

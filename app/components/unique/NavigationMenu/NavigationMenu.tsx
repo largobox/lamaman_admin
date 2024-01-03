@@ -1,7 +1,7 @@
-import React, { useMemo } from "react"
-import Box from "./NavigationMenu.styles"
-import { NavigationMenuItem } from "unique"
-import { Paper } from "uikit"
+import React, { useMemo } from 'react'
+import Box from './NavigationMenu.styles'
+import { NavigationMenuItem } from 'unique'
+import { Paper } from 'uikit'
 
 
 const NavigationMenu = () => {
@@ -20,7 +20,7 @@ const NavigationMenu = () => {
     return (
         <Box>
             <Paper>
-                {items.map(item => (
+                {items.map((item) => (
                     <NavigationMenuItem
                         key={item.value}
                         label={item.label}
