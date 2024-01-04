@@ -7,7 +7,10 @@
         "noImplicitAny": true,
         "paths": {
             "app-utils": ["app/utils/index"],
+            "validations": ["app/utils/validations"],
             "system-utils": ["system/utils/index"],
+            "common-types": ["app/utils/commonTypes"],
+            "hooks": ["app/hooks/index"],
             "layouts": ["app/layouts/index"],
             "uikit": ["app/components/uikit/index"],
             "unique": ["app/components/unique/index"],
@@ -16,5 +19,5 @@
         },
         "target": "es6"
     },
-    "include": ["system/utils/**/*", "app/**/*"]
+    "include": ["./system/utils/**/*", "./app/**/*"]
 }
