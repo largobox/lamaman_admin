@@ -1,0 +1,47 @@
+import React, { useState } from 'react'
+import CurrentUserContext from './CurrentUserContext'
+import {
+    getInitialCurrentUser,
+    tokenToCurrentUser,
+    validateAuthToken,
+} from './utils'
+import { LOCAL_STORAGE_AUTH_TOKEN } from 'app-utils'
+import { Props } from './CurrentUserProvider.types'
+
+
+const CurrentUserProvider = (props: Props) => {
+    const { children } = props
+    /*
+        TS failed. Не показывает, что currentUser может быть null,
+        при том что сигнатура функции getInitialCurrentUser указана
+    */
+    const [currentUser, setCurrentUser] = useState(getInitialCurrentUser())
+
+    const signIn = (token: string) => {
+        const isValid = validateAuthToken(token)
+
+        if (!isValid) return
+
+        localStorage.setItem(LOCAL_STORAGE_AUTH_TOKEN, token)
+
+        setCurrentUser(tokenToCurrentUser(token))
+    }
+
+    const signOut = () => {
+        setCurrentUser(null)
+    }
+
+    const currentUserProviderValue = {
+        isAuthorized: currentUser !== null,
+
+        signIn,
+        signOut,
+    }
+
+    return (
+        <CurrentUserContext.Provider value={currentUserProviderValue}>
+            {children}
+        </CurrentUserContext.Provider>
+    )
+}
+export default CurrentUserProvider

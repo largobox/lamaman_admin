@@ -11,6 +11,7 @@
             "system-utils": ["system/utils/index"],
             "common-types": ["app/utils/commonTypes"],
             "hooks": ["app/hooks/index"],
+            "hooks/*": ["app/hooks/*"],
             "layouts": ["app/layouts/index"],
             "uikit": ["app/components/uikit/index"],
             "unique": ["app/components/unique/index"],

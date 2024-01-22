@@ -1,36 +1,50 @@
 import React from 'react'
-import { AppLayout } from 'layouts'
 import { ThemeProvider } from 'styled-components'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+
 import { defaultTheme } from 'themes'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { CategoriesListPage, NotFound, TracksListPage } from 'pages'
+import { CategoriesListPage, LoginPage, NotFound, TracksListPage } from 'pages'
+import { CurrentUserProvider } from 'hooks/useCurrentUser'
+import { ProtectedRoute } from 'uikit'
 
 
 const router = createBrowserRouter([
     {
+        path: '/categories',
+        element: (
+            <ProtectedRoute>
+                <CategoriesListPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: '/tracks',
+        element: (
+            <ProtectedRoute>
+                <TracksListPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: '/login',
+        element: <LoginPage />,
+    },
+    {
         path: '/',
-        element: <AppLayout />,
-        children: [
-            {
-                path: '/categories',
-                element: <CategoriesListPage />,
-            },
-            {
-                path: '/tracks',
-                element: <TracksListPage />,
-            },
-            {
-                path: '/*',
-                element: <NotFound />,
-            },
-        ],
+        element: <Navigate to='/categories' />,
+    },
+    {
+        path: '/*',
+        element: <NotFound />,
     },
 ])
 
 const App = () => {
     return (
         <ThemeProvider theme={defaultTheme}>
-            <RouterProvider router={router} />
+            <CurrentUserProvider>
+                <RouterProvider router={router} />
+            </CurrentUserProvider>
         </ThemeProvider>
     )
 }

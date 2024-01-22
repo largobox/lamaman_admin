@@ -4,7 +4,7 @@ import { Typography } from 'uikit'
 
 
 const NotFound = () => {
-    return <Typography text="Страница не найдена" />
+    return <Typography text='Страница не найдена' />
 }
 
 export default NotFound

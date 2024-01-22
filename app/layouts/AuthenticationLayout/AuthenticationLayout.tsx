@@ -1,15 +1,12 @@
 import React from 'react'
 import Box from './AuthenticationLayout.styles'
-import { Outlet } from 'react-router-dom'
+import { Props } from './AuthenticationLayout.types'
 
 
-const AuthenticationLayout = () => {
-    return (
-        <Box>
-            AuthenticationLayout
-            <Outlet />
-        </Box>
-    )
+const AuthenticationLayout = (props: Props) => {
+    const { children } = props
+
+    return <Box>{children}</Box>
 }
 
 export default AuthenticationLayout
