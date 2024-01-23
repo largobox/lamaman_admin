@@ -1,6 +1,6 @@
 import { CustomTheme } from 'styled-components'
 
 
-export type BoxProps = {
+export type ThemedProps = {
     theme: CustomTheme
 }

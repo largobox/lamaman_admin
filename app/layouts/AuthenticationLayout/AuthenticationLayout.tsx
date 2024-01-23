@@ -1,12 +1,15 @@
-import React from 'react'
-import Box from './AuthenticationLayout.styles'
-import { Props } from './AuthenticationLayout.types'
+import React, { PropsWithChildren } from 'react'
+import Box, { Content } from './AuthenticationLayout.styles'
 
 
-const AuthenticationLayout = (props: Props) => {
+const AuthenticationLayout = (props: PropsWithChildren) => {
     const { children } = props
 
-    return <Box>{children}</Box>
+    return (
+        <Box>
+            <Content>{children}</Content>
+        </Box>
+    )
 }
 
 export default AuthenticationLayout

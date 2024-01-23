@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { BoxProps } from './AppLayout.types'
+import { ThemedProps } from 'common-types'
 
 
 export const ContentBox = styled.div`
@@ -9,7 +9,7 @@ export const ContentBox = styled.div`
     margin-right: ${(props) => props.theme.spacing(5)}px;
 `
 
-const Box = styled.div<BoxProps>`
+const Box = styled.div<ThemedProps>`
     display: flex;
     background-color: ${(props) => props.theme.colors.light};
     height: 100vh;

@@ -1,4 +1,4 @@
-import { CustomTheme } from 'styled-components'
+import { ThemedProps } from 'common-types'
 
 
 type Size = 'base' | 'h1'
@@ -10,8 +10,7 @@ export type Props = {
     size?: Size
 }
 
-export type BoxProps = {
-    theme: CustomTheme
+export type BoxProps = ThemedProps & {
     $size: Size
     $color: Color
 }

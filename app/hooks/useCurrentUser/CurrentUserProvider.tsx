@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, PropsWithChildren } from 'react'
 import CurrentUserContext from './CurrentUserContext'
 import {
     getInitialCurrentUser,
@@ -6,10 +6,9 @@ import {
     validateAuthToken,
 } from './utils'
 import { LOCAL_STORAGE_AUTH_TOKEN } from 'app-utils'
-import { Props } from './CurrentUserProvider.types'
 
 
-const CurrentUserProvider = (props: Props) => {
+const CurrentUserProvider = (props: PropsWithChildren) => {
     const { children } = props
     /*
         TS failed. Не показывает, что currentUser может быть null,

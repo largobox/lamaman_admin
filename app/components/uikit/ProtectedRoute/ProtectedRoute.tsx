@@ -1,11 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, PropsWithChildren } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useCurrentUser } from 'hooks'
-import { Props } from './ProtectedRoute.types'
 
 
-const ProtectedRoute = (props: Props) => {
+const ProtectedRoute = (props: PropsWithChildren) => {
     const { children } = props
     const currentUser = useCurrentUser()
     const navigate = useNavigate()

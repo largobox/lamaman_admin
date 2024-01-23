@@ -1,13 +1,15 @@
 import React from 'react'
 
-import { Typography } from 'uikit'
+import { Paper, Typography } from 'uikit'
 import { AuthenticationLayout } from 'layouts'
 
 
 const LoginPage = () => {
     return (
         <AuthenticationLayout>
-            <Typography text='LoginPage' />
+            <Paper>
+                <Typography text='LoginPage' />
+            </Paper>
         </AuthenticationLayout>
     )
 }

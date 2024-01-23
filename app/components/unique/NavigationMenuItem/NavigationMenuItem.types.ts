@@ -1,4 +1,4 @@
-import { CustomTheme } from 'styled-components'
+import { ThemedProps } from 'common-types'
 
 
 export type Props = {
@@ -6,7 +6,6 @@ export type Props = {
     value: string
 }
 
-export type BoxProps = {
-    theme: CustomTheme
+export type BoxProps = ThemedProps & {
     $isSelected: boolean
 }
