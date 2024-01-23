@@ -52,6 +52,7 @@ const theme: CustomTheme = {
     fontSizes: {
         base: 16,
         h1: 24,
+        h2: 20,
     },
 
     shadow: {

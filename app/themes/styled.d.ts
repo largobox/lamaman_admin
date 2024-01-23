@@ -1,6 +1,8 @@
 // импортируем оригинальный модуль
 import 'styled-components'
 
+import { FontSize } from 'common-types'
+
 // расширяем этот оригинальный модуль
 declare module 'styled-components' {
     export interface CustomTheme {
@@ -43,10 +45,7 @@ declare module 'styled-components' {
             leftPanel: number
         }
 
-        fontSizes: {
-            h1: number
-            base: number
-        }
+        fontSizes: FontSize
 
         shadow: {
             base: string

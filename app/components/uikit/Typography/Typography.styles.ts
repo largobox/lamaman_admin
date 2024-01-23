@@ -17,6 +17,12 @@ const sizeStyles = (props: BoxProps) => {
             font-size: ${props.theme.fontSizes.h1}px;
         `
     }
+
+    if ($size === 'h2') {
+        return css`
+            font-size: ${props.theme.fontSizes.h2}px;
+        `
+    }
 }
 
 const colorStyles = (props: BoxProps) => {
