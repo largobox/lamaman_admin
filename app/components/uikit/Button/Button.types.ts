@@ -3,6 +3,8 @@ import { ThemedProps } from 'common-types'
 
 export type Props = {
     label: string
+    onClick: () => void
+
     fullWidth?: boolean
 }
 

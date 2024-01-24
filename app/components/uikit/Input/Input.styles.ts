@@ -3,9 +3,16 @@ import styled from 'styled-components'
 import { ThemedProps } from 'common-types'
 
 
+export const Label = styled.div<ThemedProps>`
+    font-size: ${(props) => props.theme.fontSizes.base}px;
+    color: ${(props) => props.theme.colors.dark};
+    margin-bottom: ${(props) => props.theme.spacing(1)}px;
+`
+
 export const InputElement = styled.input<ThemedProps>`
     height: 36px;
     width: 100%;
+    color: ${(props) => props.theme.colors.dark};
     font-size: ${(props) => props.theme.fontSizes.base}px;
     padding: 0px ${(props) => props.theme.spacing(2)}px;
     border-radius: ${(props) => props.theme.borderRadius}px;
@@ -18,8 +25,6 @@ export const InputElement = styled.input<ThemedProps>`
         border: 1px solid ${(props) => props.theme.colors.neutral.dark};
     }
 `
-
-export const Label = styled.div``
 
 const Box = styled.div``
 

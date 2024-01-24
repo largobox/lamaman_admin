@@ -13,7 +13,7 @@ export const FormHeader = styled.div<ThemedProps>`
 
 const Box = styled.div<ThemedProps>`
     ${InputBox} + ${InputBox} {
-        margin-top: ${(props) => props.theme.spacing(4)}px;
+        margin-top: ${(props) => props.theme.spacing(3)}px;
     }
 
     ${ButtonBox} {

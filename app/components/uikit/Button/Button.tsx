@@ -5,9 +5,13 @@ import { Props } from './Button.types'
 
 
 const Button = (props: Props) => {
-    const { label, fullWidth = false } = props
+    const { label, fullWidth = false, onClick } = props
 
-    return <Box $fullWidth={fullWidth}>{label}</Box>
+    return (
+        <Box onClick={onClick} $fullWidth={fullWidth}>
+            {label}
+        </Box>
+    )
 }
 
 export default Button

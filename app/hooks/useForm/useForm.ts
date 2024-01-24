@@ -4,14 +4,12 @@ import {
     FormErrors,
     FormValues,
     GetFormValuesSignature,
-    Props,
     ValidateFormSignature,
 } from './useForm.types'
 
 
-const useForm = (props: Props) => {
-    const { initialValues } = props
-    const formValuesRef = useRef<FormValues>(initialValues)
+const useForm = () => {
+    const formValuesRef = useRef<FormValues>({})
     const [errors, setErrors] = useState<FormErrors>({})
 
     const getValues: GetFormValuesSignature = () => {
@@ -34,7 +32,12 @@ const useForm = (props: Props) => {
         return isValid
     }
 
+    const changeFormValue = (name: string) => (value: string) => {
+        formValuesRef.current[name] = value
+    }
+
     return {
+        changeFormValue,
         getValues,
         validate,
         errors,

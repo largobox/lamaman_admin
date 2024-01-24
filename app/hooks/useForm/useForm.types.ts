@@ -9,7 +9,3 @@ export type ValidateFormSignature = () => boolean
 export type FormErrors = {
     [key: string]: string
 }
-
-export type Props = {
-    initialValues: FormValues
-}
