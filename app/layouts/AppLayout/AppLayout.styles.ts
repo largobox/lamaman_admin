@@ -11,7 +11,7 @@ export const ContentBox = styled.div`
 
 const Box = styled.div<ThemedProps>`
     display: flex;
-    background-color: ${(props) => props.theme.colors.light};
+    background-color: ${(props) => props.theme.colors.base};
     height: 100vh;
     width: 100vw;
 `

@@ -11,8 +11,8 @@ const theme: CustomTheme = {
     colors: {
         primary: {
             base: '#009BB3',
-            light: '',
-            dark: '',
+            light: '#62BAC8',
+            dark: '#16707E',
         },
 
         secondary: {

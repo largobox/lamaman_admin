@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Input, Paper, Typography } from 'uikit'
+import { Button, Input, Paper, Typography } from 'uikit'
 import { AuthenticationLayout, FormLayout } from 'layouts'
 import { FormHeader } from 'app/layouts/FormLayout'
 
@@ -17,6 +17,8 @@ const LoginPage = () => {
                     <Input />
 
                     <Input />
+
+                    <Button fullWidth label='Отправить' />
                 </FormLayout>
             </Paper>
         </AuthenticationLayout>
