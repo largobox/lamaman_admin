@@ -16,7 +16,8 @@
             "uikit": ["app/components/uikit/index"],
             "unique": ["app/components/unique/index"],
             "pages": ["app/pages/index"],
-            "themes": ["app/themes/index"]
+            "themes": ["app/themes/index"],
+            "schemas": ["app/utils/schemas/index"]
         },
         "target": "es6"
     },

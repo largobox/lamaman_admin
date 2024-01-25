@@ -7,14 +7,16 @@ export type FormValues = {
     [key: string]: FormValue
 }
 
+export type FormErrors = Array<{
+    name: string
+    message: string
+}>
+
 export type FormSubmitSignature = (values: FormValues) => void
 
 export type Props = {
     children: Array<ReactNode>
     initialValues: FormValues
-    // ToDo. need normal type
-    schema: {
-        [key: string]: string | number | boolean
-    }
+    schema: object
     onSubmit: FormSubmitSignature
 }

@@ -6,7 +6,8 @@ export type ThemedProps = {
 }
 
 export type FontSize = {
+    base: number
     h1: number
     h2: number
-    base: number
+    hint: number
 }

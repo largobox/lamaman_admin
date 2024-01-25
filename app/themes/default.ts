@@ -28,9 +28,9 @@ const theme: CustomTheme = {
         },
 
         danger: {
-            base: '',
-            dark: '',
-            light: '',
+            base: '#c73e3e',
+            dark: '#b22727',
+            light: '#f78a8a',
         },
 
         success: {
@@ -53,6 +53,7 @@ const theme: CustomTheme = {
         base: 16,
         h1: 24,
         h2: 20,
+        hint: 12,
     },
 
     shadow: {

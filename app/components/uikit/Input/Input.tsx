@@ -1,11 +1,11 @@
 import React, { ChangeEventHandler } from 'react'
 
-import Box, { InputElement, Label } from './Input.styles'
+import Box, { ErrorMessage, InputElement, Label } from './Input.styles'
 import { Props } from './Input.types'
 
 
 const Input = (props: Props) => {
-    const { initialValue, onChange, label } = props
+    const { initialValue, onChange, label, error = '' } = props
 
     const changeHandler: ChangeEventHandler<HTMLInputElement> = (ev) => {
         onChange(ev.target.value)
@@ -19,6 +19,8 @@ const Input = (props: Props) => {
                 defaultValue={initialValue}
                 onChange={changeHandler}
             />
+
+            <ErrorMessage>{error}</ErrorMessage>
         </Box>
     )
 }
