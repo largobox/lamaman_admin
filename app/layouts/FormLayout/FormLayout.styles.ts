@@ -12,6 +12,9 @@ export const FormHeader = styled.div<ThemedProps>`
 `
 
 const Box = styled.div<ThemedProps>`
+    height: 100%;
+    width: 100%;
+
     ${InputBox} + ${InputBox} {
         margin-top: ${(props) => props.theme.spacing(3)}px;
     }

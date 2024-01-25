@@ -4,7 +4,7 @@ import { ThemedProps } from 'common-types'
 
 
 export const Content = styled.div<ThemedProps>`
-    padding: ${(props) => props.theme.spacing(2)};
+    width: 300px;
 `
 
 const Box = styled.div<ThemedProps>`

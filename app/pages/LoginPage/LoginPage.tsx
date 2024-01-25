@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Button, Form, Input, Paper, Typography } from 'uikit'
 import { AuthenticationLayout, FormLayout } from 'layouts'
@@ -8,6 +8,8 @@ import { loginFormSchema } from 'schemas'
 
 
 const LoginPage = () => {
+    const [isLoading] = useState(true)
+
     const submitHandler = (values: FormValues) => {
         console.log('formValues', values)
     }
@@ -32,6 +34,7 @@ const LoginPage = () => {
                         initialValues={initialValues}
                         schema={loginFormSchema}
                         onSubmit={submitHandler}
+                        isLoading={isLoading}
                     >
                         <Input
                             label='Логин'

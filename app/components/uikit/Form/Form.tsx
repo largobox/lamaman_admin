@@ -8,14 +8,21 @@ import React, {
     useState,
 } from 'react'
 
-import Box from './Form.styles'
+import Box, { Foreground, FormWrapper } from './Form.styles'
 import { FormErrors, FormValue, FormValues, Props } from './Form.types'
 import { isButton, isInput } from './utils'
 import { ajv } from 'validations'
+import { Spinner } from 'uikit'
 
 
 const Form = (props: Props) => {
-    const { children, initialValues, onSubmit, schema } = props
+    const {
+        children,
+        initialValues,
+        onSubmit,
+        schema,
+        isLoading = false,
+    } = props
     const formValuesRef = useRef<FormValues>(initialValues)
     const [formErrors, setFormErrors] = useState<FormErrors>([])
     const validate = useCallback(ajv.compile(schema), [])
@@ -82,7 +89,24 @@ const Form = (props: Props) => {
         return null
     })
 
-    return <Box onSubmit={submitHandler}>{content}</Box>
+    return (
+        <Box>
+            <FormWrapper
+                onSubmit={submitHandler}
+                $isLoading={isLoading}
+            >
+                {content}
+            </FormWrapper>
+
+            {isLoading && (
+                <>
+                    <Spinner />
+
+                    <Foreground />
+                </>
+            )}
+        </Box>
+    )
 }
 
 export default Form

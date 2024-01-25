@@ -19,4 +19,10 @@ export type Props = {
     initialValues: FormValues
     schema: object
     onSubmit: FormSubmitSignature
+
+    isLoading?: boolean
+}
+
+export type FormWrapperProps = {
+    $isLoading: boolean
 }
