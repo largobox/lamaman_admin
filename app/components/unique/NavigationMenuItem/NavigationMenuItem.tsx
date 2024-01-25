@@ -17,8 +17,14 @@ const NavigationMenuItem = (props: Props) => {
     }
 
     return (
-        <Box onClick={clickHandler} $isSelected={isSelected}>
-            <Typography text={label} color={color} />
+        <Box
+            onClick={clickHandler}
+            $isSelected={isSelected}
+        >
+            <Typography
+                text={label}
+                color={color}
+            />
         </Box>
     )
 }

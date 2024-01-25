@@ -1,41 +1,51 @@
 import React from 'react'
 
-import { Button, Input, Paper, Typography } from 'uikit'
+import { Button, Form, Input, Paper, Typography } from 'uikit'
 import { AuthenticationLayout, FormLayout } from 'layouts'
 import { FormHeader } from 'app/layouts/FormLayout'
-import useForm from 'hooks/useForm'
+import { FormValues } from 'app/components/uikit/Form/Form.types'
 
+
+const schema = {}
 
 const LoginPage = () => {
-    const { changeFormValue, getValues } = useForm()
-
-    const sendHandler = () => {
-        const formValues = getValues()
-
-        console.log('formValues', formValues)
+    const submitHandler = (values: FormValues) => {
+        console.log('formValues', values)
     }
+
+    const initialValues = {}
 
     return (
         <AuthenticationLayout>
             <Paper>
                 <FormLayout>
                     <FormHeader>
-                        <Typography size='h2' text='Авторизация' />
+                        <Typography
+                            size='h2'
+                            text='Авторизация'
+                        />
                     </FormHeader>
 
-                    <Input
-                        label='Логин'
-                        initialValue=''
-                        onChange={changeFormValue('login')}
-                    />
+                    <Form
+                        initialValues={initialValues}
+                        schema={schema}
+                        onSubmit={submitHandler}
+                    >
+                        <Input
+                            label='Логин'
+                            name='login'
+                        />
 
-                    <Input
-                        label='Пароль'
-                        initialValue=''
-                        onChange={changeFormValue('password')}
-                    />
+                        <Input
+                            label='Пароль'
+                            name='password'
+                        />
 
-                    <Button fullWidth label='Отправить' onClick={sendHandler} />
+                        <Button
+                            fullWidth
+                            label='Отправить'
+                        />
+                    </Form>
                 </FormLayout>
             </Paper>
         </AuthenticationLayout>

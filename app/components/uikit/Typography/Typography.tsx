@@ -8,7 +8,10 @@ const Typography = (props: Props) => {
     const { text, size = 'base', color = 'base' } = props
 
     return (
-        <Box $size={size} $color={color}>
+        <Box
+            $size={size}
+            $color={color}
+        >
             {text}
         </Box>
     )

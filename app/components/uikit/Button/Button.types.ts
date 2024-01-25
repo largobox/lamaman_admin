@@ -3,9 +3,9 @@ import { ThemedProps } from 'common-types'
 
 export type Props = {
     label: string
-    onClick: () => void
 
     fullWidth?: boolean
+    onClick?: () => void
 }
 
 export type BoxProps = ThemedProps & {

@@ -61,6 +61,7 @@
     "prettier": {
         "tabWidth": 4,
         "semi": false,
+        "singleAttributePerLine": true,
         "singleQuote": true,
         "jsxSingleQuote": true
     }

@@ -8,7 +8,10 @@ const Button = (props: Props) => {
     const { label, fullWidth = false, onClick } = props
 
     return (
-        <Box onClick={onClick} $fullWidth={fullWidth}>
+        <Box
+            onClick={onClick}
+            $fullWidth={fullWidth}
+        >
             {label}
         </Box>
     )

@@ -1,5 +1,7 @@
 export type Props = {
     label: string
-    initialValue: string
-    onChange: (value: string) => void
+    name: string
+
+    initialValue?: string
+    onChange?: (value: string) => void
 }
