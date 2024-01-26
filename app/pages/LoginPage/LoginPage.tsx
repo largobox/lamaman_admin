@@ -1,17 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Button, Form, Input, Paper, Typography } from 'uikit'
 import { AuthenticationLayout, FormLayout } from 'layouts'
 import { FormHeader } from 'app/layouts/FormLayout'
-import { FormValues } from 'app/components/uikit/Form/Form.types'
 import { loginFormSchema } from 'schemas'
+import { useLoginMutation } from 'api'
+import { LoginArgs } from 'store/slices/api.types'
+import logger from 'logger'
 
 
 const LoginPage = () => {
-    const [isLoading] = useState(true)
+    const [login, { isLoading }] = useLoginMutation()
 
-    const submitHandler = (values: FormValues) => {
-        console.log('formValues', values)
+    const submitHandler = async (values: LoginArgs) => {
+        try {
+            const result = await login(values)
+
+            console.log('result: ', result)
+        } catch (err) {
+            logger.error(err)
+        }
     }
 
     const initialValues = {

@@ -21,7 +21,7 @@ export const FormWrapper = styled.form<FormWrapperProps>`
     opacity: ${(props) => (props.$isLoading ? 0.5 : 1)};
 `
 
-const Box = styled.form`
+const Box = styled.div`
     position: relative;
 
     height: 100%;

@@ -7,6 +7,7 @@
         "noImplicitAny": true,
         "paths": {
             "app-utils": ["app/utils/index"],
+            "api": ["app/store/slices/api"],
             "validations": ["app/utils/validations"],
             "system-utils": ["system/utils/index"],
             "common-types": ["app/utils/commonTypes"],
@@ -17,7 +18,10 @@
             "unique": ["app/components/unique/index"],
             "pages": ["app/pages/index"],
             "themes": ["app/themes/index"],
-            "schemas": ["app/utils/schemas/index"]
+            "schemas": ["app/utils/schemas/index"],
+            "store": ["app/store/index"],
+            "store/*": ["app/store/*"],
+            "logger": ["system/logger/index"]
         },
         "target": "es6"
     },

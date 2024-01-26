@@ -6,6 +6,8 @@ import { defaultTheme } from 'themes'
 import { CategoriesListPage, LoginPage, NotFound, TracksListPage } from 'pages'
 import { CurrentUserProvider } from 'hooks/useCurrentUser'
 import { ProtectedRoute } from 'uikit'
+import { Provider } from 'react-redux'
+import { store } from 'store'
 
 
 const router = createBrowserRouter([
@@ -43,7 +45,9 @@ const App = () => {
     return (
         <ThemeProvider theme={defaultTheme}>
             <CurrentUserProvider>
-                <RouterProvider router={router} />
+                <Provider store={store}>
+                    <RouterProvider router={router} />
+                </Provider>
             </CurrentUserProvider>
         </ThemeProvider>
     )
