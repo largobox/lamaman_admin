@@ -5,7 +5,7 @@ import { AuthenticationLayout, FormLayout } from 'layouts'
 import { FormHeader } from 'app/layouts/FormLayout'
 import { loginFormSchema } from 'schemas'
 import { useLoginMutation } from 'api'
-import { LoginArgs } from 'store/slices/api.types'
+import { LoginArgs } from 'store/store.types'
 import logger from 'logger'
 
 
