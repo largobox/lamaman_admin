@@ -56,6 +56,12 @@ const theme: CustomTheme = {
         hint: 12,
     },
 
+    iconSizes: {
+        small: 16,
+        middle: 24,
+        big: 62,
+    },
+
     shadow: {
         base: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;',
     },

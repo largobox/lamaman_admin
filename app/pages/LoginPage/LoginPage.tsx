@@ -7,16 +7,25 @@ import { loginFormSchema } from 'schemas'
 import { useLoginMutation } from 'api'
 import { LoginArgs } from 'store/store.types'
 import logger from 'logger'
+import { useAppDispatch } from 'hooks'
+import { addToast } from 'store/slices/toastsSlice'
+import { getRequestErrorMessage } from 'app-utils'
 
 
 const LoginPage = () => {
     const [login, { isLoading }] = useLoginMutation()
+    const appDispatch = useAppDispatch()
 
     const submitHandler = async (values: LoginArgs) => {
         try {
             const result = await login(values)
+            const errorMessage = getRequestErrorMessage(result)
 
-            console.log('result: ', result)
+            if (errorMessage !== null) {
+                appDispatch(
+                    addToast({ message: errorMessage, toastType: 'error' }),
+                )
+            }
         } catch (err) {
             logger.error(err)
         }

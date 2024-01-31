@@ -8,20 +8,21 @@
         "paths": {
             "app-utils": ["app/utils/index"],
             "api": ["app/store/slices/apiSlice"],
-            "validations": ["app/utils/validations"],
-            "system-utils": ["system/utils/index"],
             "common-types": ["app/utils/commonTypes"],
             "hooks": ["app/hooks/index"],
             "hooks/*": ["app/hooks/*"],
+            "icons": ["app/icons/index"],
             "layouts": ["app/layouts/index"],
-            "uikit": ["app/components/uikit/index"],
-            "unique": ["app/components/unique/index"],
+            "logger": ["system/logger/index"],
             "pages": ["app/pages/index"],
-            "themes": ["app/themes/index"],
             "schemas": ["app/utils/schemas/index"],
             "store": ["app/store/index"],
             "store/*": ["app/store/*"],
-            "logger": ["system/logger/index"]
+            "system-utils": ["system/utils/index"],
+            "uikit": ["app/components/uikit/index"],
+            "unique": ["app/components/unique/index"],
+            "themes": ["app/themes/index"],
+            "validations": ["app/utils/validations"]
         },
         "target": "es6"
     },

@@ -8,6 +8,7 @@ import { CurrentUserProvider } from 'hooks/useCurrentUser'
 import { ProtectedRoute } from 'uikit'
 import { Provider } from 'react-redux'
 import { store } from 'store'
+import { Toasts } from 'unique'
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,8 @@ const App = () => {
             <CurrentUserProvider>
                 <Provider store={store}>
                     <RouterProvider router={router} />
+
+                    <Toasts />
                 </Provider>
             </CurrentUserProvider>
         </ThemeProvider>

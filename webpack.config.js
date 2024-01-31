@@ -28,7 +28,7 @@ module.exports = {
             },
             {
                 test: /\.svg$/i,
-                issuer: /\.tsx$/,
+                issuer: /\.tsx?$/,
                 use: ['@svgr/webpack'],
             },
         ],
