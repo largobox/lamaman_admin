@@ -7,6 +7,16 @@ export type ThemedProps = {
     theme: CustomTheme
 }
 
+export type Color =
+    | 'primary'
+    | 'light'
+    | 'danger'
+    | 'neutral'
+    | 'secondary'
+    | 'success'
+    | 'base'
+    | 'dark'
+
 export type FontSize = {
     base: number
     h1: number

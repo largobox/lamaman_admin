@@ -1,7 +1,8 @@
 import React, { PropsWithChildren } from 'react'
 
-import Box, { ContentBox } from './AppLayout.styles'
-import { NavigationMenu } from 'unique'
+import Box, { ContentBox, LeftPanelBox } from './AppLayout.styles'
+import { NavigationMenu, ProfileCard } from 'unique'
+import { Paper } from 'uikit'
 
 
 const AppLayout = (props: PropsWithChildren) => {
@@ -9,7 +10,13 @@ const AppLayout = (props: PropsWithChildren) => {
 
     return (
         <Box>
-            <NavigationMenu />
+            <LeftPanelBox>
+                <Paper>
+                    <ProfileCard />
+
+                    <NavigationMenu />
+                </Paper>
+            </LeftPanelBox>
 
             <ContentBox>{children}</ContentBox>
         </Box>

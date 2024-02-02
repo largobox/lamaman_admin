@@ -11,7 +11,7 @@ const theme: CustomTheme = {
     colors: {
         primary: {
             base: '#009BB3',
-            light: '#62BAC8',
+            light: '#9BC8CF',
             dark: '#16707E',
         },
 
@@ -30,7 +30,7 @@ const theme: CustomTheme = {
         danger: {
             base: '#c73e3e',
             dark: '#b22727',
-            light: '#f78a8a',
+            light: '#efb6b6',
         },
 
         success: {
@@ -46,7 +46,7 @@ const theme: CustomTheme = {
     },
 
     constants: {
-        leftPanel: 260,
+        leftPanel: 320,
     },
 
     fontSizes: {

@@ -60,6 +60,36 @@ const colorStyles = (props: BoxProps) => {
             color: ${colors.danger.base};
         `
     }
+
+    if ($color === 'neutral') {
+        return css`
+            color: ${colors.neutral.base};
+        `
+    }
+
+    if ($color === 'base') {
+        return css`
+            color: ${colors.base};
+        `
+    }
+
+    if ($color === 'secondary') {
+        return css`
+            color: ${colors.secondary.base};
+        `
+    }
+
+    if ($color === 'success') {
+        return css`
+            color: ${colors.success.base};
+        `
+    }
+
+    if ($color === 'dark') {
+        return css`
+            color: ${colors.dark};
+        `
+    }
 }
 
 const Box = styled.div<BoxProps>`

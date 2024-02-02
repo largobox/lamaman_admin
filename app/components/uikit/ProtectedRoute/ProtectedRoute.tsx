@@ -13,7 +13,7 @@ const ProtectedRoute = (props: PropsWithChildren) => {
         if (!currentUser.isAuthorized) {
             navigate('/login')
         }
-    }, [])
+    }, [currentUser.isAuthorized])
 
     if (!currentUser.isAuthorized) {
         return null

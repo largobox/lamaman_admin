@@ -28,10 +28,15 @@ const CurrentUserProvider = (props: PropsWithChildren) => {
 
     const signOut = () => {
         setCurrentUser(null)
+
+        localStorage.removeItem(LOCAL_STORAGE_AUTH_TOKEN)
     }
 
     const currentUserProviderValue = {
         isAuthorized: currentUser !== null,
+        // ToDo
+        name: 'Some user name',
+        role: currentUser ? currentUser.role : '',
 
         signIn,
         signOut,

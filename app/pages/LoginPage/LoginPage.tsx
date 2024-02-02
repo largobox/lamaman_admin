@@ -7,14 +7,17 @@ import { loginFormSchema } from 'schemas'
 import { useLoginMutation } from 'api'
 import { LoginArgs } from 'store/store.types'
 import logger from 'logger'
-import { useAppDispatch } from 'hooks'
+import { useAppDispatch, useCurrentUser } from 'hooks'
 import { addToast } from 'store/slices/toastsSlice'
 import { getRequestErrorMessage } from 'app-utils'
+import { useNavigate } from 'react-router-dom'
 
 
 const LoginPage = () => {
     const [login, { isLoading }] = useLoginMutation()
     const appDispatch = useAppDispatch()
+    const { signIn } = useCurrentUser()
+    const navigate = useNavigate()
 
     const submitHandler = async (values: LoginArgs) => {
         try {
@@ -25,6 +28,14 @@ const LoginPage = () => {
                 appDispatch(
                     addToast({ message: errorMessage, toastType: 'error' }),
                 )
+
+                return
+            }
+
+            if ('data' in result) {
+                signIn(result.data)
+
+                navigate('/')
             }
         } catch (err) {
             logger.error(err)

@@ -66,6 +66,14 @@
         "semi": false,
         "singleAttributePerLine": true,
         "singleQuote": true,
-        "jsxSingleQuote": true
+        "jsxSingleQuote": true,
+        "overrides": [
+            {
+                "files": "*.svg",
+                "options": {
+                    "parser": "html"
+                }
+            }
+        ]
     }
 }
