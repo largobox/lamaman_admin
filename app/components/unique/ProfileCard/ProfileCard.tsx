@@ -28,7 +28,11 @@ const ProfileCard = () => {
                 <DescriptionBox>
                     <Typography text={name} />
 
-                    <Typography text={role} />
+                    <Typography
+                        text={role}
+                        isBold
+                        isCapitalized
+                    />
                 </DescriptionBox>
             </TopBox>
 

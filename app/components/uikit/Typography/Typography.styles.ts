@@ -41,11 +41,35 @@ const colorStyles = (props: BoxProps) => {
     }
 }
 
+const isBoldStyles = (props: BoxProps) => {
+    const { $isBold } = props
+
+    if ($isBold) {
+        return css`
+            font-weight: bold;
+        `
+    }
+}
+
+const isCapitalizedStyles = (props: BoxProps) => {
+    const { $isCapitalized } = props
+
+    if ($isCapitalized) {
+        return css`
+            &:first-letter {
+                text-transform: capitalize;
+            }
+        `
+    }
+}
+
 const Box = styled.div<BoxProps>`
     user-select: none;
 
     ${sizeStyles}
     ${colorStyles}
+    ${isBoldStyles}
+    ${isCapitalizedStyles}
 `
 
 export default Box

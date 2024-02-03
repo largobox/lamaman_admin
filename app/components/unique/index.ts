@@ -1,3 +1,6 @@
+export { default as CategoriesTable } from './CategoriesTable'
+export { default as CategoriesTableSortings } from './CategoriesTableSortings'
+export { default as CategoriesTopPanel } from './CategoriesTopPanel'
 export { default as NavigationMenu } from './NavigationMenu'
 export { default as NavigationMenuItem } from './NavigationMenuItem'
 export { default as ProfileCard, ProfileCardBox } from './ProfileCard'

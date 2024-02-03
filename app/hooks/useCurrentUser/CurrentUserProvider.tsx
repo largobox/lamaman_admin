@@ -8,6 +8,11 @@ import {
 import { LOCAL_STORAGE_AUTH_TOKEN } from 'app-utils'
 
 
+const rolesMap = new Map()
+
+rolesMap.set('admin', 'администратор')
+rolesMap.set('listener', 'слушатель')
+
 const CurrentUserProvider = (props: PropsWithChildren) => {
     const { children } = props
     /*
@@ -15,6 +20,11 @@ const CurrentUserProvider = (props: PropsWithChildren) => {
         при том что сигнатура функции getInitialCurrentUser указана
     */
     const [currentUser, setCurrentUser] = useState(getInitialCurrentUser())
+    // ToDo
+    const name = 'Данилов Сергей'
+    const role = currentUser !== null ? rolesMap.get(currentUser.role) : ''
+    const isAdmin = currentUser !== null ? currentUser.role === 'admin' : false
+    const isAuthorized = currentUser !== null
 
     const signIn = (token: string) => {
         const isValid = validateAuthToken(token)
@@ -33,10 +43,10 @@ const CurrentUserProvider = (props: PropsWithChildren) => {
     }
 
     const currentUserProviderValue = {
-        isAuthorized: currentUser !== null,
-        // ToDo
-        name: 'Some user name',
-        role: currentUser ? currentUser.role : '',
+        name,
+        role,
+        isAdmin,
+        isAuthorized,
 
         signIn,
         signOut,
@@ -48,4 +58,5 @@ const CurrentUserProvider = (props: PropsWithChildren) => {
         </CurrentUserContext.Provider>
     )
 }
+
 export default CurrentUserProvider

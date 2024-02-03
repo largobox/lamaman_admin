@@ -6,6 +6,7 @@ import { IconButtonBox } from 'uikit'
 
 export const LeftPanelBox = styled.div`
     width: ${(props) => props.theme.constants.leftPanel}px;
+    display: flex;
 `
 
 export const ContentBox = styled.div`

@@ -1,13 +1,24 @@
 import React from 'react'
 
-import { Typography } from 'uikit'
+import { Paper } from 'uikit'
 import { AppLayout } from 'layouts'
+import {
+    CategoriesTable,
+    CategoriesTableSortings,
+    CategoriesTopPanel,
+} from 'unique'
 
 
 const CategoriesListPage = () => {
     return (
         <AppLayout>
-            <Typography text='CategoriesListPage' />
+            <Paper>
+                <CategoriesTopPanel />
+
+                <CategoriesTableSortings />
+
+                <CategoriesTable />
+            </Paper>
         </AppLayout>
     )
 }

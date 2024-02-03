@@ -4,7 +4,6 @@ import { ThemedProps } from 'common-types'
 
 
 const Box = styled.div<ThemedProps>`
-    height: 100%;
     width: 100%;
     padding: ${(props) => props.theme.spacing(6)}px;
     box-sizing: border-box;
