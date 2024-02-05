@@ -59,7 +59,7 @@ const theme: CustomTheme = {
     iconSizes: {
         small: 16,
         middle: 24,
-        big: 62,
+        big: 36,
     },
 
     shadow: {

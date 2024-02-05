@@ -1,14 +1,14 @@
 import React from 'react'
 
+import { ListTable } from 'app/layouts/ListLayout'
 import { Typography } from 'uikit'
-import Box from './CategoriesTable.styles'
 
 
 const CategoriesTable = () => {
     return (
-        <Box>
+        <ListTable>
             <Typography text='CategoriesTable' />
-        </Box>
+        </ListTable>
     )
 }
 

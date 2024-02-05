@@ -1,6 +1,11 @@
 import React from 'react'
 
-import Box, { BottomBox, DescriptionBox, TopBox } from './ProfileCard.styles'
+import Box, {
+    BottomBox,
+    DescriptionBox,
+    IconBox,
+    TopBox,
+} from './ProfileCard.styles'
 import { IconButton, Typography } from 'uikit'
 import { LogoutIcon, OutlinedHumanIcon, PencilIcon } from 'icons'
 import { useCurrentUser } from 'hooks'
@@ -20,10 +25,12 @@ const ProfileCard = () => {
     return (
         <Box>
             <TopBox>
-                <OutlinedHumanIcon
-                    size='big'
-                    color='base'
-                />
+                <IconBox>
+                    <OutlinedHumanIcon
+                        size='max'
+                        color='base'
+                    />
+                </IconBox>
 
                 <DescriptionBox>
                     <Typography text={name} />

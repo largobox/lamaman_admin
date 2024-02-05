@@ -8,6 +8,11 @@ export const TopBox = styled.div`
     align-items: center;
 `
 
+export const IconBox = styled.div`
+    height: 62px;
+    width: 62px;
+`
+
 export const BottomBox = styled.div<ThemedProps>`
     margin-top: ${(props) => props.theme.spacing(1)}px;
     display: flex;

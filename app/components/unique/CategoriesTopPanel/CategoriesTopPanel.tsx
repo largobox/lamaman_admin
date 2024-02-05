@@ -1,17 +1,28 @@
 import React from 'react'
 
-import { Typography } from 'uikit'
-import Box from './CategoriesTopPanel.styles'
+import { IconButton, Typography } from 'uikit'
+import { OutlinedAddIcon } from 'icons'
+import { ListTopPanel } from 'app/layouts/ListLayout'
 
 
 const CategoriesTopPanel = () => {
+    const addHandler = () => {
+        console.log('Add')
+    }
+
     return (
-        <Box>
+        <ListTopPanel>
             <Typography
                 size='h2'
                 text='Список категорий'
             />
-        </Box>
+
+            <IconButton
+                Icon={OutlinedAddIcon}
+                onClick={addHandler}
+                size='big'
+            />
+        </ListTopPanel>
     )
 }
 

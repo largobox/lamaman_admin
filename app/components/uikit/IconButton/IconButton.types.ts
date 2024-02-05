@@ -1,5 +1,5 @@
 import { Color, ThemedProps } from 'common-types'
-import { Props as IconProps } from 'icons/Icon/Icon.types'
+import { Props as IconProps, IconSize } from 'icons/Icon/Icon.types'
 
 
 export type Props = {
@@ -7,6 +7,7 @@ export type Props = {
     onClick: () => void
 
     color?: Color
+    size?: IconSize
 }
 
 export type BoxProps = ThemedProps & {
