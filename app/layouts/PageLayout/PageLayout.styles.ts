@@ -4,7 +4,7 @@ import { ThemedProps } from 'common-types'
 import { IconButtonBox } from 'uikit'
 
 
-export const ListTopPanel = styled.div<ThemedProps>`
+export const TopPanelBox = styled.div<ThemedProps>`
     display: flex;
     align-items: center;
 
@@ -13,11 +13,11 @@ export const ListTopPanel = styled.div<ThemedProps>`
     }
 `
 
-export const ListTable = styled.div<ThemedProps>`
+export const TableBox = styled.div<ThemedProps>`
     margin-top: ${(props) => props.theme.spacing(8)}px;
 `
 
-export const ListTableSortings = styled.div<ThemedProps>`
+export const TableSortingsBox = styled.div<ThemedProps>`
     margin-top: ${(props) => props.theme.spacing(8)}px;
 `
 

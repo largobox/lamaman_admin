@@ -1,12 +1,12 @@
 import React, { PropsWithChildren } from 'react'
 
-import Box from './ListLayout.styles'
+import Box from './PageLayout.styles'
 
 
-const ListLayout = (props: PropsWithChildren) => {
+const PageLayout = (props: PropsWithChildren) => {
     const { children } = props
 
     return <Box>{children}</Box>
 }
 
-export default ListLayout
+export default PageLayout

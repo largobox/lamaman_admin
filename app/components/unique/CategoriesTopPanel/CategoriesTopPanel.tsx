@@ -2,7 +2,7 @@ import React from 'react'
 
 import { IconButton, Typography } from 'uikit'
 import { OutlinedAddIcon } from 'icons'
-import { ListTopPanel } from 'app/layouts/ListLayout'
+import { TopPanelBox } from 'layouts'
 
 
 const CategoriesTopPanel = () => {
@@ -11,7 +11,7 @@ const CategoriesTopPanel = () => {
     }
 
     return (
-        <ListTopPanel>
+        <TopPanelBox>
             <Typography
                 size='h2'
                 text='Список категорий'
@@ -22,7 +22,7 @@ const CategoriesTopPanel = () => {
                 onClick={addHandler}
                 size='big'
             />
-        </ListTopPanel>
+        </TopPanelBox>
     )
 }
 
