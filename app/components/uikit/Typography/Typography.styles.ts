@@ -9,18 +9,21 @@ const sizeStyles = (props: BoxProps) => {
     if ($size === 'base') {
         return css`
             font-size: ${props.theme.fontSizes.base}px;
+            line-height: ${props.theme.fontSizes.base}px;
         `
     }
 
     if ($size === 'h1') {
         return css`
             font-size: ${props.theme.fontSizes.h1}px;
+            line-height: ${props.theme.fontSizes.h1}px;
         `
     }
 
     if ($size === 'h2') {
         return css`
             font-size: ${props.theme.fontSizes.h2}px;
+            line-height: ${props.theme.fontSizes.h2}px;
         `
     }
 }

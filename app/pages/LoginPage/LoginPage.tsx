@@ -53,7 +53,7 @@ const LoginPage = () => {
                 <FormLayout>
                     <FormHeader>
                         <Typography
-                            size='h2'
+                            size='h1'
                             text='Авторизация'
                         />
                     </FormHeader>

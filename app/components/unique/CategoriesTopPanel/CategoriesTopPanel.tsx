@@ -13,7 +13,7 @@ const CategoriesTopPanel = () => {
     return (
         <TopPanelBox>
             <Typography
-                size='h2'
+                size='h1'
                 text='Список категорий'
             />
 

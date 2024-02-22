@@ -18,9 +18,14 @@ export const TableBox = styled.div<ThemedProps>`
 `
 
 export const TableSortingsBox = styled.div<ThemedProps>`
+    width: 100%;
+    display: flex;
     margin-top: ${(props) => props.theme.spacing(8)}px;
 `
 
-const Box = styled.div<ThemedProps>``
+const Box = styled.div<ThemedProps>`
+    width: 100%;
+    height: 100%;
+`
 
 export default Box

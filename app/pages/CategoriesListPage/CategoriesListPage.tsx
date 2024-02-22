@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Paper, TableSorting } from 'uikit'
-import { AppLayout, TableSortingsBox } from 'layouts'
+import { TableSorting } from 'uikit'
+import { AppLayout, PageLayout, TableSortingsBox } from 'layouts'
 import { CategoriesTable, CategoriesTopPanel } from 'unique'
 
 
@@ -25,12 +25,13 @@ const CategoriesListPage = () => {
 
     return (
         <AppLayout>
-            <Paper>
+            <PageLayout>
                 <CategoriesTopPanel />
 
                 <TableSortingsBox>
                     {sortings.map((item) => (
                         <TableSorting
+                            key={item.name}
                             name={item.name}
                             label={item.label}
                             onChange={item.onChange}
@@ -39,7 +40,7 @@ const CategoriesListPage = () => {
                 </TableSortingsBox>
 
                 <CategoriesTable />
-            </Paper>
+            </PageLayout>
         </AppLayout>
     )
 }

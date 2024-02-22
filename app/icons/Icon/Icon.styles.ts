@@ -100,7 +100,10 @@ const Box = styled.div<BoxProps>`
     transition-duration: ${(props) => props.theme.transition.duration}s;
 
     ${sizeStyles}
-    ${colorStyles}
+
+    svg {
+        ${colorStyles}
+    }
 `
 
 export default Box

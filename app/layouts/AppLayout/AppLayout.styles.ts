@@ -10,10 +10,13 @@ export const LeftPanelBox = styled.div`
 `
 
 export const ContentBox = styled.div`
-    margin-top: ${(props) => props.theme.spacing(5)}px;
-    margin-bottom: ${(props) => props.theme.spacing(5)}px;
-    margin-left: ${(props) => props.theme.spacing(10)}px;
-    margin-right: ${(props) => props.theme.spacing(5)}px;
+    width: 900px;
+    height: 100%;
+    padding-top: ${(props) => props.theme.spacing(10)}px;
+    padding-bottom: ${(props) => props.theme.spacing(10)}px;
+    padding-left: ${(props) => props.theme.spacing(10)}px;
+    padding-right: ${(props) => props.theme.spacing(10)}px;
+    box-sizing: border-box;
 `
 
 const Box = styled.div<ThemedProps>`

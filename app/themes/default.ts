@@ -16,9 +16,9 @@ const theme: CustomTheme = {
         },
 
         secondary: {
-            base: '#F36B59',
-            light: '',
-            dark: '',
+            base: '#E25500;',
+            light: '#CFAF9B',
+            dark: '#AB4609',
         },
 
         neutral: {

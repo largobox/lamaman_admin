@@ -24,6 +24,14 @@ const colorStyles = (props: BoxProps) => {
             }
         `
     }
+
+    if ($color === 'secondary') {
+        return css`
+            &:hover {
+                background-color: ${colors.secondary.light};
+            }
+        `
+    }
 }
 
 const Box = styled.div<BoxProps>`
