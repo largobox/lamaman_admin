@@ -7,9 +7,9 @@ export const TableSorting = styled.div<ThemedProps>`
     display: flex;
     align-items: center;
 
-    background-color: ${(props) => props.theme.colors.neutral.base};
-    border: 1px solid ${(props) => props.theme.colors.neutral.dark};
-    padding: ${(props) => props.theme.spacing(1)}px
+    background-color: ${(props) => props.theme.colors.primary.dark};
+    border: 1px solid ${(props) => props.theme.colors.neutral.base};
+    padding: ${(props) => props.theme.spacing(2)}px
         ${(props) => props.theme.spacing(4)}px;
     box-sizing: border-box;
 

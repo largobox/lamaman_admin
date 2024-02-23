@@ -1,7 +1,7 @@
 import { FontSize, ThemedProps } from 'common-types'
 
 
-type Color = 'base' | 'inherit'
+type Color = 'base' | 'inherit' | 'light'
 
 export type Props = {
     text: string

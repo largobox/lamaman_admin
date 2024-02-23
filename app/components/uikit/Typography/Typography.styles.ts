@@ -37,6 +37,12 @@ const colorStyles = (props: BoxProps) => {
         `
     }
 
+    if ($color === 'light') {
+        return css`
+            color: ${props.theme.colors.light};
+        `
+    }
+
     if ($color === 'inherit') {
         return css`
             color: inherit;

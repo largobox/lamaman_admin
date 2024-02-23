@@ -42,6 +42,7 @@ const TableSortings = (props: Props) => {
                     <Typography
                         text={item.label}
                         size='h2'
+                        color='light'
                     />
 
                     <IconButton
