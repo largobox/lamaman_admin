@@ -14,8 +14,46 @@ export const TopPanelBox = styled.div<ThemedProps>`
     }
 `
 
-export const TableBox = styled.div<ThemedProps>`
-    margin-top: ${(props) => props.theme.spacing(8)}px;
+export const ColumnBox = styled.div<ThemedProps>`
+    border: 1px solid ${(props) => props.theme.colors.neutral.base};
+    box-sizing: border-box;
+    padding: ${(props) => props.theme.spacing(3)}px
+        ${(props) => props.theme.spacing(4)}px;
+
+    &:not(:first-child) {
+        border-left-width: 0px;
+    }
+`
+
+export const RowBox = styled.div<ThemedProps>`
+    display: flex;
+    background-color: ${(props) => props.theme.colors.neutral.light};
+    cursor: pointer;
+
+    transition-duration: ${(props) => props.theme.transition.duration}ms;
+    transition-property: background-color, border-color;
+
+    &:hover {
+        background-color: ${(props) => props.theme.colors.primary.light};
+    }
+
+    &:not(:first-child) {
+        margin-top: ${(props) => props.theme.spacing(3)}px;
+    }
+
+    &:last-child {
+        ${ColumnBox} {
+            &:first-child {
+                border-bottom-left-radius: ${(props) =>
+                    props.theme.borderRadius}px;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: ${(props) =>
+                    props.theme.borderRadius}px;
+            }
+        }
+    }
 `
 
 const Box = styled.div<ThemedProps>`
@@ -24,6 +62,7 @@ const Box = styled.div<ThemedProps>`
 
     ${TableSortingsBox} {
         margin-top: ${(props) => props.theme.spacing(8)}px;
+        margin-bottom: ${(props) => props.theme.spacing(3)}px;
     }
 `
 

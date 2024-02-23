@@ -4,14 +4,14 @@ import { IconButtonBox } from 'uikit'
 
 
 export const TableSorting = styled.div<ThemedProps>`
-    flex-grow: 1;
     display: flex;
     align-items: center;
 
-    background-color: ${(props) => props.theme.colors.neutral.light};
-    border: 1px solid ${(props) => props.theme.colors.neutral.base};
+    background-color: ${(props) => props.theme.colors.neutral.base};
+    border: 1px solid ${(props) => props.theme.colors.neutral.dark};
     padding: ${(props) => props.theme.spacing(1)}px
         ${(props) => props.theme.spacing(4)}px;
+    box-sizing: border-box;
 
     &:not(:first-child) {
         border-left-width: 0px;
@@ -19,12 +19,10 @@ export const TableSorting = styled.div<ThemedProps>`
 
     &:first-child {
         border-top-left-radius: ${(props) => props.theme.borderRadius}px;
-        border-bottom-left-radius: ${(props) => props.theme.borderRadius}px;
     }
 
     &:last-child {
         border-top-right-radius: ${(props) => props.theme.borderRadius}px;
-        border-bottom-right-radius: ${(props) => props.theme.borderRadius}px;
     }
 
     ${IconButtonBox} {

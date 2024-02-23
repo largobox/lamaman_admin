@@ -8,7 +8,7 @@ import {
 
 
 const initialState: TracksCollectionsState = {
-    currentSorting: { name: 'name', direction: 'asc' },
+    currentSorting: { name: 'createdAt', direction: 'desc' },
 }
 
 const tracksCollectionsSlice = createSlice({

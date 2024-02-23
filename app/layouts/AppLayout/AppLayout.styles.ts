@@ -10,7 +10,7 @@ export const LeftPanelBox = styled.div`
 `
 
 export const ContentBox = styled.div`
-    width: 900px;
+    width: 100%;
     height: 100%;
     padding-top: ${(props) => props.theme.spacing(10)}px;
     padding-bottom: ${(props) => props.theme.spacing(10)}px;
