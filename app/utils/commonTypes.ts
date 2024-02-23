@@ -35,3 +35,15 @@ type RequestResult =
 export type GetRequestErrorMessageSign = (
     result: RequestResult,
 ) => string | null
+
+export type SortingDirection = 'asc' | 'desc' | null
+
+export type TableSorting = {
+    name: string
+    direction: SortingDirection
+}
+
+export type SortHandlerSign = (
+    name: string,
+    sortingDirection: SortingDirection,
+) => void

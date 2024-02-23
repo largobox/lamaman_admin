@@ -1,43 +1,45 @@
 import React from 'react'
 
-import { TableSorting } from 'uikit'
-import { AppLayout, PageLayout, TableSortingsBox } from 'layouts'
+import { TableSortings } from 'uikit'
+import { AppLayout, PageLayout } from 'layouts'
 import { CategoriesTable, CategoriesTopPanel } from 'unique'
+import { useAppDispatch, useAppSelector } from 'hooks'
+import {
+    changeCurrentSorting,
+    currentSortingSelector,
+} from 'store/slices/tracksCollectionsSlice'
+import { SortHandlerSign } from 'common-types'
 
-
+// ToDo. Rename to TracksCollectionsListPage
 const CategoriesListPage = () => {
+    const currentSorting = useAppSelector(currentSortingSelector)
+    const dispatch = useAppDispatch()
+
     const sortings = [
         {
             name: 'name',
             label: 'наименование',
-            onChange: () => {
-                console.log('Sorting')
-            },
         },
         {
             name: 'createdAt',
             label: 'дата создания',
-            onChange: () => {
-                console.log('Sorting')
-            },
         },
     ]
+
+    const sortHandler: SortHandlerSign = (name, direction) => {
+        dispatch(changeCurrentSorting({ name, direction }))
+    }
 
     return (
         <AppLayout>
             <PageLayout>
                 <CategoriesTopPanel />
 
-                <TableSortingsBox>
-                    {sortings.map((item) => (
-                        <TableSorting
-                            key={item.name}
-                            name={item.name}
-                            label={item.label}
-                            onChange={item.onChange}
-                        />
-                    ))}
-                </TableSortingsBox>
+                <TableSortings
+                    items={sortings}
+                    currentTableSorting={currentSorting}
+                    onSort={sortHandler}
+                />
 
                 <CategoriesTable />
             </PageLayout>

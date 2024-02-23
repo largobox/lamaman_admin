@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { IconButtonBox } from 'uikit'
 
 
-const Box = styled.div<ThemedProps>`
+export const TableSorting = styled.div<ThemedProps>`
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -30,6 +30,10 @@ const Box = styled.div<ThemedProps>`
     ${IconButtonBox} {
         margin-left: ${(props) => props.theme.spacing(1)}px;
     }
+`
+
+const Box = styled.div<ThemedProps>`
+    display: flex;
 `
 
 export default Box

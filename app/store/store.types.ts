@@ -1,14 +1,11 @@
+import { SortingDirection, TableSorting } from 'common-types'
 import store from './store'
+import { PayloadAction } from '@reduxjs/toolkit'
 
 
 export type AppDispatch = typeof store.dispatch
 
 export type RootState = ReturnType<typeof store.getState>
-
-type TableSorting = {
-    name: string
-    direction: 'asc' | 'desc'
-}
 
 // toasts
 type ToastType = 'error' | 'info' | 'warning'
@@ -24,8 +21,13 @@ export type ToastsState = {
 
 // tracks collections
 export type TracksCollectionsState = {
-    sortings: TableSorting[]
+    currentSorting: TableSorting
 }
+
+export type ChangeCurrentSortingAction = PayloadAction<{
+    name: string
+    direction: SortingDirection
+}>
 
 // api
 export type LoginArgs = {
