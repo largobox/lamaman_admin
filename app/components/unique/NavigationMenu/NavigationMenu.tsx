@@ -6,7 +6,7 @@ import { NavigationMenuItem } from 'unique'
 const NavigationMenu = () => {
     const items = useMemo(() => {
         return [
-            { label: 'Категории', value: 'categories' },
+            { label: 'Категории', value: 'tracks-collections' },
             { label: 'Исполнители', value: 'performers' },
             { label: 'Трэки', value: 'tracks' },
             { label: 'Коллекции', value: 'collections' },

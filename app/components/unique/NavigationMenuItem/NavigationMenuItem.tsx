@@ -9,7 +9,7 @@ const NavigationMenuItem = (props: Props) => {
     const { label, value } = props
     const navigate = useNavigate()
     const location = useLocation()
-    const isSelected = location.pathname.includes(value)
+    const isSelected = location.pathname.split('/')[1] === value
     const color = isSelected ? 'inherit' : 'base'
 
     const clickHandler = () => {

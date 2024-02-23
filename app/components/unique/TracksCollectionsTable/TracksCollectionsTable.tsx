@@ -4,12 +4,12 @@ import { TableBox } from 'layouts'
 import { Typography } from 'uikit'
 
 
-const CategoriesTable = () => {
+const TracksCollectionsTable = () => {
     return (
         <TableBox>
-            <Typography text='CategoriesTable' />
+            <Typography text='TracksCollectionsTable' />
         </TableBox>
     )
 }
 
-export default CategoriesTable
+export default TracksCollectionsTable

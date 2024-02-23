@@ -1,2 +1,2 @@
 export { default } from './PageLayout'
-export { TopPanelBox, TableBox, TableSortingsBox } from './PageLayout.styles'
+export { TopPanelBox, TableBox } from './PageLayout.styles'

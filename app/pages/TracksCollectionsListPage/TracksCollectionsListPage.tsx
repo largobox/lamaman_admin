@@ -2,7 +2,7 @@ import React from 'react'
 
 import { TableSortings } from 'uikit'
 import { AppLayout, PageLayout } from 'layouts'
-import { CategoriesTable, CategoriesTopPanel } from 'unique'
+import { TracksCollectionsTable, TracksCollectionsTopPanel } from 'unique'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import {
     changeCurrentSorting,
@@ -10,8 +10,8 @@ import {
 } from 'store/slices/tracksCollectionsSlice'
 import { SortHandlerSign } from 'common-types'
 
-// ToDo. Rename to TracksCollectionsListPage
-const CategoriesListPage = () => {
+
+const TracksCollectionsListPage = () => {
     const currentSorting = useAppSelector(currentSortingSelector)
     const dispatch = useAppDispatch()
 
@@ -33,7 +33,7 @@ const CategoriesListPage = () => {
     return (
         <AppLayout>
             <PageLayout>
-                <CategoriesTopPanel />
+                <TracksCollectionsTopPanel />
 
                 <TableSortings
                     items={sortings}
@@ -41,10 +41,10 @@ const CategoriesListPage = () => {
                     onSort={sortHandler}
                 />
 
-                <CategoriesTable />
+                <TracksCollectionsTable />
             </PageLayout>
         </AppLayout>
     )
 }
 
-export default CategoriesListPage
+export default TracksCollectionsListPage

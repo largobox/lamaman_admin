@@ -3,7 +3,12 @@ import { ThemeProvider } from 'styled-components'
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 
 import { defaultTheme } from 'themes'
-import { CategoriesListPage, LoginPage, NotFound, TracksListPage } from 'pages'
+import {
+    TracksCollectionsListPage,
+    LoginPage,
+    NotFound,
+    TracksListPage,
+} from 'pages'
 import { CurrentUserProvider } from 'hooks/useCurrentUser'
 import { ProtectedRoute } from 'uikit'
 import { Provider } from 'react-redux'
@@ -13,10 +18,10 @@ import { Toasts } from 'unique'
 
 const router = createBrowserRouter([
     {
-        path: '/categories',
+        path: '/tracks-collections',
         element: (
             <ProtectedRoute>
-                <CategoriesListPage />
+                <TracksCollectionsListPage />
             </ProtectedRoute>
         ),
     },
@@ -34,7 +39,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <Navigate to='/categories' />,
+        element: <Navigate to='/tracks-collections' />,
     },
     {
         path: '/*',

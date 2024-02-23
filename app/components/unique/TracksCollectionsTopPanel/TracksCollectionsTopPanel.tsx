@@ -5,7 +5,7 @@ import { OutlinedAddIcon } from 'icons'
 import { TopPanelBox } from 'layouts'
 
 
-const CategoriesTopPanel = () => {
+const TracksCollectionsTopPanel = () => {
     const addHandler = () => {
         console.log('Add')
     }
@@ -26,4 +26,4 @@ const CategoriesTopPanel = () => {
     )
 }
 
-export default CategoriesTopPanel
+export default TracksCollectionsTopPanel
