@@ -1,10 +1,10 @@
-import { TableSorting } from 'common-types'
+import { Sorting } from 'common-types'
 import { OutlinedChevronDownIcon, OutlinedChevronUpIcon } from 'icons'
 
 
 export const getIconBySortingDirection = (
     sortingName: string,
-    currentSorting: TableSorting,
+    currentSorting: Sorting,
 ) => {
     if (currentSorting.name !== sortingName) {
         return OutlinedChevronUpIcon
@@ -25,7 +25,7 @@ export const getIconBySortingDirection = (
 
 export const getColorBySortingDirection = (
     sortingName: string,
-    currentSorting: TableSorting,
+    currentSorting: Sorting,
 ) => {
     if (currentSorting.name !== sortingName) {
         return 'neutral'

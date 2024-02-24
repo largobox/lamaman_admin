@@ -38,7 +38,7 @@ export type GetRequestErrorMessageSign = (
 
 export type SortingDirection = 'asc' | 'desc' | null
 
-export type TableSorting = {
+export type Sorting = {
     name: string
     direction: SortingDirection
 }

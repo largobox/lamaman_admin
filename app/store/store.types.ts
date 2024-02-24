@@ -1,4 +1,4 @@
-import { SortingDirection, TableSorting } from 'common-types'
+import { Sorting, SortingDirection } from 'common-types'
 import store from './store'
 import { PayloadAction } from '@reduxjs/toolkit'
 
@@ -20,8 +20,14 @@ export type ToastsState = {
 }
 
 // tracks collections
+type TracksCollection = {
+    id: string
+    name: string
+    createdAt: string
+}
+
 export type TracksCollectionsState = {
-    currentSorting: TableSorting
+    currentSorting: Sorting
 }
 
 export type ChangeCurrentSortingAction = PayloadAction<{
@@ -29,7 +35,18 @@ export type ChangeCurrentSortingAction = PayloadAction<{
     direction: SortingDirection
 }>
 
-// api
+export type FindTracksCollectionsArgs = {
+    sorting: Sorting
+}
+
+export type FindTracksCollectionsReturn = {
+    items: TracksCollection[]
+    meta: {
+        sorting: Sorting
+    }
+}
+
+// authentication
 export type LoginArgs = {
     login: string
     password: string

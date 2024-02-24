@@ -6,4 +6,5 @@ export {
     TopPanelBox,
     RowBox,
     ColumnBox,
+    SpinBox,
 } from './PageLayout'

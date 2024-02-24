@@ -14,7 +14,7 @@ const TracksCollectionsTopPanel = () => {
         <TopPanelBox>
             <Typography
                 size='h1'
-                text='Список категорий'
+                text='Список коллекций'
             />
 
             <IconButton

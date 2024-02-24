@@ -5,6 +5,11 @@ import { IconButtonBox } from 'uikit'
 import { TableSortingsBox } from 'app/components/uikit/TableSortings'
 
 
+export const SpinBox = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 export const TopPanelBox = styled.div<ThemedProps>`
     display: flex;
     align-items: center;
