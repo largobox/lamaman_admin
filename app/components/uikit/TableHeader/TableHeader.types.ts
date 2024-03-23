@@ -1,13 +1,14 @@
 import { SortHandlerSign, Sorting } from 'common-types'
 
 
-export type TableSortingsItem = {
+export type TableHeaderItem = {
     name: string
     label: string
+    isSortable?: boolean
 }
 
 export type Props = {
-    items: TableSortingsItem[]
+    items: TableHeaderItem[]
     currentTableSorting: Sorting
     onSort: SortHandlerSign
 }

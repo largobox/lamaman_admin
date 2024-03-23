@@ -9,9 +9,11 @@ import {
 } from 'store/store.types'
 
 
+const isProduction = process.env.NODE_ENV === 'production'
 const host = process.env.SERVER_HOST
 const port = process.env.SERVER_PORT
-const url = `https://${host}:${port}/api`
+const protocol = isProduction ? 'https' : 'http'
+const url = `${protocol}://${host}:${port}/api`
 
 const apiSlice = createApi({
     reducerPath: 'api',

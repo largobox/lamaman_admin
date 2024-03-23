@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { IconButtonBox } from 'uikit'
 
 
-export const TableSorting = styled.div<ThemedProps>`
+export const TableHeaderItem = styled.div<ThemedProps>`
     display: flex;
     align-items: center;
 

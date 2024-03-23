@@ -1,58 +1,61 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 
-import { TableSortings } from 'uikit'
+import { TableHeader } from 'uikit'
 import Box from './TracksCollectionsTable.styles'
 import { useAppDispatch, useAppSelector, useRequestDebounce } from 'hooks'
 import {
     changeCurrentSorting,
     currentSortingSelector,
 } from 'store/slices/tracksCollectionsSlice'
+import { addToast } from 'store/slices/toastsSlice'
 import { SortHandlerSign } from 'common-types'
 import { TracksCollectionsTableItem } from 'unique'
 import { useLazyFindTracksCollectionsQuery } from 'api'
 import { Spin } from 'app/components/uikit/Spinner/Spinner.styles'
 import { SpinBox } from 'layouts'
+import { getRequestErrorMessage } from 'app-utils'
+import { tableHeaderItems } from './utils'
 
 
 const TracksCollectionsTable = () => {
     const currentSorting = useAppSelector(currentSortingSelector)
-    const dispatch = useAppDispatch()
-    const [findTracksCollections, { data, isFetching, isSuccess, isLoading }] =
-        useLazyFindTracksCollectionsQuery()
+    const appDispatch = useAppDispatch()
+    const [
+        findTracksCollections,
+        { data, isFetching, isSuccess, isLoading, error, isError },
+    ] = useLazyFindTracksCollectionsQuery()
     const isResultsVisible = useRequestDebounce(
         isSuccess && !isFetching && !isLoading,
     )
-    const sortings = useMemo(
-        () => [
-            {
-                name: 'name',
-                label: 'наименование',
-            },
-            {
-                name: 'createdAt',
-                label: 'дата создания',
-            },
-        ],
-        [],
-    )
+    const isPreloaderVisible = !isResultsVisible && !isError
 
     const sortHandler: SortHandlerSign = (name, direction) => {
-        dispatch(changeCurrentSorting({ name, direction }))
+        appDispatch(changeCurrentSorting({ name, direction }))
     }
 
     useEffect(() => {
         findTracksCollections({ sorting: currentSorting })
     }, [currentSorting])
 
+    useEffect(() => {
+        const errorMessage = getRequestErrorMessage({ error })
+
+        if (errorMessage !== null) {
+            appDispatch(addToast({ message: errorMessage, toastType: 'error' }))
+
+            return
+        }
+    }, [error])
+
     return (
         <Box>
-            <TableSortings
-                items={sortings}
+            <TableHeader
+                items={tableHeaderItems}
                 currentTableSorting={currentSorting}
                 onSort={sortHandler}
             />
 
-            {!isResultsVisible && (
+            {isPreloaderVisible && (
                 <SpinBox>
                     <Spin />
                 </SpinBox>

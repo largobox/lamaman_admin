@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-import { TableSorting } from 'app/components/uikit/TableSortings'
+import { TableHeaderItem } from 'app/components/uikit/TableHeader'
 import { ColumnBox } from 'app/layouts/PageLayout/PageLayout.styles'
 
 
 const Box = styled.div`
-    ${TableSorting} {
+    ${TableHeaderItem} {
         &:nth-child(1) {
             flex-grow: 1;
         }

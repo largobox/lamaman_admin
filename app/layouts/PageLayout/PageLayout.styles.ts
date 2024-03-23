@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { ThemedProps } from 'common-types'
 import { IconButtonBox } from 'uikit'
-import { TableSortingsBox } from 'app/components/uikit/TableSortings'
+import { TableHeaderBox } from 'app/components/uikit/TableHeader'
 
 
 export const SpinBox = styled.div`
@@ -65,7 +65,7 @@ const Box = styled.div<ThemedProps>`
     width: 100%;
     height: 100%;
 
-    ${TableSortingsBox} {
+    ${TableHeaderBox} {
         margin-top: ${(props) => props.theme.spacing(8)}px;
         margin-bottom: ${(props) => props.theme.spacing(3)}px;
     }

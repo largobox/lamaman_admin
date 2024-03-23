@@ -1,12 +1,12 @@
 import React from 'react'
 
-import Box, { TableSorting } from './TableSortings.styles'
+import Box, { TableHeaderItem } from './TableHeader.styles'
 import { IconButton, Typography } from 'uikit'
-import { Props } from './TableSortings.types'
+import { Props } from './TableHeader.types'
 import { getColorBySortingDirection, getIconBySortingDirection } from './utils'
 
 
-const TableSortings = (props: Props) => {
+const TableHeader = (props: Props) => {
     const { items, onSort, currentTableSorting } = props
 
     const clickHandler = (sortingName: string) => () => {
@@ -38,29 +38,31 @@ const TableSortings = (props: Props) => {
     return (
         <Box>
             {items.map((item) => (
-                <TableSorting key={item.name}>
+                <TableHeaderItem key={item.name}>
                     <Typography
                         text={item.label}
                         size='h2'
                         color='light'
                     />
 
-                    <IconButton
-                        Icon={getIconBySortingDirection(
-                            item.name,
-                            currentTableSorting,
-                        )}
-                        onClick={clickHandler(item.name)}
-                        size='small'
-                        color={getColorBySortingDirection(
-                            item.name,
-                            currentTableSorting,
-                        )}
-                    />
-                </TableSorting>
+                    {item.isSortable && (
+                        <IconButton
+                            Icon={getIconBySortingDirection(
+                                item.name,
+                                currentTableSorting,
+                            )}
+                            onClick={clickHandler(item.name)}
+                            size='small'
+                            color={getColorBySortingDirection(
+                                item.name,
+                                currentTableSorting,
+                            )}
+                        />
+                    )}
+                </TableHeaderItem>
             ))}
         </Box>
     )
 }
 
-export default TableSortings
+export default TableHeader
