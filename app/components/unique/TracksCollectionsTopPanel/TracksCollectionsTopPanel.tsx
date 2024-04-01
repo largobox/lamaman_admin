@@ -3,11 +3,14 @@ import React from 'react'
 import { IconButton, Typography } from 'uikit'
 import { OutlinedAddIcon } from 'icons'
 import { TopPanelBox } from 'layouts'
+import { useNavigate } from 'react-router-dom'
 
 
 const TracksCollectionsTopPanel = () => {
+    const navigate = useNavigate()
+
     const addHandler = () => {
-        console.log('Add')
+        navigate('/tracks-collections/add')
     }
 
     return (

@@ -13,7 +13,7 @@ import { CurrentUserProvider } from 'hooks/useCurrentUser'
 import { ProtectedRoute } from 'uikit'
 import { Provider } from 'react-redux'
 import { store } from 'store'
-import { Toasts } from 'unique'
+import { Toasts, TracksCollectionAdd } from 'unique'
 
 
 const router = createBrowserRouter([
@@ -24,6 +24,12 @@ const router = createBrowserRouter([
                 <TracksCollectionsListPage />
             </ProtectedRoute>
         ),
+        children: [
+            {
+                path: 'add',
+                element: <TracksCollectionAdd />,
+            },
+        ],
     },
     {
         path: '/tracks',

@@ -8,3 +8,4 @@ export {
     ColumnBox,
     SpinBox,
 } from './PageLayout'
+export { default as RightPanelLayout } from './RightPanelLayout'
