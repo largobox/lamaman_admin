@@ -1,6 +1,7 @@
 import Icon from './Icon'
 
 import dangerSvg from './svgs/danger.svg'
+import humanSorrySvg from './svgs/human-sorry.svg'
 import logoutSvg from './svgs/logout.svg'
 import outlinedAddSvg from './svgs/outlined-add.svg'
 import outlinedChevronDownSvg from './svgs/outlined-chevron-down.svg'
@@ -12,6 +13,7 @@ import pencilSvg from './svgs/pencil.svg'
 
 
 export const DangerIcon = Icon(dangerSvg)
+export const HumanSorryIcon = Icon(humanSorrySvg)
 export const LogoutIcon = Icon(logoutSvg)
 
 export const OutlinedAddIcon = Icon(outlinedAddSvg)
