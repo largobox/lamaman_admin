@@ -5,7 +5,7 @@ type Color = 'base' | 'inherit' | 'light'
 type Align = 'left' | 'right' | 'center'
 
 export type Props = {
-    text: string
+    text: string | number
 
     align?: Align
     color?: Color

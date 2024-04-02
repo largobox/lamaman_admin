@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import {
     ChangeCurrentSortingAction,
+    ChangePageAction,
     RootState,
     TracksCollectionsState,
 } from 'store/store.types'
@@ -9,6 +10,7 @@ import {
 
 const initialState: TracksCollectionsState = {
     currentSorting: { name: 'name', direction: 'asc' },
+    page: 1,
 }
 
 const tracksCollectionsSlice = createSlice({
@@ -18,13 +20,22 @@ const tracksCollectionsSlice = createSlice({
         changeCurrentSorting(state, action: ChangeCurrentSortingAction) {
             state.currentSorting = action.payload
         },
+
+        changePage(state, action: ChangePageAction) {
+            state.page = action.payload
+        },
     },
 })
 
-export const { changeCurrentSorting } = tracksCollectionsSlice.actions
+export const { changeCurrentSorting, changePage } =
+    tracksCollectionsSlice.actions
 
 export const currentSortingSelector = (state: RootState) => {
     return state.tracksCollections.currentSorting
+}
+
+export const pageSelector = (state: RootState) => {
+    return state.tracksCollections.page
 }
 
 export default tracksCollectionsSlice

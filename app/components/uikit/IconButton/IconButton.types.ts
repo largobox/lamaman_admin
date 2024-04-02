@@ -8,9 +8,11 @@ export type Props = {
 
     color?: Color
     size?: IconSize
+    isDisabled?: boolean
 }
 
 export type BoxProps = ThemedProps & {
     onClick: () => void
     $color: Color
+    $isDisabled: boolean
 }

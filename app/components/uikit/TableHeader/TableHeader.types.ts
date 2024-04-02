@@ -1,4 +1,4 @@
-import { SortHandlerSign, Sorting } from 'common-types'
+import { SortSign, Sorting } from 'common-types'
 
 
 export type TableHeaderItem = {
@@ -10,5 +10,5 @@ export type TableHeaderItem = {
 export type Props = {
     items: TableHeaderItem[]
     currentTableSorting: Sorting
-    onSort: SortHandlerSign
+    onSort: SortSign
 }

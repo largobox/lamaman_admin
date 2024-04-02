@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { LOCAL_STORAGE_AUTH_TOKEN } from 'app-utils'
+import { LOCAL_STORAGE_AUTH_TOKEN, PAGINATION_LIMIT } from 'app-utils'
 import {
     CreateTracksCollectionReturn,
     CreateTracksCollectionArgs,
@@ -54,6 +54,8 @@ const apiSlice = createApi({
                 params: {
                     sortingName: params.sorting.name,
                     sortingDirection: params.sorting.direction,
+                    page: params.page,
+                    limit: PAGINATION_LIMIT,
                 },
             }),
         }),

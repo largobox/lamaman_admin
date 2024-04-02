@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { ThemedProps } from 'common-types'
-import { IconButtonBox } from 'uikit'
+import { IconButtonBox, PaginationBox } from 'uikit'
 import { TableHeaderBox } from 'app/components/uikit/TableHeader'
 
 
@@ -68,6 +68,10 @@ const Box = styled.div<ThemedProps>`
     ${TableHeaderBox} {
         margin-top: ${(props) => props.theme.spacing(8)}px;
         margin-bottom: ${(props) => props.theme.spacing(3)}px;
+    }
+
+    ${PaginationBox} {
+        margin-top: ${(props) => props.theme.spacing(5)}px;
     }
 `
 

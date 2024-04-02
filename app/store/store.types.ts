@@ -28,12 +28,15 @@ type TracksCollection = {
 
 export type TracksCollectionsState = {
     currentSorting: Sorting
+    page: number
 }
 
 export type ChangeCurrentSortingAction = PayloadAction<{
     name: string
     direction: SortingDirection
 }>
+
+export type ChangePageAction = PayloadAction<number>
 
 export type CreateTracksCollectionArgs = {
     name: string
@@ -45,12 +48,14 @@ export type CreateTracksCollectionReturn = {
 
 export type FindTracksCollectionsArgs = {
     sorting: Sorting
+    page: number
 }
 
 export type FindTracksCollectionsReturn = {
     items: TracksCollection[]
     meta: {
         sorting: Sorting
+        total: number
     }
 }
 

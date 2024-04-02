@@ -43,7 +43,9 @@ export type Sorting = {
     direction: SortingDirection
 }
 
-export type SortHandlerSign = (
+export type SortSign = (
     name: string,
     sortingDirection: SortingDirection,
 ) => void
+
+export type ChangePageSign = (value: number) => void
