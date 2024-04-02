@@ -35,6 +35,14 @@ export type ChangeCurrentSortingAction = PayloadAction<{
     direction: SortingDirection
 }>
 
+export type CreateTracksCollectionArgs = {
+    name: string
+}
+
+export type CreateTracksCollectionReturn = {
+    id: string
+}
+
 export type FindTracksCollectionsArgs = {
     sorting: Sorting
 }

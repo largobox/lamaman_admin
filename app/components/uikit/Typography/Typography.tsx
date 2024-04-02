@@ -5,14 +5,22 @@ import Box from './Typography.styles'
 
 
 const Typography = (props: Props) => {
-    const { isBold, isCapitalized, text, size = 'base', color = 'base' } = props
+    const {
+        align = 'left',
+        color = 'base',
+        isBold,
+        isCapitalized,
+        text,
+        size = 'base',
+    } = props
 
     return (
         <Box
-            $size={size}
+            $align={align}
             $color={color}
             $isBold={isBold}
             $isCapitalized={isCapitalized}
+            $size={size}
         >
             {text}
         </Box>

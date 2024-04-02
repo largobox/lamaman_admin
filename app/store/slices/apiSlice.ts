@@ -2,10 +2,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { LOCAL_STORAGE_AUTH_TOKEN } from 'app-utils'
 import {
-    LoginArgs,
-    LoginReturn,
+    CreateTracksCollectionReturn,
+    CreateTracksCollectionArgs,
     FindTracksCollectionsReturn,
     FindTracksCollectionsArgs,
+    LoginArgs,
+    LoginReturn,
 } from 'store/store.types'
 
 
@@ -31,6 +33,17 @@ const apiSlice = createApi({
     }),
 
     endpoints: (builder) => ({
+        createTracksCollection: builder.mutation<
+            CreateTracksCollectionReturn,
+            CreateTracksCollectionArgs
+        >({
+            query: (data) => ({
+                url: 'tracks-collections',
+                method: 'POST',
+                body: data,
+            }),
+        }),
+
         findTracksCollections: builder.query<
             FindTracksCollectionsReturn,
             FindTracksCollectionsArgs
@@ -55,6 +68,10 @@ const apiSlice = createApi({
     }),
 })
 
-export const { useLoginMutation, useLazyFindTracksCollectionsQuery } = apiSlice
+export const {
+    useCreateTracksCollectionMutation,
+    useLoginMutation,
+    useLazyFindTracksCollectionsQuery,
+} = apiSlice
 
 export default apiSlice

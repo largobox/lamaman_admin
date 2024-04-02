@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { Button, Form, Input, Paper, Typography } from 'uikit'
 import { AuthenticationLayout, FormLayout } from 'layouts'
@@ -10,9 +11,8 @@ import logger from 'logger'
 import { useAppDispatch, useCurrentUser } from 'hooks'
 import { addToast } from 'store/slices/toastsSlice'
 import { getRequestErrorMessage } from 'app-utils'
-import { useNavigate } from 'react-router-dom'
 
-
+// ToDo. Rename to AuthenticationLoginPage
 const LoginPage = () => {
     const [login, { isLoading }] = useLoginMutation()
     const appDispatch = useAppDispatch()
@@ -53,6 +53,7 @@ const LoginPage = () => {
                 <FormLayout>
                     <FormHeader>
                         <Typography
+                            align='center'
                             size='h1'
                             text='Авторизация'
                         />

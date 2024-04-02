@@ -17,8 +17,6 @@ const RightPanelLayout = (props: Props) => {
     }, [isEscPressed])
 
     const handleBackgroundClick = (event: MouseEvent) => {
-        event.preventDefault()
-
         if (event.target === event.currentTarget) {
             onClose()
         }

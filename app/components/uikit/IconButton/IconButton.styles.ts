@@ -32,6 +32,14 @@ const colorStyles = (props: BoxProps) => {
             }
         `
     }
+
+    if ($color === 'neutral') {
+        return css`
+            &:hover {
+                background-color: ${colors.neutral.light};
+            }
+        `
+    }
 }
 
 const Box = styled.div<BoxProps>`

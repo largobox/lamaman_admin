@@ -1,8 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { RightPanelLayout } from 'layouts'
-import { Typography } from 'uikit'
-import { useNavigate } from 'react-router-dom'
+import { TracksCollectionForm } from 'unique'
 
 
 const TracksCollectionAdd = () => {
@@ -14,7 +14,7 @@ const TracksCollectionAdd = () => {
 
     return (
         <RightPanelLayout onClose={closeHandler}>
-            <Typography text='Maow' />
+            <TracksCollectionForm />
         </RightPanelLayout>
     )
 }

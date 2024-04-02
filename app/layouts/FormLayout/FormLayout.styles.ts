@@ -7,8 +7,6 @@ import { ButtonBox } from 'app/components/uikit/Button'
 
 export const FormHeader = styled.div<ThemedProps>`
     margin-bottom: ${(props) => props.theme.spacing(6)}px;
-    display: flex;
-    justify-content: center;
 `
 
 const Box = styled.div<ThemedProps>`

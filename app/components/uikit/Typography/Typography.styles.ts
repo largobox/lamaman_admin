@@ -72,9 +72,18 @@ const isCapitalizedStyles = (props: BoxProps) => {
     }
 }
 
+const alignStyles = (props: BoxProps) => {
+    const { $align } = props
+
+    return css`
+        text-align: ${$align};
+    `
+}
+
 const Box = styled.div<BoxProps>`
     user-select: none;
 
+    ${alignStyles}
     ${sizeStyles}
     ${colorStyles}
     ${isBoldStyles}

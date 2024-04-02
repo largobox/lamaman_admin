@@ -22,7 +22,7 @@ const theme: CustomTheme = {
         },
 
         neutral: {
-            base: '#9FA5B7',
+            base: '#989797',
             light: '#C9CEDB',
             dark: '#5C616D;',
         },

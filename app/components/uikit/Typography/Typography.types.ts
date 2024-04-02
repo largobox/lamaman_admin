@@ -2,19 +2,22 @@ import { FontSize, ThemedProps } from 'common-types'
 
 
 type Color = 'base' | 'inherit' | 'light'
+type Align = 'left' | 'right' | 'center'
 
 export type Props = {
     text: string
 
+    align?: Align
     color?: Color
-    size?: keyof FontSize
     isBold?: boolean
     isCapitalized?: boolean
+    size?: keyof FontSize
 }
 
 export type BoxProps = ThemedProps & {
-    $size: keyof FontSize
+    $align: Align
     $color: Color
     $isBold: boolean
     $isCapitalized: boolean
+    $size: keyof FontSize
 }
