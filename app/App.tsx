@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import { defaultTheme } from 'themes'
 import {
     TracksCollectionsListPage,
-    LoginPage,
+    AuthorizationLoginPage,
     NotFound,
     TracksListPage,
 } from 'pages'
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/login',
-        element: <LoginPage />,
+        element: <AuthorizationLoginPage />,
     },
     {
         path: '/',

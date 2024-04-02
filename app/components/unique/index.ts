@@ -1,3 +1,4 @@
+export { default as AuthorizationLoginForm } from './AuthorizationLoginForm'
 export { default as NavigationMenu } from './NavigationMenu'
 export { default as NavigationMenuItem } from './NavigationMenuItem'
 export { default as ProfileCard, ProfileCardBox } from './ProfileCard'
