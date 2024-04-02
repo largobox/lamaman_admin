@@ -1,4 +1,3 @@
-// ToDo. Убрать постфикс "Schema"
-export { default as authTokenPayloadSchema } from './authTokenPayloadSchema'
-export { default as loginFormSchema } from './loginFormSchema'
-export { default as tracksCollectionFormSchema } from './tracksCollectionFormSchema'
+export { default as authTokenPayloadSchema } from './authTokenPayload'
+export { default as loginFormSchema } from './loginForm'
+export { default as tracksCollectionFormSchema } from './tracksCollectionForm'
