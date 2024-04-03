@@ -11,6 +11,7 @@ const Box = styled.div<ThemedProps>`
     background-color: ${(props) => props.theme.colors.paper};
     border-radius: ${(props) => props.theme.borderRadius}px;
     box-shadow: ${(props) => props.theme.shadow.base};
+    overflow: hidden;
 `
 
 export default Box

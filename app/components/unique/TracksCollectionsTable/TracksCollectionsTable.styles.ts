@@ -11,7 +11,7 @@ const Box = styled.div`
         }
 
         &:nth-child(2) {
-            width: 250px;
+            width: 390px;
         }
     }
 
@@ -22,6 +22,10 @@ const Box = styled.div`
 
         &:nth-child(2) {
             width: 250px;
+        }
+
+        &:nth-child(3) {
+            width: 140px;
         }
     }
 `

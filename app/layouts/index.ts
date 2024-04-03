@@ -5,8 +5,10 @@ export { default as FormLayout } from './FormLayout'
 export {
     default as PageLayout,
     TopPanelBox,
+    RowsBox,
     RowBox,
     ColumnBox,
     SpinBox,
+    ControlsBox,
 } from './PageLayout'
 export { default as RightPanelLayout } from './RightPanelLayout'

@@ -19,8 +19,23 @@ export const TopPanelBox = styled.div<ThemedProps>`
     }
 `
 
+export const ControlsBox = styled.div<ThemedProps>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
 export const ColumnBox = styled.div<ThemedProps>`
-    border: 1px solid ${(props) => props.theme.colors.neutral.base};
+    display: flex;
+    align-items: center;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+
+    transition-duration: ${(props) => props.theme.transition.duration}ms;
+    transition-property: border-color;
+
     box-sizing: border-box;
     padding: ${(props) => props.theme.spacing(3)}px
         ${(props) => props.theme.spacing(4)}px;
@@ -39,7 +54,9 @@ export const RowBox = styled.div<ThemedProps>`
     transition-property: background-color, border-color;
 
     &:hover {
-        background-color: ${(props) => props.theme.colors.primary.light};
+        ${ColumnBox} {
+            border-color: ${(props) => props.theme.colors.neutral.base};
+        }
     }
 
     &:not(:first-child) {
@@ -60,6 +77,8 @@ export const RowBox = styled.div<ThemedProps>`
         }
     }
 `
+
+export const RowsBox = styled.div<ThemedProps>``
 
 const Box = styled.div<ThemedProps>`
     width: 100%;

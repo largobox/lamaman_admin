@@ -14,7 +14,7 @@ import { SortSign, ChangePageSign } from 'common-types'
 import { TracksCollectionsTableItem } from 'unique'
 import { useLazyFindTracksCollectionsQuery } from 'api'
 import { Spin } from 'app/components/uikit/Spinner/Spinner.styles'
-import { SpinBox } from 'layouts'
+import { SpinBox, RowsBox } from 'layouts'
 import { getRequestErrorMessage } from 'app-utils'
 import { tableHeaderItems } from './utils'
 
@@ -71,13 +71,15 @@ const TracksCollectionsTable = () => {
                 </SpinBox>
             )}
 
-            {isResultsVisible &&
-                data.items.map((item) => (
-                    <TracksCollectionsTableItem
-                        key={item.id}
-                        data={item}
-                    />
-                ))}
+            <RowsBox>
+                {isResultsVisible &&
+                    data.items.map((item) => (
+                        <TracksCollectionsTableItem
+                            key={item.id}
+                            data={item}
+                        />
+                    ))}
+            </RowsBox>
 
             {isResultsVisible && (
                 <Pagination

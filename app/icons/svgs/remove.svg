@@ -1,0 +1,13 @@
+<svg
+    viewBox="0 0 32 32"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+>
+    <g fill="none">
+        <path d="M0 0h32v32H0z" />
+        <path
+            d="M19 0a6 6 0 0 1 6 6h6a1 1 0 0 1 0 2l-3-.001V26a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6V8H1a1 1 0 1 1 0-2h6a6 6 0 0 1 6-6zm7 8H6v18a4 4 0 0 0 3.8 3.995L10 30h12a4 4 0 0 0 3.995-3.8L26 26zm-13 6a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0v-7a1 1 0 0 1 1-1zm6 0a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0v-7a1 1 0 0 1 1-1zm0-12h-6a4 4 0 0 0-3.995 3.8L9 6h14a4 4 0 0 0-3.8-3.995z"
+            fill="currentColor"
+        />
+    </g>
+</svg>

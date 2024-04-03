@@ -7,7 +7,7 @@ import Box, {
     TopBox,
 } from './ProfileCard.styles'
 import { IconButton, Typography } from 'uikit'
-import { LogoutIcon, OutlinedHumanIcon, PencilIcon } from 'icons'
+import { LogoutIcon, OutlinedHumanIcon, EditIcon } from 'icons'
 import { useCurrentUser } from 'hooks'
 
 
@@ -46,7 +46,7 @@ const ProfileCard = () => {
             <BottomBox>
                 <IconButton
                     onClick={editHandler}
-                    Icon={PencilIcon}
+                    Icon={EditIcon}
                 />
 
                 <IconButton
