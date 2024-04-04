@@ -28,6 +28,7 @@ export const ControlsBox = styled.div<ThemedProps>`
 export const ColumnBox = styled.div<ThemedProps>`
     display: flex;
     align-items: center;
+    background-color: ${(props) => props.theme.colors.neutral.light};
 
     border-width: 1px;
     border-style: solid;
@@ -47,7 +48,6 @@ export const ColumnBox = styled.div<ThemedProps>`
 
 export const RowBox = styled.div<ThemedProps>`
     display: flex;
-    background-color: ${(props) => props.theme.colors.neutral.light};
     cursor: pointer;
 
     transition-duration: ${(props) => props.theme.transition.duration}ms;

@@ -5,7 +5,7 @@ import { RightPanelLayout } from 'layouts'
 import { TracksCollectionForm } from 'unique'
 
 
-const TracksCollectionAdd = () => {
+const TracksCollectionAddPage = () => {
     const navigate = useNavigate()
 
     const closeHandler = () => {
@@ -19,4 +19,4 @@ const TracksCollectionAdd = () => {
     )
 }
 
-export default TracksCollectionAdd
+export default TracksCollectionAddPage
