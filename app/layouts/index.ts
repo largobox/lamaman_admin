@@ -1,7 +1,7 @@
 export { default as AppLayout } from './AppLayout'
 export { default as AuthenticationLayout } from './AuthenticationLayout'
 export { default as ErrorLayout } from './ErrorLayout'
-export { default as FormLayout } from './FormLayout'
+export { default as FormLayout, FormHeader } from './FormLayout'
 export {
     default as PageLayout,
     TopPanelBox,

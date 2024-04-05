@@ -38,13 +38,13 @@ export type ChangeCurrentSortingAction = PayloadAction<{
 
 export type ChangePageAction = PayloadAction<number>
 
-export type CreateTracksCollectionArgs = {
+export type TracksCollectionFormValues = {
     name: string
 }
 
-export type CreateTracksCollectionReturn = {
-    id: string
-}
+export type CreateTracksCollectionArgs = TracksCollectionFormValues
+
+export type CreateTracksCollectionReturn = boolean
 
 export type FindTracksCollectionsArgs = {
     sorting: Sorting
@@ -57,6 +57,17 @@ export type FindTracksCollectionsReturn = {
         sorting: Sorting
         total: number
     }
+}
+
+export type GetTracksCollectionArgs = string
+
+export type GetTracksCollectionReturn = TracksCollection
+
+export type UpdateTracksCollectionReturn = boolean
+
+export type UpdateTracksCollectionArgs = {
+    id: string
+    data: TracksCollectionFormValues
 }
 
 // authentication

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { RowBox, ColumnBox, ControlsBox } from 'layouts'
 import { IconButton, Typography } from 'uikit'
@@ -8,11 +9,12 @@ import { EditIcon, RemoveIcon } from 'icons'
 
 const TracksCollectionsTableItem = (props: Props) => {
     const {
-        data: { name, createdAt },
+        data: { name, createdAt, id },
     } = props
+    const navigate = useNavigate()
 
     const editClickHandler = () => {
-        console.log('Edit')
+        navigate(`/tracks-collections/${id}/edit`)
     }
 
     const removeClickHandler = () => {

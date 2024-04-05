@@ -1,9 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { IconButton, Typography } from 'uikit'
 import { OutlinedAddIcon } from 'icons'
 import { TopPanelBox } from 'layouts'
-import { useNavigate } from 'react-router-dom'
 
 
 const TracksCollectionsTopPanel = () => {

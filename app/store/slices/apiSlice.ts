@@ -2,12 +2,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { LOCAL_STORAGE_AUTH_TOKEN, PAGINATION_LIMIT } from 'app-utils'
 import {
-    CreateTracksCollectionReturn,
     CreateTracksCollectionArgs,
+    CreateTracksCollectionReturn,
     FindTracksCollectionsReturn,
     FindTracksCollectionsArgs,
+    GetTracksCollectionReturn,
+    GetTracksCollectionArgs,
     LoginArgs,
     LoginReturn,
+    UpdateTracksCollectionReturn,
+    UpdateTracksCollectionArgs,
 } from 'store/store.types'
 
 
@@ -60,6 +64,16 @@ const apiSlice = createApi({
             }),
         }),
 
+        getTracksCollection: builder.query<
+            GetTracksCollectionReturn,
+            GetTracksCollectionArgs
+        >({
+            query: (id) => ({
+                url: `tracks-collections/${id}`,
+                method: 'GET',
+            }),
+        }),
+
         login: builder.mutation<LoginReturn, LoginArgs>({
             query: (data) => ({
                 url: 'authentication',
@@ -67,13 +81,26 @@ const apiSlice = createApi({
                 body: data,
             }),
         }),
+
+        updateTracksCollection: builder.mutation<
+            UpdateTracksCollectionReturn,
+            UpdateTracksCollectionArgs
+        >({
+            query: (params) => ({
+                url: `tracks-collections/${params.id}`,
+                method: 'PUT',
+                body: params.data,
+            }),
+        }),
     }),
 })
 
 export const {
     useCreateTracksCollectionMutation,
+    useUpdateTracksCollectionMutation,
     useLoginMutation,
     useLazyFindTracksCollectionsQuery,
+    useLazyGetTracksCollectionQuery,
 } = apiSlice
 
 export default apiSlice

@@ -9,6 +9,7 @@ import {
     AuthorizationLoginPage,
     NotFound,
     TracksListPage,
+    TracksCollectionEditPage,
 } from 'pages'
 import { CurrentUserProvider } from 'hooks/useCurrentUser'
 import { ProtectedRoute } from 'uikit'
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: 'add',
                 element: <TracksCollectionAddPage />,
+            },
+            {
+                path: ':id/edit',
+                element: <TracksCollectionEditPage />,
             },
         ],
     },

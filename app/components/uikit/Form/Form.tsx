@@ -4,6 +4,7 @@ import React, {
     cloneElement,
     isValidElement,
     useCallback,
+    useEffect,
     useRef,
     useState,
 } from 'react'
@@ -23,9 +24,21 @@ const Form = (props: Props) => {
         schema,
         isLoading = false,
     } = props
+
+    // ToDo. Обработать ошибка подостойней, хотя бы в трайкэч засунуть
+    if (typeof initialValues !== 'object' || initialValues === null) {
+        throw new Error('Form component. "initialValues" prop must be object')
+    }
+
     const formValuesRef = useRef<FormValues>(initialValues)
     const [formErrors, setFormErrors] = useState<FormErrors>([])
     const validate = useCallback(ajv.compile(schema), [])
+
+    useEffect(() => {
+        for (const prop in formValuesRef.current) {
+            formValuesRef.current[prop] = initialValues[prop]
+        }
+    }, [initialValues])
 
     const submitHandler = (ev: FormEvent) => {
         ev.preventDefault()
@@ -76,7 +89,9 @@ const Form = (props: Props) => {
                 error: findedError ? findedError.message : '',
                 onChange: changeHandler(child.props.name),
                 label: child.props.label,
-                initialValue: formValuesRef.current[child.props.name],
+                initialValue:
+                    formValuesRef.current[child.props.name] ||
+                    initialValues[child.props.name],
             }
 
             return cloneElement(child, props, [])
