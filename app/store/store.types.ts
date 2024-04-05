@@ -44,7 +44,9 @@ export type TracksCollectionFormValues = {
 
 export type CreateTracksCollectionArgs = TracksCollectionFormValues
 
-export type CreateTracksCollectionReturn = boolean
+export type CreateTracksCollectionReturn = {
+    id: string
+}
 
 export type FindTracksCollectionsArgs = {
     sorting: Sorting

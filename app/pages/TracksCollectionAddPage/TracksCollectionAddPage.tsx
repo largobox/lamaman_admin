@@ -34,7 +34,7 @@ const TracksCollectionAddPage = () => {
                 return
             }
 
-            if ('data' in result && result.data === true) {
+            if ('data' in result && result.data.id) {
                 navigate('/')
             }
         } catch (err) {
