@@ -4,7 +4,7 @@ import { OutlinedChevronDownIcon, OutlinedChevronUpIcon } from 'icons'
 
 export const getIconBySortingDirection = (
     sortingName: string,
-    currentSorting: Sorting,
+    currentSorting: Sorting<string>,
 ) => {
     if (currentSorting.name !== sortingName) {
         return OutlinedChevronUpIcon
@@ -25,7 +25,7 @@ export const getIconBySortingDirection = (
 
 export const getColorBySortingDirection = (
     sortingName: string,
-    currentSorting: Sorting,
+    currentSorting: Sorting<string>,
 ) => {
     if (currentSorting.name !== sortingName) {
         return 'neutral'

@@ -2,91 +2,83 @@ import React, { useEffect } from 'react'
 
 import { TableHeader, Pagination } from 'uikit'
 import Box from './TracksCollectionsTable.styles'
-import { useAppDispatch, useAppSelector, useRequestDebounce } from 'hooks'
+import { useAppDispatch, useAppSelector } from 'hooks'
 import {
-    changeCurrentSorting,
+    changeSorting,
     changePage,
-    currentSortingSelector,
+    sortingSelector,
+    findTracksCollections,
+    isRequestLoadedSelector,
+    isFindLoadingSelector,
+    itemsSelector,
+    itemsTotalSelector,
     pageSelector,
 } from 'store/slices/tracksCollectionsSlice'
-import { addToast } from 'store/slices/toastsSlice'
 import { SortSign, ChangePageSign } from 'common-types'
 import { TracksCollectionsTableItem } from 'unique'
-import { useLazyFindTracksCollectionsQuery } from 'api'
 import { Spin } from 'app/components/uikit/Spinner/Spinner.styles'
 import { SpinBox, RowsBox } from 'layouts'
-import { getRequestErrorMessage } from 'app-utils'
 import { tableHeaderItems } from './utils'
+import { TracksCollectionsSortings } from 'store/store.types'
 
 
 const TracksCollectionsTable = () => {
-    const currentSorting = useAppSelector(currentSortingSelector)
-    const page = useAppSelector(pageSelector)
     const appDispatch = useAppDispatch()
-    const [
-        findTracksCollections,
-        { data, isFetching, isSuccess, isLoading, error, isError },
-    ] = useLazyFindTracksCollectionsQuery()
-    const isResultsVisible = useRequestDebounce(
-        isSuccess && !isFetching && !isLoading,
+    const isLoaded = useAppSelector(
+        isRequestLoadedSelector('findTracksCollections'),
     )
-    const isPreloaderVisible = !isResultsVisible && !isError
-
-    const sortHandler: SortSign = (name, direction) => {
-        appDispatch(changeCurrentSorting({ name, direction }))
-    }
+    const isLoading = useAppSelector(isFindLoadingSelector)
+    const items = useAppSelector(itemsSelector)
+    const page = useAppSelector(pageSelector)
+    const sorting = useAppSelector(sortingSelector)
+    const total = useAppSelector(itemsTotalSelector)
 
     const changePageHandler: ChangePageSign = (value) => {
         appDispatch(changePage(value))
     }
 
-    useEffect(() => {
-        findTracksCollections({
-            sorting: currentSorting,
-            page,
-        })
-    }, [currentSorting, page])
+    const sortHandler: SortSign<TracksCollectionsSortings> = (
+        name,
+        direction,
+    ) => {
+        appDispatch(changeSorting({ name, direction }))
+    }
 
     useEffect(() => {
-        const errorMessage = getRequestErrorMessage({ error })
-
-        if (errorMessage !== null) {
-            appDispatch(addToast({ message: errorMessage, toastType: 'error' }))
-
-            return
-        }
-    }, [error])
+        appDispatch(findTracksCollections())
+    }, [sorting, page])
 
     return (
         <Box>
             <TableHeader
                 items={tableHeaderItems}
-                currentTableSorting={currentSorting}
+                currentTableSorting={sorting}
                 onSort={sortHandler}
             />
 
-            {isPreloaderVisible && (
+            {isLoading && (
                 <SpinBox>
                     <Spin />
                 </SpinBox>
             )}
 
-            <RowsBox>
-                {isResultsVisible &&
-                    data.items.map((item) => (
-                        <TracksCollectionsTableItem
-                            key={item.id}
-                            data={item}
-                        />
-                    ))}
-            </RowsBox>
+            {isLoaded && (
+                <>
+                    <RowsBox>
+                        {items.map((item) => (
+                            <TracksCollectionsTableItem
+                                key={item.id}
+                                data={item}
+                            />
+                        ))}
+                    </RowsBox>
 
-            {isResultsVisible && (
-                <Pagination
-                    onChange={changePageHandler}
-                    page={page}
-                    total={data.meta.total}
-                />
+                    <Pagination
+                        onChange={changePageHandler}
+                        page={page}
+                        total={total}
+                    />
+                </>
             )}
         </Box>
     )

@@ -1,11 +1,12 @@
+// ToDo. Удалить файл после изменения логики
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { LOCAL_STORAGE_AUTH_TOKEN, PAGINATION_LIMIT } from 'app-utils'
+import { LOCAL_STORAGE_AUTH_TOKEN } from 'app-utils'
 import {
-    CreateTracksCollectionArgs,
-    CreateTracksCollectionReturn,
-    FindTracksCollectionsReturn,
-    FindTracksCollectionsArgs,
+    // CreateTracksCollectionArgs,
+    // CreateTracksCollectionReturn,
+    // FindTracksCollectionsReturn,
+    // FindTracksCollectionsArgs,
     GetTracksCollectionReturn,
     GetTracksCollectionArgs,
     LoginArgs,
@@ -37,10 +38,7 @@ const apiSlice = createApi({
     }),
 
     endpoints: (builder) => ({
-        createTracksCollection: builder.mutation<
-            CreateTracksCollectionReturn,
-            CreateTracksCollectionArgs
-        >({
+        createTracksCollection: builder.mutation<string, string>({
             query: (data) => ({
                 url: 'tracks-collections',
                 method: 'POST',
@@ -48,19 +46,11 @@ const apiSlice = createApi({
             }),
         }),
 
-        findTracksCollections: builder.query<
-            FindTracksCollectionsReturn,
-            FindTracksCollectionsArgs
-        >({
-            query: (params) => ({
+        findTracksCollections: builder.query<string, string>({
+            query: () => ({
                 url: 'tracks-collections',
                 method: 'GET',
-                params: {
-                    sortingName: params.sorting.name,
-                    sortingDirection: params.sorting.direction,
-                    page: params.page,
-                    limit: PAGINATION_LIMIT,
-                },
+                params: {},
             }),
         }),
 

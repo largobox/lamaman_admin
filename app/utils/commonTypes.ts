@@ -1,5 +1,6 @@
 import { SerializedError } from '@reduxjs/toolkit'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { createBrowserRouter } from 'react-router-dom'
 import { CustomTheme } from 'styled-components'
 
 
@@ -38,14 +39,13 @@ export type GetRequestErrorMessageSign = (
 
 export type SortingDirection = 'asc' | 'desc' | null
 
-export type Sorting = {
-    name: string
+export type Sorting<T> = {
+    name: T
     direction: SortingDirection
 }
 
-export type SortSign = (
-    name: string,
-    sortingDirection: SortingDirection,
-) => void
+export type SortSign<T> = (name: T, sortingDirection: SortingDirection) => void
 
 export type ChangePageSign = (value: number) => void
+
+export type Router = ReturnType<typeof createBrowserRouter>

@@ -4,6 +4,14 @@ import apiSlice from './slices/apiSlice'
 import toastsSlice from './slices/toastsSlice'
 import tracksCollectionsSlice from './slices/tracksCollectionsSlice'
 
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './sagas'
+import router from 'router'
+
+
+const sagaMiddleware = createSagaMiddleware()
+
+sagaMiddleware.setContext({ router })
 
 const store = configureStore({
     reducer: {
@@ -13,7 +21,12 @@ const store = configureStore({
     },
 
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(apiSlice.middleware),
+        getDefaultMiddleware().concat([
+            apiSlice.middleware, // ToDo убрать
+            sagaMiddleware,
+        ]),
 })
+
+sagaMiddleware.run(rootSaga)
 
 export default store

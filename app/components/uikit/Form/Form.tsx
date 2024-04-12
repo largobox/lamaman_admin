@@ -25,12 +25,11 @@ const Form = (props: Props) => {
         isLoading = false,
     } = props
 
-    // ToDo. Обработать ошибка подостойней, хотя бы в трайкэч засунуть
     if (typeof initialValues !== 'object' || initialValues === null) {
         throw new Error('Form component. "initialValues" prop must be object')
     }
 
-    const formValuesRef = useRef<FormValues>(initialValues)
+    const formValuesRef = useRef<FormValues>({ ...initialValues })
     const [formErrors, setFormErrors] = useState<FormErrors>([])
     const validate = useCallback(ajv.compile(schema), [])
 

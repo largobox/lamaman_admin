@@ -1,63 +1,14 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
 import { defaultTheme } from 'themes'
-import {
-    TracksCollectionAddPage,
-    TracksCollectionsListPage,
-    AuthorizationLoginPage,
-    NotFound,
-    TracksListPage,
-    TracksCollectionEditPage,
-} from 'pages'
 import { CurrentUserProvider } from 'hooks/useCurrentUser'
-import { ProtectedRoute } from 'uikit'
-import { Provider } from 'react-redux'
 import { store } from 'store'
 import { Toasts } from 'unique'
+import router from 'router'
 
-
-const router = createBrowserRouter([
-    {
-        path: '/tracks-collections',
-        element: (
-            <ProtectedRoute>
-                <TracksCollectionsListPage />
-            </ProtectedRoute>
-        ),
-        children: [
-            {
-                path: 'add',
-                element: <TracksCollectionAddPage />,
-            },
-            {
-                path: ':id/edit',
-                element: <TracksCollectionEditPage />,
-            },
-        ],
-    },
-    {
-        path: '/tracks',
-        element: (
-            <ProtectedRoute>
-                <TracksListPage />
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: '/login',
-        element: <AuthorizationLoginPage />,
-    },
-    {
-        path: '/',
-        element: <Navigate to='/tracks-collections' />,
-    },
-    {
-        path: '/*',
-        element: <NotFound />,
-    },
-])
 
 const App = () => {
     return (

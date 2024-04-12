@@ -7,13 +7,10 @@ import { Props } from './TracksCollectionForm.types'
 
 const TracksCollectionForm = (props: Props) => {
     const { initialValues, isLoading, onSubmit } = props
-    const defaultValues = {
-        name: '',
-    }
 
     return (
         <Form
-            initialValues={initialValues || defaultValues}
+            initialValues={initialValues}
             schema={tracksCollectionFormSchema}
             onSubmit={onSubmit}
             isLoading={isLoading}

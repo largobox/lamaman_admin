@@ -9,6 +9,6 @@ export type TableHeaderItem = {
 
 export type Props = {
     items: TableHeaderItem[]
-    currentTableSorting: Sorting
-    onSort: SortSign
+    currentTableSorting: Sorting<string>
+    onSort: SortSign<string>
 }

@@ -7,6 +7,8 @@
         "noImplicitAny": true,
         "paths": {
             "app-utils": ["app/utils/index"],
+            "router": ["app/router/index"],
+            "consts": ["app/utils/constants/index"],
             "api": ["app/store/slices/apiSlice"],
             "common-types": ["app/utils/commonTypes"],
             "hooks": ["app/hooks/index"],
@@ -23,7 +25,9 @@
             "uikit": ["app/components/uikit/index"],
             "unique": ["app/components/unique/index"],
             "themes": ["app/themes/index"],
-            "validations": ["app/utils/validations"]
+            "validations": ["app/utils/validations"],
+            "api-maow": ["app/utils/Api"],
+            "errors": ["system/errors/index"]
         },
         "target": "es6"
     },

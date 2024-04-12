@@ -2,10 +2,24 @@ import { Sorting, SortingDirection } from 'common-types'
 import store from './store'
 import { PayloadAction } from '@reduxjs/toolkit'
 
-
+// common
 export type AppDispatch = typeof store.dispatch
 
 export type RootState = ReturnType<typeof store.getState>
+
+type RequestStatus = 'initial' | 'loading' | 'loaded' | 'error'
+
+export type ChangeSortingAction<T> = PayloadAction<{
+    name: T
+    direction: SortingDirection
+}>
+
+export type FindInput<T> = {
+    sortingName: T
+    sortingDirection: SortingDirection
+    page: string
+    limit: string
+}
 
 // toasts
 type ToastType = 'error' | 'info' | 'warning'
@@ -26,15 +40,7 @@ type TracksCollection = {
     createdAt: string
 }
 
-export type TracksCollectionsState = {
-    currentSorting: Sorting
-    page: number
-}
-
-export type ChangeCurrentSortingAction = PayloadAction<{
-    name: string
-    direction: SortingDirection
-}>
+export type ChangeItemsAction = PayloadAction<TracksCollection[]>
 
 export type ChangePageAction = PayloadAction<number>
 
@@ -42,35 +48,72 @@ export type TracksCollectionFormValues = {
     name: string
 }
 
-export type CreateTracksCollectionArgs = TracksCollectionFormValues
+export type CreateTracksCollectionPayload = {
+    data: TracksCollectionFormValues
+}
+export type CreateTracksCollectionAction =
+    PayloadAction<CreateTracksCollectionPayload>
 
-export type CreateTracksCollectionReturn = {
+export type GetTracksCollectionAction = PayloadAction<string>
+
+export type UpdateTracksCollectionPayload = {
     id: string
+    data: TracksCollectionFormValues
 }
+export type UpdateTracksCollectionAction =
+    PayloadAction<UpdateTracksCollectionPayload>
 
-export type FindTracksCollectionsArgs = {
-    sorting: Sorting
-    page: number
-}
+export type TracksCollectionsSortings = 'name' | 'createdAt'
 
-export type FindTracksCollectionsReturn = {
+export type FindTracksCollectionsInput = FindInput<TracksCollectionsSortings>
+export type FindTracksCollectionsOutput = {
     items: TracksCollection[]
     meta: {
-        sorting: Sorting
+        sorting: Sorting<TracksCollectionsSortings>
         total: number
     }
 }
 
-export type GetTracksCollectionArgs = string
+export type HandleFindTracksCollectionsSuccessAction =
+    PayloadAction<FindTracksCollectionsOutput>
 
+export type HandleGetTracksCollectionsSuccessAction =
+    PayloadAction<GetTracksCollectionOutput>
+
+export type GetTracksCollectionArgs = string
 export type GetTracksCollectionReturn = TracksCollection
 
-export type UpdateTracksCollectionReturn = boolean
+export type GetTracksCollectionOutput = TracksCollection
 
+export type UpdateTracksCollectionReturn = boolean
 export type UpdateTracksCollectionArgs = {
     id: string
     data: TracksCollectionFormValues
 }
+
+type TracksCollectionsRequests = {
+    createTracksCollection: RequestStatus
+    deleteTracksCollection: RequestStatus
+    findTracksCollections: RequestStatus
+    getTracksCollection: RequestStatus
+    updateTracksCollection: RequestStatus
+}
+
+export type TracksCollectionsRequestNames = keyof TracksCollectionsRequests
+
+export type TracksCollectionsState = {
+    formValues: TracksCollectionFormValues
+    items: TracksCollection[] | null
+    itemsTotal: number | null
+    page: number
+    requests: TracksCollectionsRequests
+    sorting: Sorting<TracksCollectionsSortings>
+}
+
+export type ChangeTracksCollectionsRequestStatusAction = PayloadAction<{
+    name: TracksCollectionsRequestNames
+    status: RequestStatus
+}>
 
 // authentication
 export type LoginArgs = {

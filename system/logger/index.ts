@@ -1,6 +1,11 @@
+import { LoggerErrorParams } from './logger.types'
+
+
 const logger = {
-    error: (error: Error) => {
-        console.error('Error: ', { error })
+    error: (params: LoggerErrorParams) => {
+        const { error, layer } = params
+
+        console.error('Error: ', { error, layer })
     },
 
     info: (message: string) => {

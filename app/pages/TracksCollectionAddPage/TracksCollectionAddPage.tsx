@@ -4,42 +4,27 @@ import { useNavigate } from 'react-router-dom'
 import { RightPanelLayout, FormLayout, FormHeader } from 'layouts'
 import { TracksCollectionForm } from 'unique'
 import { Typography } from 'uikit'
-import logger from 'logger'
-import { useCreateTracksCollectionMutation } from 'api'
-import { useAppDispatch } from 'hooks'
-import { getRequestErrorMessage } from 'app-utils'
-import { addToast } from 'store/slices/toastsSlice'
+import { useAppDispatch, useAppSelector } from 'hooks'
 import { TracksCollectionFormValues } from 'store/store.types'
+import {
+    createTracksCollection,
+    formValuesSelector,
+    isCreateLoadingSelector,
+} from 'store/slices/tracksCollectionsSlice'
 
 
 const TracksCollectionAddPage = () => {
-    const [сreate, { isLoading }] = useCreateTracksCollectionMutation()
     const appDispatch = useAppDispatch()
     const navigate = useNavigate()
+    const isLoading = useAppSelector(isCreateLoadingSelector)
+    const initialValues = useAppSelector(formValuesSelector)
 
     const closeHandler = () => {
         navigate('/tracks-collections')
     }
 
     const submitHandler = async (values: TracksCollectionFormValues) => {
-        try {
-            const result = await сreate(values)
-            const errorMessage = getRequestErrorMessage(result)
-
-            if (errorMessage !== null) {
-                appDispatch(
-                    addToast({ message: errorMessage, toastType: 'error' }),
-                )
-
-                return
-            }
-
-            if ('data' in result && result.data.id) {
-                navigate('/')
-            }
-        } catch (err) {
-            logger.error(err)
-        }
+        appDispatch(createTracksCollection({ data: values }))
     }
 
     return (
@@ -53,6 +38,7 @@ const TracksCollectionAddPage = () => {
                 </FormHeader>
 
                 <TracksCollectionForm
+                    initialValues={initialValues}
                     onSubmit={submitHandler}
                     isLoading={isLoading}
                 />

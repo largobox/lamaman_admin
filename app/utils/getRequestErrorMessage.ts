@@ -1,6 +1,6 @@
 import { GetRequestErrorMessageSign } from 'common-types'
 
-
+// ToDo. Похоже в итоге не понадобится утилита
 const getRequestErrorMessage: GetRequestErrorMessageSign = (result) => {
     const hasErrorProp = 'error' in result
 
