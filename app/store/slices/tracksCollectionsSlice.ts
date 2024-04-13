@@ -83,6 +83,12 @@ const tracksCollectionsSlice = createSlice({
             state.formValues = action.payload
             state.requests.getTracksCollection = 'loaded'
         },
+
+        resetForm(state) {
+            state.formValues = {
+                name: ''
+            }
+        },
     },
 })
 
@@ -93,6 +99,7 @@ export const {
     changeSorting,
     findTracksCollectionsSuccess,
     getTracksCollectionSuccess,
+    resetForm,
 } = tracksCollectionsSlice.actions
 
 // Custom actions
