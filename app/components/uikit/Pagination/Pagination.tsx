@@ -4,7 +4,7 @@ import Box, { LabelCont } from './Pagination.styles'
 import { Props } from './Pagination.types'
 import { IconButton, Typography } from 'uikit'
 import { OutlinedChevronLeftIcon, OutlinedChevronRightIcon } from 'icons'
-import { PAGINATION_LIMIT } from 'app-utils'
+import { PAGINATION_LIMIT } from 'consts'
 
 
 const Pagination = (props: Props) => {

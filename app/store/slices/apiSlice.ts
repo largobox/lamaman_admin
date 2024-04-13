@@ -1,7 +1,7 @@
 // ToDo. Удалить файл после изменения логики
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { LOCAL_STORAGE_AUTH_TOKEN } from 'app-utils'
+import { LOCAL_STORAGE_AUTH_TOKEN } from 'consts'
 import {
     // CreateTracksCollectionArgs,
     // CreateTracksCollectionReturn,

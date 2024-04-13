@@ -5,7 +5,7 @@ import {
     tokenToCurrentUser,
     validateAuthToken,
 } from './utils'
-import { LOCAL_STORAGE_AUTH_TOKEN } from 'app-utils'
+import { LOCAL_STORAGE_AUTH_TOKEN } from 'consts'
 
 
 const rolesMap = new Map()

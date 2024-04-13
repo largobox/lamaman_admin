@@ -1,8 +1,8 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { ROOT_DIV_ID } from 'app-utils'
-import { cssBaseline } from 'system-utils'
+import { ROOT_DIV_ID } from 'consts'
+import { cssBaseline } from 'utils'
 import App from './App'
 
 

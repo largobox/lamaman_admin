@@ -9,7 +9,7 @@ import {
     getTracksCollectionSuccess,
 } from 'store/slices/tracksCollectionsSlice'
 import { addToast } from 'store/slices/toastsSlice'
-import { delay } from 'app-utils'
+import { delay } from 'utils'
 import {
     CREATE_TRACKS_COLLECTION,
     FIND_TRACKS_COLLECTIONS,

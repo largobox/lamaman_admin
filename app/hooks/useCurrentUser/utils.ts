@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_AUTH_TOKEN } from 'app-utils'
+import { LOCAL_STORAGE_AUTH_TOKEN } from 'utils'
 import {
     GetInitialCurrentUserSignature,
     TokenToCurrentUserSignature,
