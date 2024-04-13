@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_AUTH_TOKEN } from 'utils'
+import { LOCAL_STORAGE_AUTH_TOKEN } from 'consts'
 import {
     GetInitialCurrentUserSignature,
     TokenToCurrentUserSignature,
