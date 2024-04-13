@@ -10,3 +10,5 @@ export const CREATE_TRACKS_COLLECTION = 'tracksCollections/create'
 export const FIND_TRACKS_COLLECTIONS = 'tracksCollections/find'
 export const GET_TRACKS_COLLECTION = 'tracksCollections/get'
 export const UPDATE_TRACKS_COLLECTION = 'tracksCollections/update'
+
+export const AUTHORIZATION_LOGIN = 'authorization/login'

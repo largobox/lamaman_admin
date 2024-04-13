@@ -1,5 +1,6 @@
 import { all } from 'redux-saga/effects'
 
+import { loginAuthorizationWatcherSaga } from './authorization'
 import {
     createTracksCollectionWatcherSaga,
     findTracksCollectionsWatcherSaga,
@@ -14,6 +15,8 @@ function* rootSaga() {
         findTracksCollectionsWatcherSaga(),
         getTracksCollectionsWatcherSaga(),
         updateTracksCollectionWatcherSaga(),
+
+        loginAuthorizationWatcherSaga(),
     ])
 }
 

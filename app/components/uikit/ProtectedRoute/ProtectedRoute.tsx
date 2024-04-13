@@ -1,21 +1,22 @@
 import { useEffect, PropsWithChildren } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useCurrentUser } from 'hooks'
+import { useAppSelector } from 'hooks'
+import { isAuthorizedSelector } from 'store/slices/authorizationSlice'
 
 
 const ProtectedRoute = (props: PropsWithChildren) => {
     const { children } = props
-    const currentUser = useCurrentUser()
     const navigate = useNavigate()
+    const isAuthorized = useAppSelector(isAuthorizedSelector)
 
     useEffect(() => {
-        if (!currentUser.isAuthorized) {
+        if (!isAuthorized) {
             navigate('/login')
         }
-    }, [currentUser.isAuthorized])
+    }, [isAuthorized])
 
-    if (!currentUser.isAuthorized) {
+    if (!isAuthorized) {
         return null
     }
 

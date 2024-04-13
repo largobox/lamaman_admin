@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import apiSlice from './slices/apiSlice'
+import authorizationSlice from './slices/authorizationSlice'
 import toastsSlice from './slices/toastsSlice'
 import tracksCollectionsSlice from './slices/tracksCollectionsSlice'
 
@@ -15,16 +15,13 @@ sagaMiddleware.setContext({ router })
 
 const store = configureStore({
     reducer: {
-        [apiSlice.reducerPath]: apiSlice.reducer,
+        [authorizationSlice.reducerPath]: authorizationSlice.reducer,
         [toastsSlice.name]: toastsSlice.reducer,
         [tracksCollectionsSlice.name]: tracksCollectionsSlice.reducer,
     },
 
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat([
-            apiSlice.middleware, // ToDo убрать
-            sagaMiddleware,
-        ]),
+        getDefaultMiddleware().concat([sagaMiddleware]),
 })
 
 sagaMiddleware.run(rootSaga)

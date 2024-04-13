@@ -8,18 +8,25 @@ import Box, {
 } from './ProfileCard.styles'
 import { IconButton, Typography } from 'uikit'
 import { LogoutIcon, OutlinedHumanIcon, EditIcon } from 'icons'
-import { useCurrentUser } from 'hooks'
+import { useAppDispatch, useAppSelector } from 'hooks'
+import {
+    currentUserNameSelector,
+    currentUserRoleSelector,
+    signOut,
+} from 'store/slices/authorizationSlice'
 
 
 const ProfileCard = () => {
-    const { name, role, signOut } = useCurrentUser()
+    const appDispatch = useAppDispatch()
+    const name = useAppSelector(currentUserNameSelector)
+    const role = useAppSelector(currentUserRoleSelector)
 
     const editHandler = () => {
         console.log('Edit')
     }
 
     const logoutHandler = () => {
-        signOut()
+        appDispatch(signOut())
     }
 
     return (

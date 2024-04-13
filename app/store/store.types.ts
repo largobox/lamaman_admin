@@ -101,6 +101,11 @@ type TracksCollectionsRequests = {
 
 export type TracksCollectionsRequestNames = keyof TracksCollectionsRequests
 
+export type ChangeTracksCollectionsRequestStatusAction = PayloadAction<{
+    name: TracksCollectionsRequestNames
+    status: RequestStatus
+}>
+
 export type TracksCollectionsState = {
     formValues: TracksCollectionFormValues
     items: TracksCollection[] | null
@@ -110,15 +115,38 @@ export type TracksCollectionsState = {
     sorting: Sorting<TracksCollectionsSortings>
 }
 
-export type ChangeTracksCollectionsRequestStatusAction = PayloadAction<{
-    name: TracksCollectionsRequestNames
-    status: RequestStatus
-}>
-
 // authentication
-export type LoginArgs = {
+export type AuthorizationLoginFormValues = {
     login: string
     password: string
 }
 
-export type LoginReturn = string
+export type AuthorizationLoginActionPayload = {
+    data: AuthorizationLoginFormValues
+}
+
+export type AuthorizationLoginAction =
+    PayloadAction<AuthorizationLoginActionPayload>
+
+export type AuthorizationSignInAction = PayloadAction<string>
+
+type AuthorizationRequests = {
+    login: RequestStatus
+}
+
+export type AuthorizationRequestNames = keyof AuthorizationRequests
+
+export type ChangeAuthorizationRequestStatusAction = PayloadAction<{
+    name: AuthorizationRequestNames
+    status: RequestStatus
+}>
+
+export type AuthorizationState = {
+    currentUser: null | {
+        id: string
+        role: string // ToDo 'admin' | 'listener'
+        expiredAt: string
+    }
+    formValues: AuthorizationLoginFormValues
+    requests: AuthorizationRequests
+}

@@ -1,3 +1,5 @@
-export { default as getRequestErrorMessage } from './getRequestErrorMessage'
 export { default as delay } from './delay'
 export { default as cssBaseline } from './cssBaseline'
+export { default as validateAuthToken } from './validateAuthToken'
+export { default as tokenToCurrentUser } from './tokenToCurrentUser'
+export { default as getInitialCurrentUser } from './getInitialCurrentUser'

@@ -8,6 +8,7 @@ import {
 import {
     FindInput,
     FindTracksCollectionsInput,
+    AuthorizationLoginFormValues,
     TracksCollectionFormValues,
 } from 'store/store.types'
 
@@ -22,7 +23,6 @@ class Api {
     static token: null | string =
         localStorage.getItem(LOCAL_STORAGE_AUTH_TOKEN) || null
 
-    // ToDo. При логине нужно добавить
     static setToken(value: string) {
         this.token = value
     }
@@ -37,6 +37,10 @@ class Api {
 
     static async getTracksCollection(id: string) {
         return this._get(`/tracks-collections/${id}`)
+    }
+
+    static async login(data: AuthorizationLoginFormValues) {
+        return this._create('/authentication', data)
     }
 
     static async updateTracksCollection(
@@ -68,7 +72,7 @@ class Api {
             return result
         } catch (error) {
             if (this._isResponseError(error)) {
-                this._handleResponseError(error)
+                await this._handleResponseError(error)
 
                 return
             }
@@ -101,7 +105,7 @@ class Api {
             return result
         } catch (error) {
             if (this._isResponseError(error)) {
-                this._handleResponseError(error)
+                await this._handleResponseError(error)
 
                 return
             }
@@ -130,7 +134,7 @@ class Api {
             return result
         } catch (error) {
             if (this._isResponseError(error)) {
-                this._handleResponseError(error)
+                await this._handleResponseError(error)
 
                 return
             }
@@ -161,7 +165,7 @@ class Api {
             return result
         } catch (error) {
             if (this._isResponseError(error)) {
-                this._handleResponseError(error)
+                await this._handleResponseError(error)
 
                 return
             }
@@ -181,13 +185,19 @@ class Api {
         return false
     }
 
-    static _handleResponseError(error: Response) {
+    static async _handleResponseError(error: Response) {
         if (error.status === 422) {
             throw new UnprocessableContentError()
         }
 
         if (error.status === 401) {
-            throw new UnauthorizedError('Some maow')
+            const result = await error.json()
+
+            if ('message' in result) {
+                throw new UnauthorizedError(result.message)
+            }
+
+            throw new UnauthorizedError()
         }
 
         if (error.status === 404) {
