@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
+import { ColumnBox } from 'layouts'
 import { TableHeaderItem } from 'app/components/uikit/TableHeader'
-import { ColumnBox } from 'app/layouts/PageLayout/PageLayout.styles'
 
 
 const Box = styled.div`
