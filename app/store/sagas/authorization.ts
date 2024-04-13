@@ -1,14 +1,14 @@
-import { getContext, put, takeEvery } from 'redux-saga/effects'
+import { put, takeEvery } from 'redux-saga/effects'
 
 import { AUTHORIZATION_LOGIN, SAGA_LAYER } from 'consts'
 import logger from 'logger'
 import { delay } from 'utils'
-import Api from 'api-maow'
+import Api from 'api'
 import { AuthorizationLoginAction } from 'store/store.types'
-import { Router } from 'common-types'
 import { addToast } from 'store/slices/toastsSlice'
 import { changeRequestStatus, signIn } from 'store/slices/authorizationSlice'
 import { validateAuthToken } from 'utils'
+import router from 'router'
 
 
 function* loginAuthorizationWorkerSaga(action: AuthorizationLoginAction) {
@@ -22,15 +22,8 @@ function* loginAuthorizationWorkerSaga(action: AuthorizationLoginAction) {
         yield delay()
 
         const token = (yield Api.login(action.payload.data)) as string
-        const isValid = validateAuthToken(token)
 
-        if (!isValid) {
-            yield put(
-                addToast({ message: 'Токен невалиден', toastType: 'error' }),
-            )
-
-            return
-        }
+        validateAuthToken(token)
 
         yield put(signIn(token))
         yield put(
@@ -39,8 +32,6 @@ function* loginAuthorizationWorkerSaga(action: AuthorizationLoginAction) {
                 status: 'loaded',
             }),
         )
-
-        const router: Router = yield getContext('router')
 
         router.navigate('/')
     } catch (error) {

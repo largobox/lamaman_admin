@@ -1,4 +1,5 @@
 export type LoggerErrorParams = {
     error: Error
-    layer: 'api' | 'saga' // ToDo. Взять значения строк из констант
+    functionName?: string
+    layer?: 'api' | 'saga' // ToDo. Взять значения строк из констант
 }

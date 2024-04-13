@@ -1,6 +1,6 @@
 class UnauthorizedError extends Error {
     constructor(message?: string) {
-        super(message || 'Серверная ошибка. Код 401')
+        super(message || 'Сервер. Ошибка 401')
 
         this.name = 'UnauthorizedError'
     }

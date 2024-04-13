@@ -1,5 +1,5 @@
 import { createSlice, createAction } from '@reduxjs/toolkit'
-import Api from 'api-maow'
+import Api from 'api'
 
 import { AUTHORIZATION_LOGIN, LOCAL_STORAGE_AUTH_TOKEN } from 'consts'
 import { getInitialCurrentUser, tokenToCurrentUser } from 'utils'
@@ -84,9 +84,7 @@ export const isAuthorizedSelector = (state: RootState) => {
 }
 
 export const currentUserNameSelector = (state: RootState) => {
-    // ToDo
-    // return state.authorization.currentUser.name
-    return 'Some hard name'
+    return state.authorization.currentUser.login
 }
 
 export const currentUserRoleSelector = (state: RootState) => {

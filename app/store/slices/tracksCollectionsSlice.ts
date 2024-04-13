@@ -86,7 +86,7 @@ const tracksCollectionsSlice = createSlice({
 
         resetForm(state) {
             state.formValues = {
-                name: ''
+                name: '',
             }
         },
     },

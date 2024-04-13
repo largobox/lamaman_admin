@@ -1,3 +1,4 @@
+import { ValidationError } from 'errors'
 import { ValidateAuthTokenSignature } from './utils.types'
 import { validateAuthTokenPayload } from 'validations'
 
@@ -13,11 +14,13 @@ const validateAuthToken: ValidateAuthTokenSignature = (token) => {
         const isValid = validateAuthTokenPayload(payload)
         const isNotExpired = payload.expiredAt - Date.now() > 0
 
+        if (validateAuthTokenPayload.errors !== null) {
+            throw new ValidationError(validateAuthTokenPayload)
+        }
+
         return isValid && isNotExpired
     } catch (error) {
-        console.error({ function: 'validateAuthToken', error })
-
-        return false
+        throw error
     }
 }
 

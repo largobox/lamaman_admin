@@ -1,6 +1,7 @@
 import { Sorting, SortingDirection } from 'common-types'
 import store from './store'
 import { PayloadAction } from '@reduxjs/toolkit'
+import { CurrentUser } from 'system/utils/utils.types'
 
 // common
 export type AppDispatch = typeof store.dispatch
@@ -142,11 +143,7 @@ export type ChangeAuthorizationRequestStatusAction = PayloadAction<{
 }>
 
 export type AuthorizationState = {
-    currentUser: null | {
-        id: string
-        role: string // ToDo 'admin' | 'listener'
-        expiredAt: string
-    }
+    currentUser: null | CurrentUser
     formValues: AuthorizationLoginFormValues
     requests: AuthorizationRequests
 }

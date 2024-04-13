@@ -1,6 +1,6 @@
 class UnprocessableContentError extends Error {
     constructor() {
-        super('Серверная ошибка. Код 422')
+        super('Сервер. Ошибка 422')
 
         this.name = 'UnprocessableContentError'
     }

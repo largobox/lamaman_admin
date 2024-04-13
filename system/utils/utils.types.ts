@@ -1,7 +1,8 @@
 export type CurrentUser = null | {
-    id: string
-    role: string
     expiredAt: string
+    id: string
+    login: string
+    role: string
 }
 
 export type GetInitialCurrentUserSignature = () => CurrentUser

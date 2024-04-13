@@ -1,6 +1,5 @@
 import { SerializedError } from '@reduxjs/toolkit'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
-import { createBrowserRouter } from 'react-router-dom'
 import { CustomTheme } from 'styled-components'
 
 
@@ -47,5 +46,3 @@ export type Sorting<T> = {
 export type SortSign<T> = (name: T, sortingDirection: SortingDirection) => void
 
 export type ChangePageSign = (value: number) => void
-
-export type Router = ReturnType<typeof createBrowserRouter>

@@ -5,6 +5,10 @@ const authTokenPayloadSchema = {
             type: 'string',
             minLength: 1,
         },
+        login: {
+            type: 'string',
+            minLength: 1,
+        },
         role: {
             type: 'string',
             minLength: 1,
@@ -14,7 +18,7 @@ const authTokenPayloadSchema = {
             minimum: 0,
         },
     },
-    required: ['id', 'role', 'expiredAt'],
+    required: ['id', 'login', 'role', 'expiredAt'],
     additionalProperties: false,
 }
 

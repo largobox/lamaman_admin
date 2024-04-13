@@ -6,12 +6,9 @@ import tracksCollectionsSlice from './slices/tracksCollectionsSlice'
 
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './sagas'
-import router from 'router'
 
 
 const sagaMiddleware = createSagaMiddleware()
-
-sagaMiddleware.setContext({ router })
 
 const store = configureStore({
     reducer: {

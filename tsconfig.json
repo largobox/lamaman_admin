@@ -8,7 +8,6 @@
         "paths": {
             "router": ["app/router/index"],
             "consts": ["system/utils/constants/index"],
-            "api": ["app/store/slices/apiSlice"],
             "common-types": ["system/utils/commonTypes"],
             "hooks": ["app/hooks/index"],
             "hooks/*": ["app/hooks/*"],
@@ -25,7 +24,7 @@
             "unique": ["app/components/unique/index"],
             "themes": ["app/themes/index"],
             "validations": ["system/utils/validations"],
-            "api-maow": ["system/utils/Api"],
+            "api": ["system/utils/Api"],
             "errors": ["system/errors/index"]
         },
         "target": "es6"

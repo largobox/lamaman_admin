@@ -1,6 +1,6 @@
-import { getContext, put, select, takeEvery } from 'redux-saga/effects'
+import { put, select, takeEvery } from 'redux-saga/effects'
 
-import Api from 'api-maow'
+import Api from 'api'
 import {
     changeRequestStatus,
     findTracksCollections,
@@ -26,7 +26,7 @@ import {
     UpdateTracksCollectionAction,
 } from 'store/store.types'
 import logger from 'logger'
-import { Router } from 'common-types'
+import router from 'router'
 
 
 function* createTracksCollectionWorkerSaga(
@@ -48,8 +48,6 @@ function* createTracksCollectionWorkerSaga(
             }),
         )
         yield put(findTracksCollections())
-
-        const router: Router = yield getContext('router')
 
         router.navigate('/tracks-collections')
     } catch (error) {
@@ -144,8 +142,6 @@ function* updateTracksCollectionWorkerSaga(
             }),
         )
         yield put(findTracksCollections())
-
-        const router: Router = yield getContext('router')
 
         router.navigate('/tracks-collections')
     } catch (error) {
