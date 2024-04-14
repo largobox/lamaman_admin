@@ -12,6 +12,7 @@ import { addToast } from 'store/slices/toastsSlice'
 import { delay } from 'utils'
 import {
     CREATE_TRACKS_COLLECTION,
+    DELETE_TRACKS_COLLECTION,
     FIND_TRACKS_COLLECTIONS,
     GET_TRACKS_COLLECTION,
     SAGA_LAYER,
@@ -19,6 +20,7 @@ import {
 } from 'consts'
 import {
     CreateTracksCollectionAction,
+    DeleteTracksCollectionAction,
     FindTracksCollectionsInput,
     FindTracksCollectionsOutput,
     GetTracksCollectionAction,
@@ -55,6 +57,38 @@ function* createTracksCollectionWorkerSaga(
         yield put(
             changeRequestStatus({
                 name: 'createTracksCollection',
+                status: 'error',
+            }),
+        )
+
+        logger.error({ error, layer: SAGA_LAYER })
+    }
+}
+
+function* deleteTracksCollectionWorkerSaga(
+    action: DeleteTracksCollectionAction,
+) {
+    try {
+        yield put(
+            changeRequestStatus({
+                name: 'deleteTracksCollection',
+                status: 'loading',
+            }),
+        )
+        yield delay()
+        yield Api.deleteTracksCollection(action.payload)
+        yield put(
+            changeRequestStatus({
+                name: 'deleteTracksCollection',
+                status: 'loaded',
+            }),
+        )
+        yield put(findTracksCollections())
+    } catch (error) {
+        yield put(addToast({ message: error.message, toastType: 'error' }))
+        yield put(
+            changeRequestStatus({
+                name: 'deleteTracksCollection',
                 status: 'error',
             }),
         )
@@ -159,6 +193,10 @@ function* updateTracksCollectionWorkerSaga(
 
 export function* createTracksCollectionWatcherSaga() {
     yield takeEvery(CREATE_TRACKS_COLLECTION, createTracksCollectionWorkerSaga)
+}
+
+export function* deleteTracksCollectionWatcherSaga() {
+    yield takeEvery(DELETE_TRACKS_COLLECTION, deleteTracksCollectionWorkerSaga)
 }
 
 export function* findTracksCollectionsWatcherSaga() {

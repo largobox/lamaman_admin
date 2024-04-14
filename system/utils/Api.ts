@@ -31,6 +31,10 @@ class Api {
         return this._create('/tracks-collections', data)
     }
 
+    static async deleteTracksCollection(id: string) {
+        return this._delete(`/tracks-collections/${id}`)
+    }
+
     static async findTracksCollections(params: FindTracksCollectionsInput) {
         return this._find('/tracks-collections', params)
     }
@@ -58,6 +62,35 @@ class Api {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
+        }
+
+        try {
+            const response = await fetch(`${url}${path}`, options)
+
+            if (this._isResponseError(response)) {
+                throw response
+            }
+
+            const result = await response.json()
+
+            return result
+        } catch (error) {
+            if (this._isResponseError(error)) {
+                await this._handleResponseError(error)
+
+                return
+            }
+
+            logger.error({ error, layer: API_LAYER })
+        }
+    }
+
+    static async _delete(path: string) {
+        const options = {
+            method: 'DELETE',
+            headers: {
+                Authorization: this.token,
+            },
         }
 
         try {

@@ -7,7 +7,7 @@ import Box, {
     TopBox,
 } from './ProfileCard.styles'
 import { IconButton, Typography } from 'uikit'
-import { LogoutIcon, OutlinedHumanIcon, EditIcon } from 'icons'
+import { LogoutIcon, OutlinedHumanIcon } from 'icons'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import {
     currentUserNameSelector,
@@ -20,10 +20,6 @@ const ProfileCard = () => {
     const appDispatch = useAppDispatch()
     const name = useAppSelector(currentUserNameSelector)
     const role = useAppSelector(currentUserRoleSelector)
-
-    const editHandler = () => {
-        console.log('Edit')
-    }
 
     const logoutHandler = () => {
         appDispatch(signOut())
@@ -51,11 +47,6 @@ const ProfileCard = () => {
             </TopBox>
 
             <BottomBox>
-                <IconButton
-                    onClick={editHandler}
-                    Icon={EditIcon}
-                />
-
                 <IconButton
                     color='danger'
                     onClick={logoutHandler}

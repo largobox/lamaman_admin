@@ -55,6 +55,8 @@ export type CreateTracksCollectionPayload = {
 export type CreateTracksCollectionAction =
     PayloadAction<CreateTracksCollectionPayload>
 
+export type DeleteTracksCollectionAction = PayloadAction<string>
+
 export type GetTracksCollectionAction = PayloadAction<string>
 
 export type UpdateTracksCollectionPayload = {
@@ -100,7 +102,7 @@ type TracksCollectionsRequests = {
     updateTracksCollection: RequestStatus
 }
 
-export type TracksCollectionsRequestNames = keyof TracksCollectionsRequests
+type TracksCollectionsRequestNames = keyof TracksCollectionsRequests
 
 export type ChangeTracksCollectionsRequestStatusAction = PayloadAction<{
     name: TracksCollectionsRequestNames
@@ -135,7 +137,7 @@ type AuthorizationRequests = {
     login: RequestStatus
 }
 
-export type AuthorizationRequestNames = keyof AuthorizationRequests
+type AuthorizationRequestNames = keyof AuthorizationRequests
 
 export type ChangeAuthorizationRequestStatusAction = PayloadAction<{
     name: AuthorizationRequestNames

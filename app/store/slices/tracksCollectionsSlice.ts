@@ -2,6 +2,7 @@ import { createSlice, createAction } from '@reduxjs/toolkit'
 
 import {
     CREATE_TRACKS_COLLECTION,
+    DELETE_TRACKS_COLLECTION,
     FIND_TRACKS_COLLECTIONS,
     GET_TRACKS_COLLECTION,
     PAGINATION_LIMIT,
@@ -16,7 +17,6 @@ import {
     TracksCollectionsState,
     TracksCollectionsSortings,
     ChangeTracksCollectionsRequestStatusAction,
-    TracksCollectionsRequestNames,
     HandleGetTracksCollectionsSuccessAction,
     CreateTracksCollectionPayload,
     UpdateTracksCollectionPayload,
@@ -103,10 +103,14 @@ export const {
 } = tracksCollectionsSlice.actions
 
 // Custom actions
-export const findTracksCollections = createAction(FIND_TRACKS_COLLECTIONS)
-
 export const createTracksCollection =
     createAction<CreateTracksCollectionPayload>(CREATE_TRACKS_COLLECTION)
+
+export const deleteTracksCollection = createAction<string>(
+    DELETE_TRACKS_COLLECTION,
+)
+
+export const findTracksCollections = createAction(FIND_TRACKS_COLLECTIONS)
 
 export const getTracksCollection = createAction<string>(GET_TRACKS_COLLECTION)
 
@@ -144,10 +148,9 @@ export const isFindLoadingSelector = (state: RootState) => {
     return state.tracksCollections.requests.findTracksCollections === 'loading'
 }
 
-export const isRequestLoadedSelector =
-    (requestName: TracksCollectionsRequestNames) => (state: RootState) => {
-        return state.tracksCollections.requests[requestName] === 'loaded'
-    }
+export const isItemsLoadedSelector = (state: RootState) => {
+    return state.tracksCollections.requests.findTracksCollections === 'loaded'
+}
 
 export const itemsSelector = (state: RootState) => {
     return state.tracksCollections.items

@@ -5,12 +5,15 @@ import { RowBox, ColumnBox, ControlsBox } from 'layouts'
 import { IconButton, Typography } from 'uikit'
 import { Props } from './TracksCollectionsTableItem.types'
 import { EditIcon, RemoveIcon } from 'icons'
+import { useAppDispatch } from 'hooks'
+import { deleteTracksCollection } from 'store/slices/tracksCollectionsSlice'
 
 
 const TracksCollectionsTableItem = (props: Props) => {
     const {
         data: { name, createdAt, id },
     } = props
+    const appDispatch = useAppDispatch()
     const navigate = useNavigate()
 
     const editClickHandler = () => {
@@ -18,7 +21,7 @@ const TracksCollectionsTableItem = (props: Props) => {
     }
 
     const removeClickHandler = () => {
-        console.log('Delete')
+        appDispatch(deleteTracksCollection(id))
     }
 
     return (

@@ -7,6 +7,7 @@ export const API_LAYER = 'api'
 export const SAGA_LAYER = 'saga'
 
 export const CREATE_TRACKS_COLLECTION = 'tracksCollections/create'
+export const DELETE_TRACKS_COLLECTION = 'tracksCollections/delete'
 export const FIND_TRACKS_COLLECTIONS = 'tracksCollections/find'
 export const GET_TRACKS_COLLECTION = 'tracksCollections/get'
 export const UPDATE_TRACKS_COLLECTION = 'tracksCollections/update'

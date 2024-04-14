@@ -23,7 +23,21 @@ function* loginAuthorizationWorkerSaga(action: AuthorizationLoginAction) {
 
         const token = (yield Api.login(action.payload.data)) as string
 
-        validateAuthToken(token)
+        const isTokenValid = validateAuthToken(token)
+
+        if (!isTokenValid) {
+            yield put(
+                addToast({ message: 'Токен невалидный', toastType: 'error' }),
+            )
+            yield put(
+                changeRequestStatus({
+                    name: 'login',
+                    status: 'error',
+                }),
+            )
+
+            return
+        }
 
         yield put(signIn(token))
         yield put(

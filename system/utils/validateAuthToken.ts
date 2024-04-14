@@ -1,6 +1,7 @@
 import { ValidationError } from 'errors'
 import { ValidateAuthTokenSignature } from './utils.types'
 import { validateAuthTokenPayload } from 'validations'
+import logger from 'logger'
 
 
 const validateAuthToken: ValidateAuthTokenSignature = (token) => {
@@ -20,7 +21,9 @@ const validateAuthToken: ValidateAuthTokenSignature = (token) => {
 
         return isValid && isNotExpired
     } catch (error) {
-        throw error
+        logger.error({ error, functionName: 'validateAuthToken' })
+
+        return false
     }
 }
 

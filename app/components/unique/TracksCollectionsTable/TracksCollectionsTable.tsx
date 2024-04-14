@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { TableHeader, Pagination } from 'uikit'
+import { TableHeader, Pagination, Typography } from 'uikit'
 import Box from './TracksCollectionsTable.styles'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import {
@@ -8,8 +8,8 @@ import {
     changePage,
     sortingSelector,
     findTracksCollections,
-    isRequestLoadedSelector,
     isFindLoadingSelector,
+    isItemsLoadedSelector,
     itemsSelector,
     itemsTotalSelector,
     pageSelector,
@@ -24,14 +24,14 @@ import { TracksCollectionsSortings } from 'store/store.types'
 
 const TracksCollectionsTable = () => {
     const appDispatch = useAppDispatch()
-    const isLoaded = useAppSelector(
-        isRequestLoadedSelector('findTracksCollections'),
-    )
+    const isLoaded = useAppSelector(isItemsLoadedSelector)
     const isLoading = useAppSelector(isFindLoadingSelector)
     const items = useAppSelector(itemsSelector)
     const page = useAppSelector(pageSelector)
     const sorting = useAppSelector(sortingSelector)
     const total = useAppSelector(itemsTotalSelector)
+    const isPaginationVisible = isLoaded && total > 0
+    const isEmpty = isLoaded && total === 0
 
     const changePageHandler: ChangePageSign = (value) => {
         appDispatch(changePage(value))
@@ -62,23 +62,30 @@ const TracksCollectionsTable = () => {
                 </SpinBox>
             )}
 
-            {isLoaded && (
-                <>
-                    <RowsBox>
-                        {items.map((item) => (
-                            <TracksCollectionsTableItem
-                                key={item.id}
-                                data={item}
-                            />
-                        ))}
-                    </RowsBox>
+            {isEmpty && (
+                <Typography
+                    text='Коллекций не найдено'
+                    align='center'
+                />
+            )}
 
-                    <Pagination
-                        onChange={changePageHandler}
-                        page={page}
-                        total={total}
-                    />
-                </>
+            {isLoaded && (
+                <RowsBox>
+                    {items.map((item) => (
+                        <TracksCollectionsTableItem
+                            key={item.id}
+                            data={item}
+                        />
+                    ))}
+                </RowsBox>
+            )}
+
+            {isPaginationVisible && (
+                <Pagination
+                    onChange={changePageHandler}
+                    page={page}
+                    total={total}
+                />
             )}
         </Box>
     )
