@@ -4,9 +4,16 @@ import { useNavigate } from 'react-router-dom'
 import { RowBox, ColumnBox, ControlsBox } from 'layouts'
 import { IconButton, Typography } from 'uikit'
 import { Props } from './TracksCollectionsTableItem.types'
-import { EditIcon, RemoveIcon } from 'icons'
+import { CalendarIcon, EditIcon, OutlinedClockIcon, RemoveIcon } from 'icons'
 import { useAppDispatch } from 'hooks'
 import { deleteTracksCollection } from 'store/slices/tracksCollectionsSlice'
+import { prettyDate, prettyTime } from 'utils'
+import {
+    DateBox,
+    DateTimeBox,
+    IconBox,
+    TimeBox,
+} from './TracksCollectionsTableItem.styles'
 
 
 const TracksCollectionsTableItem = (props: Props) => {
@@ -31,7 +38,29 @@ const TracksCollectionsTableItem = (props: Props) => {
             </ColumnBox>
 
             <ColumnBox>
-                <Typography text={createdAt} />
+                <DateTimeBox>
+                    <DateBox>
+                        <IconBox>
+                            <CalendarIcon
+                                color='dark'
+                                size='small'
+                            />
+                        </IconBox>
+
+                        <Typography text={prettyDate(createdAt)} />
+                    </DateBox>
+
+                    <TimeBox>
+                        <IconBox>
+                            <OutlinedClockIcon
+                                color='dark'
+                                size='small'
+                            />
+                        </IconBox>
+
+                        <Typography text={prettyTime(createdAt)} />
+                    </TimeBox>
+                </DateTimeBox>
             </ColumnBox>
 
             <ColumnBox>
