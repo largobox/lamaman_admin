@@ -1,7 +1,6 @@
+import { TracksCollection } from 'store/store.types'
+
+
 export type Props = {
-    data: {
-        id: string
-        name: string
-        createdAt: string
-    }
+    data: TracksCollection
 }

@@ -18,7 +18,7 @@ import {
 
 const TracksCollectionsTableItem = (props: Props) => {
     const {
-        data: { name, createdAt, id },
+        data: { name, createdAt, id, updatedAt },
     } = props
     const appDispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -59,6 +59,32 @@ const TracksCollectionsTableItem = (props: Props) => {
                         </IconBox>
 
                         <Typography text={prettyTime(createdAt)} />
+                    </TimeBox>
+                </DateTimeBox>
+            </ColumnBox>
+
+            <ColumnBox>
+                <DateTimeBox>
+                    <DateBox>
+                        <IconBox>
+                            <CalendarIcon
+                                color='dark'
+                                size='small'
+                            />
+                        </IconBox>
+
+                        <Typography text={prettyDate(updatedAt)} />
+                    </DateBox>
+
+                    <TimeBox>
+                        <IconBox>
+                            <OutlinedClockIcon
+                                color='dark'
+                                size='small'
+                            />
+                        </IconBox>
+
+                        <Typography text={prettyTime(updatedAt)} />
                     </TimeBox>
                 </DateTimeBox>
             </ColumnBox>

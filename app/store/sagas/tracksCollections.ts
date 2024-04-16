@@ -75,7 +75,6 @@ function* deleteTracksCollectionWorkerSaga(
                 status: 'loading',
             }),
         )
-        yield delay()
         yield Api.deleteTracksCollection(action.payload)
         yield put(
             changeRequestStatus({

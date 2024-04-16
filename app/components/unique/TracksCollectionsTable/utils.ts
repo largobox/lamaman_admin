@@ -9,4 +9,9 @@ export const tableHeaderItems = [
         label: 'дата создания',
         isSortable: true,
     },
+    {
+        name: 'updatedAt',
+        label: 'дата редактирования',
+        isSortable: true,
+    },
 ]

@@ -35,10 +35,11 @@ export type ToastsState = {
 }
 
 // tracks collections
-type TracksCollection = {
+export type TracksCollection = {
     id: string
     name: string
     createdAt: string
+    updatedAt: string
 }
 
 export type ChangeItemsAction = PayloadAction<TracksCollection[]>
