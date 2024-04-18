@@ -11,16 +11,22 @@ import {
 import {
     ChangeSortingAction,
     ChangePageAction,
-    FindTracksCollectionsInput,
-    HandleFindTracksCollectionsSuccessAction,
+    FindInput,
+    FindSuccessAction,
     RootState,
-    TracksCollectionsState,
-    TracksCollectionsSortings,
-    ChangeTracksCollectionsRequestStatusAction,
-    HandleGetTracksCollectionsSuccessAction,
-    CreateTracksCollectionPayload,
-    UpdateTracksCollectionPayload,
+    ChangeRequestStatusAction,
+    GetSuccessAction,
+    CreatePayload,
+    UpdatePayload,
+    FindOutput,
 } from 'store/store.types'
+import {
+    TracksCollection,
+    TracksCollectionFormValues,
+    TracksCollectionsRequestNames,
+    TracksCollectionsSortings,
+    TracksCollectionsState,
+} from 'store/tracksCollections.types'
 
 
 const initialState: TracksCollectionsState = {
@@ -60,7 +66,7 @@ const tracksCollectionsSlice = createSlice({
 
         changeRequestStatus(
             state,
-            action: ChangeTracksCollectionsRequestStatusAction,
+            action: ChangeRequestStatusAction<TracksCollectionsRequestNames>,
         ) {
             const { name, status } = action.payload
 
@@ -69,7 +75,9 @@ const tracksCollectionsSlice = createSlice({
 
         findTracksCollectionsSuccess(
             state,
-            action: HandleFindTracksCollectionsSuccessAction,
+            action: FindSuccessAction<
+                FindOutput<TracksCollection, TracksCollectionsSortings>
+            >,
         ) {
             state.items = action.payload.items
             state.itemsTotal = action.payload.meta.total
@@ -78,7 +86,7 @@ const tracksCollectionsSlice = createSlice({
 
         getTracksCollectionSuccess(
             state,
-            action: HandleGetTracksCollectionsSuccessAction,
+            action: GetSuccessAction<TracksCollection>,
         ) {
             state.formValues = action.payload
             state.requests.getTracksCollection = 'loaded'
@@ -103,8 +111,9 @@ export const {
 } = tracksCollectionsSlice.actions
 
 // Custom actions
-export const createTracksCollection =
-    createAction<CreateTracksCollectionPayload>(CREATE_TRACKS_COLLECTION)
+export const createTracksCollection = createAction<
+    CreatePayload<TracksCollectionFormValues>
+>(CREATE_TRACKS_COLLECTION)
 
 export const deleteTracksCollection = createAction<string>(
     DELETE_TRACKS_COLLECTION,
@@ -114,13 +123,14 @@ export const findTracksCollections = createAction(FIND_TRACKS_COLLECTIONS)
 
 export const getTracksCollection = createAction<string>(GET_TRACKS_COLLECTION)
 
-export const updateTracksCollection =
-    createAction<UpdateTracksCollectionPayload>(UPDATE_TRACKS_COLLECTION)
+export const updateTracksCollection = createAction<
+    UpdatePayload<TracksCollectionFormValues>
+>(UPDATE_TRACKS_COLLECTION)
 
 // Selectors
 export const findTracksCollectionsParamsSelector = (
     state: RootState,
-): FindTracksCollectionsInput => {
+): FindInput<TracksCollectionsSortings> => {
     return {
         page: String(state.tracksCollections.page),
         sortingName: state.tracksCollections.sorting.name,

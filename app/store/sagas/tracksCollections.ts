@@ -19,20 +19,24 @@ import {
     UPDATE_TRACKS_COLLECTION,
 } from 'consts'
 import {
-    CreateTracksCollectionAction,
-    DeleteTracksCollectionAction,
-    FindTracksCollectionsInput,
-    FindTracksCollectionsOutput,
-    GetTracksCollectionAction,
-    GetTracksCollectionOutput,
-    UpdateTracksCollectionAction,
+    CreateAction,
+    DeleteAction,
+    FindInput,
+    FindOutput,
+    GetAction,
+    UpdateAction,
 } from 'store/store.types'
 import logger from 'logger'
 import router from 'router'
+import {
+    TracksCollection,
+    TracksCollectionFormValues,
+    TracksCollectionsSortings,
+} from 'store/tracksCollections.types'
 
 
 function* createTracksCollectionWorkerSaga(
-    action: CreateTracksCollectionAction,
+    action: CreateAction<TracksCollectionFormValues>,
 ) {
     try {
         yield put(
@@ -65,9 +69,7 @@ function* createTracksCollectionWorkerSaga(
     }
 }
 
-function* deleteTracksCollectionWorkerSaga(
-    action: DeleteTracksCollectionAction,
-) {
+function* deleteTracksCollectionWorkerSaga(action: DeleteAction) {
     try {
         yield put(
             changeRequestStatus({
@@ -108,11 +110,12 @@ function* findTracksCollectionsWorkerSaga() {
 
         const params = (yield select(
             findTracksCollectionsParamsSelector,
-        )) as FindTracksCollectionsInput
+        )) as FindInput<TracksCollectionsSortings>
 
-        const result = (yield Api.findTracksCollections(
-            params,
-        )) as FindTracksCollectionsOutput
+        const result = (yield Api.findTracksCollections(params)) as FindOutput<
+            TracksCollection,
+            TracksCollectionsSortings
+        >
 
         yield put(findTracksCollectionsSuccess(result))
     } catch (error) {
@@ -128,7 +131,7 @@ function* findTracksCollectionsWorkerSaga() {
     }
 }
 
-function* getTracksCollectionWorkerSaga(action: GetTracksCollectionAction) {
+function* getTracksCollectionWorkerSaga(action: GetAction) {
     try {
         yield put(
             changeRequestStatus({
@@ -140,7 +143,7 @@ function* getTracksCollectionWorkerSaga(action: GetTracksCollectionAction) {
 
         const result = (yield Api.getTracksCollection(
             action.payload,
-        )) as GetTracksCollectionOutput
+        )) as TracksCollection
 
         yield put(getTracksCollectionSuccess(result))
     } catch (error) {
@@ -157,7 +160,7 @@ function* getTracksCollectionWorkerSaga(action: GetTracksCollectionAction) {
 }
 
 function* updateTracksCollectionWorkerSaga(
-    action: UpdateTracksCollectionAction,
+    action: UpdateAction<TracksCollectionFormValues>,
 ) {
     try {
         yield put(

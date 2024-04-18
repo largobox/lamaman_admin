@@ -5,13 +5,13 @@ import { RightPanelLayout, FormLayout, FormHeader } from 'layouts'
 import { TracksCollectionForm } from 'unique'
 import { Typography } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
-import { TracksCollectionFormValues } from 'store/store.types'
 import {
     formValuesSelector,
     getTracksCollection,
     isEditLoadingSelector,
     updateTracksCollection,
 } from 'store/slices/tracksCollectionsSlice'
+import { TracksCollectionFormValues } from 'store/tracksCollections.types'
 
 
 const TracksCollectionEditPage = () => {

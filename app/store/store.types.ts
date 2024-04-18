@@ -1,19 +1,13 @@
 import { Sorting, SortingDirection } from 'common-types'
 import store from './store'
 import { PayloadAction } from '@reduxjs/toolkit'
-import { CurrentUser } from 'system/utils/utils.types'
 
-// common
+
 export type AppDispatch = typeof store.dispatch
 
 export type RootState = ReturnType<typeof store.getState>
 
-type RequestStatus = 'initial' | 'loading' | 'loaded' | 'error'
-
-export type ChangeSortingAction<T> = PayloadAction<{
-    name: T
-    direction: SortingDirection
-}>
+export type RequestStatus = 'initial' | 'loading' | 'loaded' | 'error'
 
 export type FindInput<T> = {
     sortingName: T
@@ -22,131 +16,43 @@ export type FindInput<T> = {
     limit: string
 }
 
-// toasts
-type ToastType = 'error' | 'info' | 'warning'
-
-export type Toast = {
-    message: string
-    toastType: ToastType
-}
-
-export type ToastsState = {
-    items: Toast[]
-}
-
-// tracks collections
-export type TracksCollection = {
-    id: string
-    name: string
-    createdAt: string
-    updatedAt: string
-}
-
-export type ChangeItemsAction = PayloadAction<TracksCollection[]>
-
-export type ChangePageAction = PayloadAction<number>
-
-export type TracksCollectionFormValues = {
-    name: string
-}
-
-export type CreateTracksCollectionPayload = {
-    data: TracksCollectionFormValues
-}
-export type CreateTracksCollectionAction =
-    PayloadAction<CreateTracksCollectionPayload>
-
-export type DeleteTracksCollectionAction = PayloadAction<string>
-
-export type GetTracksCollectionAction = PayloadAction<string>
-
-export type UpdateTracksCollectionPayload = {
-    id: string
-    data: TracksCollectionFormValues
-}
-export type UpdateTracksCollectionAction =
-    PayloadAction<UpdateTracksCollectionPayload>
-
-export type TracksCollectionsSortings = 'name' | 'createdAt'
-
-export type FindTracksCollectionsInput = FindInput<TracksCollectionsSortings>
-export type FindTracksCollectionsOutput = {
-    items: TracksCollection[]
+export type FindOutput<T, S> = {
+    items: T[]
     meta: {
-        sorting: Sorting<TracksCollectionsSortings>
+        sorting: Sorting<S>
         total: number
     }
 }
 
-export type HandleFindTracksCollectionsSuccessAction =
-    PayloadAction<FindTracksCollectionsOutput>
+export type CreatePayload<T> = {
+    data: T
+}
 
-export type HandleGetTracksCollectionsSuccessAction =
-    PayloadAction<GetTracksCollectionOutput>
-
-export type GetTracksCollectionArgs = string
-export type GetTracksCollectionReturn = TracksCollection
-
-export type GetTracksCollectionOutput = TracksCollection
-
-export type UpdateTracksCollectionReturn = boolean
-export type UpdateTracksCollectionArgs = {
+export type UpdatePayload<T> = {
     id: string
-    data: TracksCollectionFormValues
+    data: T
 }
 
-type TracksCollectionsRequests = {
-    createTracksCollection: RequestStatus
-    deleteTracksCollection: RequestStatus
-    findTracksCollections: RequestStatus
-    getTracksCollection: RequestStatus
-    updateTracksCollection: RequestStatus
-}
-
-type TracksCollectionsRequestNames = keyof TracksCollectionsRequests
-
-export type ChangeTracksCollectionsRequestStatusAction = PayloadAction<{
-    name: TracksCollectionsRequestNames
-    status: RequestStatus
+export type ChangeSortingAction<T> = PayloadAction<{
+    name: T
+    direction: SortingDirection
 }>
 
-export type TracksCollectionsState = {
-    formValues: TracksCollectionFormValues
-    items: TracksCollection[] | null
-    itemsTotal: number | null
-    page: number
-    requests: TracksCollectionsRequests
-    sorting: Sorting<TracksCollectionsSortings>
-}
+export type ChangePageAction = PayloadAction<number>
 
-// authentication
-export type AuthorizationLoginFormValues = {
-    login: string
-    password: string
-}
+export type CreateAction<T> = PayloadAction<CreatePayload<T>>
 
-export type AuthorizationLoginActionPayload = {
-    data: AuthorizationLoginFormValues
-}
+export type DeleteAction = PayloadAction<string>
 
-export type AuthorizationLoginAction =
-    PayloadAction<AuthorizationLoginActionPayload>
+export type GetAction = PayloadAction<string>
 
-export type AuthorizationSignInAction = PayloadAction<string>
+export type UpdateAction<T> = PayloadAction<UpdatePayload<T>>
 
-type AuthorizationRequests = {
-    login: RequestStatus
-}
+export type FindSuccessAction<T> = PayloadAction<T>
 
-type AuthorizationRequestNames = keyof AuthorizationRequests
+export type GetSuccessAction<T> = PayloadAction<T>
 
-export type ChangeAuthorizationRequestStatusAction = PayloadAction<{
-    name: AuthorizationRequestNames
+export type ChangeRequestStatusAction<T> = PayloadAction<{
+    name: T
     status: RequestStatus
 }>
-
-export type AuthorizationState = {
-    currentUser: null | CurrentUser
-    formValues: AuthorizationLoginFormValues
-    requests: AuthorizationRequests
-}

@@ -19,7 +19,7 @@ import { TracksCollectionsTableItem } from 'unique'
 import { Spin } from 'app/components/uikit/Spinner/Spinner.styles'
 import { SpinBox, RowsBox } from 'layouts'
 import { tableHeaderItems } from './utils'
-import { TracksCollectionsSortings } from 'store/store.types'
+import { TracksCollectionsSortings } from 'store/tracksCollections.types'
 
 
 const TracksCollectionsTable = () => {

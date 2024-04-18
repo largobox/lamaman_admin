@@ -1,4 +1,4 @@
-import { AuthorizationLoginFormValues } from 'store/store.types'
+import { AuthorizationLoginFormValues } from 'store/authorization.types'
 
 
 export type Props = {

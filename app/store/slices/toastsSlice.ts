@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { PayloadAction } from '@reduxjs/toolkit'
 
-import { RootState, Toast, ToastsState } from 'store/store.types'
+import { RootState } from 'store/store.types'
+import { Toast, ToastsState } from 'store/toasts.types'
 
 
 const initialState: ToastsState = {

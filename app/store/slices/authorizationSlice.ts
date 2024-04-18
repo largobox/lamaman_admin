@@ -7,9 +7,9 @@ import {
     AuthorizationState,
     ChangeAuthorizationRequestStatusAction,
     AuthorizationLoginActionPayload,
-    RootState,
     AuthorizationSignInAction,
-} from 'store/store.types'
+} from 'store/authorization.types'
+import { RootState } from 'store/store.types'
 
 
 const initialState: AuthorizationState = {

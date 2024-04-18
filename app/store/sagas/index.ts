@@ -8,6 +8,13 @@ import {
     getTracksCollectionsWatcherSaga,
     updateTracksCollectionWatcherSaga,
 } from './tracksCollections'
+import {
+    createTrackWatcherSaga,
+    deleteTrackWatcherSaga,
+    findTracksWatcherSaga,
+    getTrackWatcherSaga,
+    updateTrackWatcherSaga,
+} from './tracks'
 
 
 function* rootSaga() {
@@ -17,6 +24,12 @@ function* rootSaga() {
         findTracksCollectionsWatcherSaga(),
         getTracksCollectionsWatcherSaga(),
         updateTracksCollectionWatcherSaga(),
+
+        createTrackWatcherSaga(),
+        deleteTrackWatcherSaga(),
+        findTracksWatcherSaga(),
+        getTrackWatcherSaga(),
+        updateTrackWatcherSaga(),
 
         loginAuthorizationWatcherSaga(),
     ])

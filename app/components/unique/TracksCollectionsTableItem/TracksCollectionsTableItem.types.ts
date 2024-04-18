@@ -1,4 +1,4 @@
-import { TracksCollection } from 'store/store.types'
+import { TracksCollection } from 'store/tracksCollections.types'
 
 
 export type Props = {

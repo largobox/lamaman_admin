@@ -1,4 +1,4 @@
-import { TracksCollectionFormValues } from 'store/store.types'
+import { TracksCollectionFormValues } from 'store/tracksCollections.types'
 
 
 export type Props = {

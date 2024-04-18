@@ -5,12 +5,13 @@ import {
     UnauthorizedError,
     NotFoundError,
 } from 'errors'
+import { FindInput } from 'store/store.types'
+import { TrackFormValues, TracksSortings } from 'store/tracks.types'
 import {
-    FindInput,
-    FindTracksCollectionsInput,
-    AuthorizationLoginFormValues,
     TracksCollectionFormValues,
-} from 'store/store.types'
+    TracksCollectionsSortings,
+} from 'store/tracksCollections.types'
+import { AuthorizationLoginFormValues } from 'store/authorization.types'
 
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -27,16 +28,34 @@ class Api {
         this.token = value
     }
 
+    static async createTrack(data: TrackFormValues) {
+        return this._create('/tracks', data)
+    }
+
     static async createTracksCollection(data: TracksCollectionFormValues) {
         return this._create('/tracks-collections', data)
+    }
+
+    static async deleteTrack(id: string) {
+        return this._delete(`/tracks/${id}`)
     }
 
     static async deleteTracksCollection(id: string) {
         return this._delete(`/tracks-collections/${id}`)
     }
 
-    static async findTracksCollections(params: FindTracksCollectionsInput) {
+    static async findTracks(params: FindInput<TracksSortings>) {
+        return this._find('/tracks', params)
+    }
+
+    static async findTracksCollections(
+        params: FindInput<TracksCollectionsSortings>,
+    ) {
         return this._find('/tracks-collections', params)
+    }
+
+    static async getTrack(id: string) {
+        return this._get(`/tracks/${id}`)
     }
 
     static async getTracksCollection(id: string) {
@@ -45,6 +64,10 @@ class Api {
 
     static async login(data: AuthorizationLoginFormValues) {
         return this._create('/authentication', data)
+    }
+
+    static async updateTrack(id: string, data: TrackFormValues) {
+        return this._update(`/tracks/${id}`, data)
     }
 
     static async updateTracksCollection(
