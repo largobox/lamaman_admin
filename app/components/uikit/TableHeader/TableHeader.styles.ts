@@ -1,7 +1,10 @@
+import theme from 'app/themes/default'
 import { ThemedProps } from 'common-types'
 import styled from 'styled-components'
 import { IconButtonBox } from 'uikit'
 
+
+export const sideOffset = theme.spacing(4)
 
 export const TableHeaderItem = styled.div<ThemedProps>`
     display: flex;
@@ -9,8 +12,7 @@ export const TableHeaderItem = styled.div<ThemedProps>`
 
     background-color: ${(props) => props.theme.colors.primary.dark};
     border: 1px solid ${(props) => props.theme.colors.neutral.base};
-    padding: ${(props) => props.theme.spacing(2)}px
-        ${(props) => props.theme.spacing(4)}px;
+    padding: ${(props) => props.theme.spacing(2)}px ${sideOffset}px;
     box-sizing: border-box;
 
     &:not(:first-child) {

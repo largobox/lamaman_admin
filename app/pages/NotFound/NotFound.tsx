@@ -5,7 +5,7 @@ import { ErrorLayout } from 'layouts'
 import { HumanSorryIcon } from 'icons'
 
 
-const NotFound = () => {
+const NotFoundPage = () => {
     return (
         <ErrorLayout>
             <HumanSorryIcon
@@ -22,4 +22,4 @@ const NotFound = () => {
     )
 }
 
-export default NotFound
+export default NotFoundPage

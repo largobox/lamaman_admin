@@ -1,5 +1,7 @@
 export { default as AuthorizationLoginPage } from './AuthorizationLogin'
-export { default as NotFound } from './NotFound'
+export { default as NotFoundPage } from './NotFound'
+export { default as TrackAddPage } from './TrackAdd'
+export { default as TrackEditPage } from './TrackEdit'
 export { default as TracksCollectionAddPage } from './TracksCollectionAdd'
 export { default as TracksCollectionEditPage } from './TracksCollectionEdit'
 export { default as TracksCollectionsListPage } from './TracksCollectionsList'

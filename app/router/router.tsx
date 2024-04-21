@@ -6,9 +6,11 @@ import {
     TracksCollectionAddPage,
     TracksCollectionsListPage,
     AuthorizationLoginPage,
-    NotFound,
+    NotFoundPage,
     TracksListPage,
     TracksCollectionEditPage,
+    TrackAddPage,
+    TrackEditPage,
 } from 'pages'
 
 
@@ -38,6 +40,16 @@ const router = createBrowserRouter([
                 <TracksListPage />
             </ProtectedRoute>
         ),
+        children: [
+            {
+                path: 'add',
+                element: <TrackAddPage />,
+            },
+            {
+                path: ':id/edit',
+                element: <TrackEditPage />,
+            },
+        ],
     },
     {
         path: '/login',
@@ -49,7 +61,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/*',
-        element: <NotFound />,
+        element: <NotFoundPage />,
     },
 ])
 

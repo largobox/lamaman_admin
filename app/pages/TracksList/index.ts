@@ -1,1 +1,1 @@
-export { default } from './TracksListPage'
+export { default } from './TracksList'
