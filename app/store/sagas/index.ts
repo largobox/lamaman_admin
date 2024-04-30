@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects'
 
 import { loginAuthorizationWatcherSaga } from './authorization'
+import { findSelectableTracksCollectionsWatcherSaga } from './selectables'
 import {
     createTracksCollectionWatcherSaga,
     deleteTracksCollectionWatcherSaga,
@@ -19,6 +20,10 @@ import {
 
 function* rootSaga() {
     yield all([
+        loginAuthorizationWatcherSaga(),
+
+        findSelectableTracksCollectionsWatcherSaga(),
+
         createTracksCollectionWatcherSaga(),
         deleteTracksCollectionWatcherSaga(),
         findTracksCollectionsWatcherSaga(),
@@ -30,8 +35,6 @@ function* rootSaga() {
         findTracksWatcherSaga(),
         getTrackWatcherSaga(),
         updateTrackWatcherSaga(),
-
-        loginAuthorizationWatcherSaga(),
     ])
 }
 

@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import authorizationSlice from './slices/authorizationSlice'
+import selectablesSlice from './slices/selectablesSlice'
 import toastsSlice from './slices/toastsSlice'
 import tracksSlice from './slices/tracksSlice'
 import tracksCollectionsSlice from './slices/tracksCollectionsSlice'
@@ -14,6 +15,7 @@ const sagaMiddleware = createSagaMiddleware()
 const store = configureStore({
     reducer: {
         [authorizationSlice.reducerPath]: authorizationSlice.reducer,
+        [selectablesSlice.name]: selectablesSlice.reducer,
         [toastsSlice.name]: toastsSlice.reducer,
         [tracksSlice.name]: tracksSlice.reducer,
         [tracksCollectionsSlice.name]: tracksCollectionsSlice.reducer,

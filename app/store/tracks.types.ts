@@ -5,6 +5,7 @@ import { Sorting } from 'common-types'
 
 export type Track = {
     id: string
+    tracksCollectionId: string
     name: string
     createdAt: string
     updatedAt: string
@@ -12,6 +13,7 @@ export type Track = {
 
 export type TrackFormValues = {
     name: string
+    tracksCollectionId: string
 }
 
 export type TracksSortings = 'name' | 'createdAt' | 'updatedAt'

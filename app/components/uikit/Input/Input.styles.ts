@@ -3,8 +3,11 @@ import styled from 'styled-components'
 import { ThemedProps } from 'common-types'
 
 
+export const labelHeight = 19
+
 export const Label = styled.div<ThemedProps>`
     font-size: ${(props) => props.theme.fontSizes.base}px;
+    line-height: ${labelHeight}px;
     color: ${(props) => props.theme.colors.dark};
     margin-bottom: ${(props) => props.theme.spacing(1)}px;
 `

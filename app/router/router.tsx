@@ -57,7 +57,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <Navigate to='/tracks-collections' />,
+        element: <Navigate to='/tracks' />,
     },
     {
         path: '/*',

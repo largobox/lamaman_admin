@@ -18,4 +18,8 @@ export const FIND_TRACKS_COLLECTIONS = 'tracksCollections/find'
 export const GET_TRACKS_COLLECTION = 'tracksCollections/get'
 export const UPDATE_TRACKS_COLLECTION = 'tracksCollections/update'
 
+export const FIND_SELECTABLE_TRACKS_COLLECTIONS =
+    'selectableTracksCollections/find'
+export const FIND_SELECTABLE_PERFORMERS = 'selectablePerformers/find'
+
 export const AUTHORIZATION_LOGIN = 'authorization/login'

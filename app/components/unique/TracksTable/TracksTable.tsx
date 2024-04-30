@@ -15,7 +15,7 @@ import {
     pageSelector,
 } from 'store/slices/tracksSlice'
 import { SortSign, ChangePageSign } from 'common-types'
-import { TracksCollectionsTableItem } from 'unique'
+import { TracksTableItem } from 'unique'
 import { Spin } from 'app/components/uikit/Spinner/Spinner.styles'
 import { SpinBox, RowsBox } from 'layouts'
 import { tableHeaderItems } from './utils'
@@ -69,7 +69,7 @@ const TracksTable = () => {
             {isLoaded && (
                 <RowsBox>
                     {items.map((item) => (
-                        <TracksCollectionsTableItem
+                        <TracksTableItem
                             key={item.id}
                             data={item}
                         />
