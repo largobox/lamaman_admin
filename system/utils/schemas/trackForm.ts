@@ -8,8 +8,15 @@ const trackFormSchema = {
                 minLength: 'Обязательное',
             },
         },
+        tracksCollectionId: {
+            type: 'string',
+            minLength: 1,
+            errorMessage: {
+                minLength: 'Обязательное',
+            },
+        },
     },
-    required: ['name'],
+    required: ['name', 'tracksCollectionId'],
     additionalProperties: false,
 }
 

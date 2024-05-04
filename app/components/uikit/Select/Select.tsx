@@ -19,6 +19,7 @@ const Select = (props: Props) => {
     } = props
     const ref = useRef()
     const [value, setValue] = useState(initialValue || null)
+    const [hoveredValue, setHoveredValue] = useState(null)
     const [isListVisible, setIsListVisible] = useState(false)
     const isEnterPressed = useKeyPress('Enter')
     const isUpPressed = useKeyPress('ArrowUp')
@@ -29,6 +30,7 @@ const Select = (props: Props) => {
 
     useOutsideClick(ref, () => {
         setIsListVisible(false)
+        setHoveredValue(null)
     })
 
     useEffect(() => {
@@ -36,26 +38,53 @@ const Select = (props: Props) => {
             return
         }
 
-        if (isUpPressed) {
-            setValue(getPrevItemId(value, items))
+        if (isUpPressed && isListVisible) {
+            const nextHoveredValue = getPrevItemId(hoveredValue || value, items)
+
+            setHoveredValue(nextHoveredValue)
+
+            return
         }
 
-        if (isDownPressed) {
-            setValue(getNextItemId(value, items))
+        if (isDownPressed && isListVisible) {
+            const nextHoveredValue = getNextItemId(hoveredValue || value, items)
+
+            setHoveredValue(nextHoveredValue)
+
+            return
         }
 
-        if (isEnterPressed) {
-            setIsListVisible(!isListVisible)
+        if (isEnterPressed && isListVisible && hoveredValue) {
+            onChange(hoveredValue)
+
+            setValue(hoveredValue)
+            setIsListVisible(false)
+            setHoveredValue(null)
+
+            return
+        }
+
+        if (isEnterPressed && isListVisible && hoveredValue === null) {
+            setIsListVisible(false)
+
+            return
+        }
+
+        if (isEnterPressed && !isListVisible) {
+            setIsListVisible(true)
+
+            return
         }
     }, [isEnterPressed, isUpPressed, isDownPressed])
 
-    const selectHandler = (value: string) => () => {
-        onChange(value)
+    const selectHandler = (nextValue: string) => () => {
+        onChange(nextValue)
 
-        setValue(value)
+        setValue(nextValue)
+        setHoveredValue(null)
     }
 
-    const clickHandler: MouseEventHandler = () => {
+    const clickHandler = () => {
         setIsListVisible(!isListVisible)
     }
 
@@ -63,6 +92,14 @@ const Select = (props: Props) => {
         if (isSelectLoading) {
             ev.stopPropagation()
         }
+    }
+
+    const mouseEnterHandler = (nextHoveredValue: string) => () => {
+        setHoveredValue(nextHoveredValue)
+    }
+
+    const mouseLeaveHandler = () => {
+        setHoveredValue(null)
     }
 
     return (
@@ -86,11 +123,15 @@ const Select = (props: Props) => {
                         <ValueBox>{valueLabel}</ValueBox>
 
                         {isListVisible && (
-                            <List>
+                            <List onMouseLeave={mouseLeaveHandler}>
                                 {items.map((item) => (
                                     <ListItem
                                         key={item.id}
                                         onClick={selectHandler(item.id)}
+                                        onMouseEnter={mouseEnterHandler(
+                                            item.id,
+                                        )}
+                                        $isHovered={hoveredValue === item.id}
                                         $isSelected={value === item.id}
                                     >
                                         {item.name}

@@ -9,7 +9,13 @@ const height = 36
 const listTopOffset = labelHeight + height + 4 + 4
 
 const selectedListItemStyles = (props: ListItemProps) => {
-    const { $isSelected, theme } = props
+    const { $isHovered, $isSelected, theme } = props
+
+    if ($isHovered) {
+        return css`
+            background-color: ${theme.colors.neutral.base};
+        `
+    }
 
     if ($isSelected) {
         return css`
@@ -87,10 +93,6 @@ export const ListItem = styled.div<ListItemProps>`
         border-bottom-right-radius: ${(props) => props.theme.borderRadius}px;
     }
 
-    &:hover {
-        background-color: ${(props) => props.theme.colors.neutral.base};
-    }
-
     &:not(:first-child) {
         border-top-color: transparent;
     }
@@ -104,9 +106,9 @@ export const List = styled.div<ThemedProps>`
     top: ${listTopOffset}px;
 
     width: 100%;
-
     box-sizing: border-box;
     box-shadow: ${(props) => props.theme.shadow.base}px;
+    border-radius: ${(props) => props.theme.borderRadius}px;
 `
 
 export const SpinnerBox = styled.div`

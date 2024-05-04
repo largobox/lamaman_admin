@@ -9,7 +9,6 @@ const NavigationMenu = () => {
             { label: 'Коллекции', value: 'tracks-collections' },
             { label: 'Исполнители', value: 'performers' },
             { label: 'Трэки', value: 'tracks' },
-            { label: 'Коллекции', value: 'collections' },
             { label: 'Поисковые запросы', value: 'search-requests' },
             { label: 'Пользователи', value: 'users' },
             { label: 'Статистика', value: 'statistics' },

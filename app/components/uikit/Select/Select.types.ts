@@ -19,6 +19,7 @@ export type Props = {
 
 export type ListItemProps = ThemedProps & {
     $isSelected: boolean
+    $isHovered: boolean
 }
 
 export type ValueProps = ThemedProps & {
