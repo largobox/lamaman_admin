@@ -7,6 +7,9 @@ import {
     TracksCollectionsListPage,
     AuthorizationLoginPage,
     NotFoundPage,
+    PerformerAddPage,
+    PerformerEditPage,
+    PerformersListPage,
     TracksListPage,
     TracksCollectionEditPage,
     TrackAddPage,
@@ -15,6 +18,24 @@ import {
 
 
 const router = createBrowserRouter([
+    {
+        path: '/performers',
+        element: (
+            <ProtectedRoute>
+                <PerformersListPage />
+            </ProtectedRoute>
+        ),
+        children: [
+            {
+                path: 'add',
+                element: <PerformerAddPage />,
+            },
+            {
+                path: ':id/edit',
+                element: <PerformerEditPage />,
+            },
+        ],
+    },
     {
         path: '/tracks-collections',
         element: (

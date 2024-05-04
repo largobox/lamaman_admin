@@ -3,10 +3,17 @@ import { all } from 'redux-saga/effects'
 import { loginAuthorizationWatcherSaga } from './authorization'
 import { findSelectableTracksCollectionsWatcherSaga } from './selectables'
 import {
+    createPerformerWatcherSaga,
+    deletePerformerWatcherSaga,
+    findPerformersWatcherSaga,
+    getPerformerWatcherSaga,
+    updatePerformerWatcherSaga,
+} from './performers'
+import {
     createTracksCollectionWatcherSaga,
     deleteTracksCollectionWatcherSaga,
     findTracksCollectionsWatcherSaga,
-    getTracksCollectionsWatcherSaga,
+    getTracksCollectionWatcherSaga,
     updateTracksCollectionWatcherSaga,
 } from './tracksCollections'
 import {
@@ -24,10 +31,16 @@ function* rootSaga() {
 
         findSelectableTracksCollectionsWatcherSaga(),
 
+        createPerformerWatcherSaga(),
+        deletePerformerWatcherSaga(),
+        findPerformersWatcherSaga(),
+        getPerformerWatcherSaga(),
+        updatePerformerWatcherSaga(),
+
         createTracksCollectionWatcherSaga(),
         deleteTracksCollectionWatcherSaga(),
         findTracksCollectionsWatcherSaga(),
-        getTracksCollectionsWatcherSaga(),
+        getTracksCollectionWatcherSaga(),
         updateTracksCollectionWatcherSaga(),
 
         createTrackWatcherSaga(),

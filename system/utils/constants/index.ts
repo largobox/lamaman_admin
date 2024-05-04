@@ -6,6 +6,12 @@ export const PAGINATION_LIMIT = 2
 export const API_LAYER = 'api'
 export const SAGA_LAYER = 'saga'
 
+export const CREATE_PERFORMER = 'performers/create'
+export const DELETE_PERFORMER = 'performers/delete'
+export const FIND_PERFORMERS = 'performers/find'
+export const GET_PERFORMER = 'performers/get'
+export const UPDATE_PERFORMER = 'performers/update'
+
 export const CREATE_TRACK = 'tracks/create'
 export const DELETE_TRACK = 'tracks/delete'
 export const FIND_TRACKS = 'tracks/find'

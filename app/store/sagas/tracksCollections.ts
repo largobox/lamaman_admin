@@ -205,7 +205,7 @@ export function* findTracksCollectionsWatcherSaga() {
     yield takeEvery(FIND_TRACKS_COLLECTIONS, findTracksCollectionsWorkerSaga)
 }
 
-export function* getTracksCollectionsWatcherSaga() {
+export function* getTracksCollectionWatcherSaga() {
     yield takeEvery(GET_TRACKS_COLLECTION, getTracksCollectionWorkerSaga)
 }
 

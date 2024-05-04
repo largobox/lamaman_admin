@@ -12,6 +12,7 @@ import {
     TracksCollectionsSortings,
 } from 'store/tracksCollections.types'
 import { AuthorizationLoginFormValues } from 'store/authorization.types'
+import { PerformerFormValues, PerformersSortings } from 'store/performers.types'
 
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -28,6 +29,10 @@ class Api {
         this.token = value
     }
 
+    static async createPerformer(data: PerformerFormValues) {
+        return this._create('/performers', data)
+    }
+
     static async createTrack(data: TrackFormValues) {
         return this._create('/tracks', data)
     }
@@ -36,12 +41,20 @@ class Api {
         return this._create('/tracks-collections', data)
     }
 
+    static async deletePerformer(id: string) {
+        return this._delete(`/performers/${id}`)
+    }
+
     static async deleteTrack(id: string) {
         return this._delete(`/tracks/${id}`)
     }
 
     static async deleteTracksCollection(id: string) {
         return this._delete(`/tracks-collections/${id}`)
+    }
+
+    static async findPerformers(params: FindInput<PerformersSortings>) {
+        return this._find('/performers', params)
     }
 
     static async findTracks(params: FindInput<TracksSortings>) {
@@ -54,6 +67,10 @@ class Api {
         return this._find('/tracks-collections', params)
     }
 
+    static async getPerformer(id: string) {
+        return this._get(`/performers/${id}`)
+    }
+
     static async getTrack(id: string) {
         return this._get(`/tracks/${id}`)
     }
@@ -64,6 +81,10 @@ class Api {
 
     static async login(data: AuthorizationLoginFormValues) {
         return this._create('/authentication', data)
+    }
+
+    static async updatePerformer(id: string, data: PerformerFormValues) {
+        return this._update(`/performers/${id}`, data)
     }
 
     static async updateTrack(id: string, data: TrackFormValues) {
