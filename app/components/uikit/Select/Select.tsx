@@ -1,11 +1,12 @@
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
 
-import Box, { ListItem, SpinnerBox, ValueBox } from './Select.styles'
+import Box, { IconBox, ListItem, SpinnerBox, ValueBox } from './Select.styles'
 import { Props } from './Select.types'
 import { ErrorMessage, Label, Spinner } from 'uikit'
 import { Value, List } from './Select.styles'
 import { useKeyPress, useOutsideClick } from 'hooks'
 import { getNextItemId, getPrevItemId, getValueLabel } from './utils'
+import { SelectIcon } from 'icons'
 
 
 const Select = (props: Props) => {
@@ -142,6 +143,10 @@ const Select = (props: Props) => {
                     </>
                 )}
             </Value>
+
+            <IconBox>
+                <SelectIcon color='neutral' />
+            </IconBox>
 
             <ErrorMessage>{error}</ErrorMessage>
         </Box>

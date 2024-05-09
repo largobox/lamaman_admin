@@ -27,7 +27,7 @@ export const InputElement = styled.input<ThemedProps>`
     font-size: ${(props) => props.theme.fontSizes.base}px;
     padding: 0px ${(props) => props.theme.spacing(2)}px;
     border-radius: ${(props) => props.theme.borderRadius}px;
-    border: 1px solid ${(props) => props.theme.colors.neutral.light};
+    border: 1px solid ${(props) => props.theme.colors.neutral.base};
     outline: none;
     background-color: ${(props) => props.theme.colors.light};
     box-sizing: border-box;

@@ -14,6 +14,7 @@ import {
     TracksCollectionEditPage,
     TrackAddPage,
     TrackEditPage,
+    SandboxPage,
 } from 'pages'
 
 
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <AuthorizationLoginPage />,
+    },
+    {
+        path: '/sandbox',
+        element: <SandboxPage />,
     },
     {
         path: '/',

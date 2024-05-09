@@ -9,3 +9,5 @@ export { default as TracksCollectionAddPage } from './TracksCollectionAdd'
 export { default as TracksCollectionEditPage } from './TracksCollectionEdit'
 export { default as TracksCollectionsListPage } from './TracksCollectionsList'
 export { default as TracksListPage } from './TracksList'
+
+export { default as SandboxPage } from './Sandbox'

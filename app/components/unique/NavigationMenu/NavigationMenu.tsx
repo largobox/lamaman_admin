@@ -12,6 +12,7 @@ const NavigationMenu = () => {
             { label: 'Поисковые запросы', value: 'search-requests' },
             { label: 'Пользователи', value: 'users' },
             { label: 'Статистика', value: 'statistics' },
+            { label: 'Песочница', value: 'sandbox' },
         ]
     }, [])
 

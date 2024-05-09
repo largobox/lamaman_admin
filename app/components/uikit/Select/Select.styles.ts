@@ -6,7 +6,8 @@ import { ListItemProps, ValueProps } from './Select.types'
 
 
 const height = 36
-const listTopOffset = labelHeight + height + 4 + 4
+const listTopOffset = labelHeight + 4 + height + 4
+const iconBoxTopOffset = labelHeight + 4
 
 const selectedListItemStyles = (props: ListItemProps) => {
     const { $isHovered, $isSelected, theme } = props
@@ -58,8 +59,9 @@ export const Value = styled.div<ValueProps>`
     outline: none;
     border-width: 1px;
     border-style: solid;
-    border-color: ${(props) => props.theme.colors.neutral.light};
+    border-color: ${(props) => props.theme.colors.neutral.base};
     border-radius: ${(props) => props.theme.borderRadius}px;
+    box-sizing: border-box;
 
     background-color: ${(props) => props.theme.colors.light};
     color: ${(props) => props.theme.colors.dark};
@@ -118,6 +120,16 @@ export const SpinnerBox = styled.div`
     cursor: not-allowed;
 
     position: relative;
+`
+
+export const IconBox = styled.div<ThemedProps>`
+    display: flex;
+    align-items: center;
+    height: ${height}px;
+
+    position: absolute;
+    right: 8px;
+    top: ${iconBoxTopOffset}px;
 `
 
 const Box = styled.div<ThemedProps>`
