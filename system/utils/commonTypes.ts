@@ -46,3 +46,5 @@ export type Sorting<T> = {
 export type SortSign<T> = (name: T, sortingDirection: SortingDirection) => void
 
 export type ChangePageSign = (value: number) => void
+
+export type OutputFormData = { [key: string]: string }

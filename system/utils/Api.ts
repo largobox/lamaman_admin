@@ -13,6 +13,7 @@ import {
 } from 'store/tracksCollections.types'
 import { AuthorizationLoginFormValues } from 'store/authorization.types'
 import { PerformerFormValues, PerformersSortings } from 'store/performers.types'
+import { OutputFormData } from 'common-types'
 
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -98,14 +99,20 @@ class Api {
         return this._update(`/tracks-collections/${id}`, data)
     }
 
-    static async _create(path: string, data: object) {
+    static async _create(path: string, data: OutputFormData) {
+        const formData = new FormData()
+
+        for (const prop in data) {
+            formData.append(prop, data[prop])
+        }
+
         const options = {
             method: 'POST',
             headers: {
                 Authorization: this.token,
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
             },
-            body: JSON.stringify(data),
+            body: formData,
         }
 
         try {
@@ -220,14 +227,20 @@ class Api {
         }
     }
 
-    static async _update(path: string, data: object) {
+    static async _update(path: string, data: OutputFormData) {
+        const formData = new FormData()
+
+        for (const prop in data) {
+            formData.append(prop, data[prop])
+        }
+
         const options = {
             method: 'PUT',
             headers: {
                 Authorization: this.token,
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
             },
-            body: JSON.stringify(data),
+            body: formData,
         }
 
         try {
