@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { Button, Form, Input, Select } from 'uikit'
+import { Button, Form, Input, InputSelect } from 'uikit'
 import { trackFormSchema } from 'schemas'
 import { Props } from './TrackForm.types'
 import { useAppDispatch, useAppSelector } from 'hooks'
@@ -42,7 +42,7 @@ const TrackForm = (props: Props) => {
                 name='name'
             />
 
-            <Select
+            <InputSelect
                 isLoading={isFindSelectableTracksCollectionsLoading}
                 label='Коллекция'
                 name='tracksCollectionId'

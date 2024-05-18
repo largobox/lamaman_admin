@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 import { ThemedProps } from 'common-types'
 import { labelHeight } from '../Input/Input.styles'
-import { ListItemProps, ValueProps } from './Select.types'
+import { ListItemProps, ValueProps } from './InputSelect.types'
 
 
 const height = 36

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { Input, Button, Select } from 'uikit'
+import { Input, Button, InputSelect } from 'uikit'
 
 
 export const isButton = (child: ReactNode) => {
@@ -32,7 +32,7 @@ export const isInput = (child: ReactNode) => {
         return true
     }
 
-    if (child.type === Select) {
+    if (child.type === InputSelect) {
         return true
     }
 

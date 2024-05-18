@@ -1,4 +1,4 @@
-import { Item } from './Select.types'
+import { Item } from './InputSelect.types'
 
 
 export const getNextItemId = (currentId: string, items: Item[]) => {

@@ -1,15 +1,20 @@
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
 
-import Box, { IconBox, ListItem, SpinnerBox, ValueBox } from './Select.styles'
-import { Props } from './Select.types'
+import Box, {
+    IconBox,
+    ListItem,
+    SpinnerBox,
+    ValueBox,
+} from './InputSelect.styles'
+import { Props } from './InputSelect.types'
 import { ErrorMessage, Label, Spinner } from 'uikit'
-import { Value, List } from './Select.styles'
+import { Value, List } from './InputSelect.styles'
 import { useKeyPress, useOutsideClick } from 'hooks'
 import { getNextItemId, getPrevItemId, getValueLabel } from './utils'
 import { SelectIcon } from 'icons'
 
 
-const Select = (props: Props) => {
+const InputSelect = (props: Props) => {
     const {
         initialValue,
         onChange,
@@ -153,4 +158,4 @@ const Select = (props: Props) => {
     )
 }
 
-export default Select
+export default InputSelect
