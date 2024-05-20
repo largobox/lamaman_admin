@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components'
 
 import { ThemedProps } from 'common-types'
-import { labelHeight } from '../Input/Input.styles'
 import { ListItemProps, ValueProps } from './InputSelect.types'
+import theme from 'app/themes/default'
 
 
-const height = 36
+const height = theme.fontSizes.base * 2 + 4
+const labelHeight = theme.fontSizes.base + 3
 const listTopOffset = labelHeight + 4 + height + 4
 const iconBoxTopOffset = labelHeight + 4
 
@@ -45,11 +46,13 @@ const disabledStyles = (props: ValueProps) => {
     `
 }
 
-export const ValueBox = styled.div`
+export const Value = styled.div`
     margin-left: ${(props) => props.theme.spacing(2)}px;
+    color: ${(props) => props.theme.colors.dark};
+    font-size: ${(props) => props.theme.fontSizes.base}px;
 `
 
-export const Value = styled.div<ValueProps>`
+export const ValueBox = styled.div<ValueProps>`
     display: flex;
     align-items: center;
 
@@ -64,8 +67,6 @@ export const Value = styled.div<ValueProps>`
     box-sizing: border-box;
 
     background-color: ${(props) => props.theme.colors.light};
-    color: ${(props) => props.theme.colors.dark};
-    font-size: ${(props) => props.theme.fontSizes.base}px;
 
     cursor: pointer;
 
@@ -111,6 +112,8 @@ export const List = styled.div<ThemedProps>`
     box-sizing: border-box;
     box-shadow: ${(props) => props.theme.shadow.base}px;
     border-radius: ${(props) => props.theme.borderRadius}px;
+
+    z-index: ${(props) => props.theme.zIndex.menu};
 `
 
 export const SpinnerBox = styled.div`

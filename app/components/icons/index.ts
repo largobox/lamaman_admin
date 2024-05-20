@@ -3,6 +3,7 @@ import Icon from './Icon'
 import calendarSvg from './svgs/calendar.svg'
 import dangerSvg from './svgs/danger.svg'
 import editSvg from './svgs/edit.svg'
+import fileSvg from './svgs/file.svg'
 import humanSorrySvg from './svgs/human-sorry.svg'
 import humanWakeUpSvg from './svgs/human-wake-up.svg'
 import logoutSvg from './svgs/logout.svg'
@@ -20,6 +21,7 @@ import selectSvg from './svgs/select.svg'
 export const CalendarIcon = Icon(calendarSvg)
 export const DangerIcon = Icon(dangerSvg)
 export const EditIcon = Icon(editSvg)
+export const FileIcon = Icon(fileSvg)
 export const HumanSorryIcon = Icon(humanSorrySvg)
 export const HumanWakeUpIcon = Icon(humanWakeUpSvg)
 export const LogoutIcon = Icon(logoutSvg)

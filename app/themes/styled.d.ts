@@ -64,6 +64,7 @@ declare module 'styled-components' {
         }
 
         zIndex: {
+            menu: number
             modal: number
         }
     }

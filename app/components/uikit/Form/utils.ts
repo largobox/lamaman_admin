@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { Input, Button, InputSelect } from 'uikit'
+import { Input, Button, InputSelect, InputFile } from 'uikit'
 
 
 export const isButton = (child: ReactNode) => {
@@ -26,6 +26,10 @@ export const isInput = (child: ReactNode) => {
 
     if (!('type' in child)) {
         return false
+    }
+
+    if (child.type === InputFile) {
+        return true
     }
 
     if (child.type === Input) {

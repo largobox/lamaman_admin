@@ -112,7 +112,7 @@ const InputSelect = (props: Props) => {
         <Box>
             <Label>{label}</Label>
 
-            <Value
+            <ValueBox
                 ref={ref}
                 tabIndex={tabIndex}
                 onClick={clickHandler}
@@ -126,7 +126,7 @@ const InputSelect = (props: Props) => {
 
                 {!isSelectLoading && (
                     <>
-                        <ValueBox>{valueLabel}</ValueBox>
+                        <Value>{valueLabel}</Value>
 
                         {isListVisible && (
                             <List onMouseLeave={mouseLeaveHandler}>
@@ -147,7 +147,7 @@ const InputSelect = (props: Props) => {
                         )}
                     </>
                 )}
-            </Value>
+            </ValueBox>
 
             <IconBox>
                 <SelectIcon color='neutral' />

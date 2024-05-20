@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
 import { ThemedProps } from 'common-types'
+import theme from 'app/themes/default'
 
 
-export const labelHeight = 19
+const labelHeight = theme.fontSizes.base + 3
 
 export const Label = styled.div<ThemedProps>`
     font-size: ${(props) => props.theme.fontSizes.base}px;
@@ -21,7 +22,7 @@ export const ErrorMessage = styled.div<ThemedProps>`
 `
 
 export const InputElement = styled.input<ThemedProps>`
-    height: 36px;
+    height: ${(props) => props.theme.fontSizes.base * 2 + 4}px;
     width: 100%;
     color: ${(props) => props.theme.colors.dark};
     font-size: ${(props) => props.theme.fontSizes.base}px;

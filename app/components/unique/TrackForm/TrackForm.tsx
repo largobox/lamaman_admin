@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { Button, Form, Input, InputSelect } from 'uikit'
+import { Button, Form, Input, InputFile, InputSelect } from 'uikit'
 import { trackFormSchema } from 'schemas'
 import { Props } from './TrackForm.types'
 import { useAppDispatch, useAppSelector } from 'hooks'
@@ -47,6 +47,11 @@ const TrackForm = (props: Props) => {
                 label='Коллекция'
                 name='tracksCollectionId'
                 items={selectableTracksCollectionsItems}
+            />
+
+            <InputFile
+                label='Файл'
+                name='file'
             />
 
             <Button

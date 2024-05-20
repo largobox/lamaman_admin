@@ -73,6 +73,7 @@ const theme: CustomTheme = {
     },
 
     zIndex: {
+        menu: 2,
         modal: 1,
     },
 }
