@@ -51,7 +51,7 @@ const TrackForm = (props: Props) => {
 
             <InputFile
                 label='Файл'
-                name='file'
+                name='trackFile'
             />
 
             <Button

@@ -1,7 +1,31 @@
 import { ReactNode } from 'react'
 
 import { Input, Button, InputSelect, InputFile } from 'uikit'
+import { FormErrors } from './Form.types'
 
+
+export const getErrorMesssageByInputName = (
+    errors: FormErrors,
+    name: string,
+) => {
+    // текст ошибки для инпута с файлом
+    const findedFileInputError = errors.find((item) => {
+        return item.message.includes('must have required property')
+    })
+
+    if (findedFileInputError && findedFileInputError.name === undefined) {
+        return 'Обязательное'
+    }
+
+    // текст ошибки для обычного инпута
+    const findedError = errors.find((item) => {
+        return item.name === name
+    })
+
+    const errorMessage = findedError ? findedError.message : ''
+
+    return errorMessage
+}
 
 export const isButton = (child: ReactNode) => {
     if (typeof child !== 'object') {

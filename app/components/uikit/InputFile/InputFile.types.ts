@@ -2,5 +2,6 @@ export type Props = {
     label: string
     name: string
 
-    onChange?: (value: string) => void
+    onChange?: (value: File) => void
+    error?: string
 }

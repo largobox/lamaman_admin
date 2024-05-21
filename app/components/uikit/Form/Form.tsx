@@ -11,7 +11,7 @@ import React, {
 
 import Box, { Foreground, FormWrapper } from './Form.styles'
 import { FormErrors, FormValue, FormValues, Props } from './Form.types'
-import { isButton, isInput } from './utils'
+import { getErrorMesssageByInputName, isButton, isInput } from './utils'
 import { ajv } from 'validations'
 import { Spinner } from 'uikit'
 
@@ -76,21 +76,18 @@ const Form = (props: Props) => {
         if (!isValidElement(child)) return null
 
         if (isInput(child)) {
+            const { name } = child.props
+
             const changeHandler = (name: string) => (value: FormValue) => {
                 formValuesRef.current[name] = value
             }
 
-            const findedError = formErrors.find((item) => {
-                return item.name === child.props.name
-            })
-
             const props = {
-                error: findedError ? findedError.message : '',
-                onChange: changeHandler(child.props.name),
+                error: getErrorMesssageByInputName(formErrors, name),
+                onChange: changeHandler(name),
                 label: child.props.label,
                 initialValue:
-                    formValuesRef.current[child.props.name] ||
-                    initialValues[child.props.name],
+                    formValuesRef.current[name] || initialValues[name],
             }
 
             return cloneElement(child, props, [])
