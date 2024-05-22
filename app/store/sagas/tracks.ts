@@ -20,7 +20,7 @@ import {
 } from 'consts'
 import logger from 'logger'
 import router from 'router'
-import { Track, TracksSortings } from 'store/tracks.types'
+import { Track, TrackFormValues, TracksSortings } from 'store/tracks.types'
 import {
     CreateAction,
     DeleteAction,
@@ -31,7 +31,7 @@ import {
 } from 'store/store.types'
 
 
-function* createTrackWorkerSaga(action: CreateAction<Track>) {
+function* createTrackWorkerSaga(action: CreateAction<TrackFormValues>) {
     try {
         yield put(
             changeRequestStatus({
@@ -135,7 +135,7 @@ function* getTrackWorkerSaga(action: GetAction) {
         )
         yield delay()
 
-        const result = (yield Api.getTrack(action.payload)) as Track
+        const result = (yield Api.getTrack(action.payload)) as TrackFormValues
 
         yield put(getTrackSuccess(result))
     } catch (error) {
@@ -151,7 +151,7 @@ function* getTrackWorkerSaga(action: GetAction) {
     }
 }
 
-function* updateTrackWorkerSaga(action: UpdateAction<Track>) {
+function* updateTrackWorkerSaga(action: UpdateAction<TrackFormValues>) {
     try {
         yield put(
             changeRequestStatus({

@@ -143,7 +143,7 @@ function* getTracksCollectionWorkerSaga(action: GetAction) {
 
         const result = (yield Api.getTracksCollection(
             action.payload,
-        )) as TracksCollection
+        )) as TracksCollectionFormValues
 
         yield put(getTracksCollectionSuccess(result))
     } catch (error) {

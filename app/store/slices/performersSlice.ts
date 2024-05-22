@@ -81,7 +81,10 @@ const performersSlice = createSlice({
             state.requests.findPerformers = 'loaded'
         },
 
-        getPerformerSuccess(state, action: GetSuccessAction<Performer>) {
+        getPerformerSuccess(
+            state,
+            action: GetSuccessAction<PerformerFormValues>,
+        ) {
             state.formValues = action.payload
             state.requests.getPerformer = 'loaded'
         },

@@ -86,7 +86,7 @@ const tracksCollectionsSlice = createSlice({
 
         getTracksCollectionSuccess(
             state,
-            action: GetSuccessAction<TracksCollection>,
+            action: GetSuccessAction<TracksCollectionFormValues>,
         ) {
             state.formValues = action.payload
             state.requests.getTracksCollection = 'loaded'

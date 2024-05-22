@@ -11,6 +11,14 @@ const fileSchema = {
     },
     required: ['name'],
     additionalProperties: true,
+    /*
+        Решение для сценария, когда файл не выбран, а значит значение null
+        и необходимо выводить привычное сообщение валидации,
+        в противном случае выйдет "must be object"
+    */
+    errorMessage: {
+        type: 'Обязательное',
+    },
 }
 
 const trackFormSchema = {

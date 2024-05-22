@@ -139,7 +139,9 @@ function* getPerformerWorkerSaga(action: GetAction) {
         )
         yield delay()
 
-        const result = (yield Api.getPerformer(action.payload)) as Performer
+        const result = (yield Api.getPerformer(
+            action.payload,
+        )) as PerformerFormValues
 
         yield put(getPerformerSuccess(result))
     } catch (error) {

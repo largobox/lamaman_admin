@@ -24,7 +24,15 @@ const store = configureStore({
     },
 
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat([sagaMiddleware]),
+        getDefaultMiddleware({
+            serializableCheck: {
+                /*
+                    Чтобы не выкидывалась ошибка
+                    при передачи в стор объектов типа File
+                */
+                ignoredActionPaths: ['payload.data.trackFile'],
+            },
+        }).concat([sagaMiddleware]),
 })
 
 sagaMiddleware.run(rootSaga)

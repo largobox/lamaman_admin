@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 
-export type FormValue = string
+export type FormValue = string | File
 
 export type FormValues = {
     [key: string]: FormValue

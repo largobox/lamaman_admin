@@ -33,6 +33,7 @@ const initialState: TracksState = {
     formValues: {
         name: '',
         tracksCollectionId: '',
+        trackFile: null,
     },
     items: null,
     itemsTotal: null,
@@ -80,7 +81,7 @@ const tracksSlice = createSlice({
             state.requests.findTracks = 'loaded'
         },
 
-        getTrackSuccess(state, action: GetSuccessAction<Track>) {
+        getTrackSuccess(state, action: GetSuccessAction<TrackFormValues>) {
             state.formValues = action.payload
             state.requests.getTrack = 'loaded'
         },
@@ -89,6 +90,7 @@ const tracksSlice = createSlice({
             state.formValues = {
                 name: '',
                 tracksCollectionId: '',
+                trackFile: null,
             }
         },
     },
