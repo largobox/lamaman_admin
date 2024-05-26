@@ -7,7 +7,8 @@ export type Track = {
     id: string
     tracksCollectionId: string // ToDo
     name: string
-    trackFile: {
+    file: {
+        id: string
         name: string
     }
     createdAt: string
@@ -17,7 +18,7 @@ export type Track = {
 export type TrackFormValues = {
     name: string
     tracksCollectionId: string
-    trackFile: File
+    file: File
 }
 
 export type TracksSortings = 'name' | 'createdAt' | 'updatedAt'

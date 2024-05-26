@@ -38,9 +38,9 @@ const trackFormSchema = {
                 minLength: 'Обязательное',
             },
         },
-        trackFile: fileSchema,
+        file: fileSchema,
     },
-    required: ['name', 'tracksCollectionId', 'trackFile'],
+    required: ['name', 'tracksCollectionId', 'file'],
     additionalProperties: false,
 }
 

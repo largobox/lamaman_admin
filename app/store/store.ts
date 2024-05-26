@@ -30,7 +30,7 @@ const store = configureStore({
                     Чтобы не выкидывалась ошибка
                     при передачи в стор объектов типа File
                 */
-                ignoredActionPaths: ['payload.data.trackFile'],
+                ignoredActionPaths: ['payload.data.file'],
             },
         }).concat([sagaMiddleware]),
 })

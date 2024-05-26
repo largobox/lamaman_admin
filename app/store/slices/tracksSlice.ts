@@ -33,7 +33,7 @@ const initialState: TracksState = {
     formValues: {
         name: '',
         tracksCollectionId: '',
-        trackFile: null,
+        file: null,
     },
     items: null,
     itemsTotal: null,
@@ -90,7 +90,7 @@ const tracksSlice = createSlice({
             state.formValues = {
                 name: '',
                 tracksCollectionId: '',
-                trackFile: null,
+                file: null,
             }
         },
     },
