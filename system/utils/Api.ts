@@ -4,6 +4,7 @@ import {
     UnprocessableContentError,
     UnauthorizedError,
     NotFoundError,
+    ServerError,
 } from 'errors'
 import { FindInput } from 'store/store.types'
 import { TrackFormValues, TracksSortings } from 'store/tracks.types'
@@ -110,7 +111,6 @@ class Api {
             method: 'POST',
             headers: {
                 Authorization: this.token,
-                'Content-Type': 'multipart/form-data',
             },
             body: formData,
         }
@@ -266,6 +266,7 @@ class Api {
 
     static _isResponseError(error: Response) {
         if (
+            error.status === 500 ||
             error.status === 422 ||
             error.status === 401 ||
             error.status === 404
@@ -276,6 +277,10 @@ class Api {
     }
 
     static async _handleResponseError(error: Response) {
+        if (error.status === 500) {
+            throw new ServerError()
+        }
+
         if (error.status === 422) {
             throw new UnprocessableContentError()
         }
