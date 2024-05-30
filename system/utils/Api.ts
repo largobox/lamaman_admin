@@ -238,7 +238,6 @@ class Api {
             method: 'PUT',
             headers: {
                 Authorization: this.token,
-                'Content-Type': 'multipart/form-data',
             },
             body: formData,
         }
