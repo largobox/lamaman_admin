@@ -24,7 +24,15 @@ const fileSchema = {
 const trackFormSchema = {
     type: 'object',
     properties: {
+        file: fileSchema,
         name: {
+            type: 'string',
+            minLength: 1,
+            errorMessage: {
+                minLength: 'Обязательное',
+            },
+        },
+        performerId: {
             type: 'string',
             minLength: 1,
             errorMessage: {
@@ -38,9 +46,8 @@ const trackFormSchema = {
                 minLength: 'Обязательное',
             },
         },
-        file: fileSchema,
     },
-    required: ['name', 'tracksCollectionId', 'file'],
+    required: ['file', 'name', 'performerId', 'tracksCollectionId'],
     additionalProperties: false,
 }
 

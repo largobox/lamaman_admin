@@ -6,8 +6,13 @@ import { Props } from './TrackForm.types'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import { resetForm } from 'store/slices/tracksSlice'
 import {
+    findSelectablePerformers,
     findSelectableTracksCollections,
+    isFindSelectablePerformersLoadedSelector,
+    isFindSelectablePerformersLoadingSelector,
+    isFindSelectableTracksCollectionsLoadedSelector,
     isFindSelectableTracksCollectionsLoadingSelector,
+    selectablePerformersItemsSelector,
     selectableTracksCollectionsItemsSelector,
 } from 'store/slices/selectablesSlice'
 
@@ -15,15 +20,31 @@ import {
 const TrackForm = (props: Props) => {
     const { initialValues, isLoading, onSubmit } = props
     const appDispatch = useAppDispatch()
-    const isFindSelectableTracksCollectionsLoading = useAppSelector(
+    const isPerformersLoaded = useAppSelector(
+        isFindSelectablePerformersLoadedSelector,
+    )
+    const isPerformersLoading = useAppSelector(
+        isFindSelectablePerformersLoadingSelector,
+    )
+    const isTracksCollectionsLoaded = useAppSelector(
+        isFindSelectableTracksCollectionsLoadedSelector,
+    )
+    const isTracksCollectionsLoading = useAppSelector(
         isFindSelectableTracksCollectionsLoadingSelector,
     )
-    const selectableTracksCollectionsItems = useAppSelector(
+    const tracksCollectionsItems = useAppSelector(
         selectableTracksCollectionsItemsSelector,
     )
+    const performersItems = useAppSelector(selectablePerformersItemsSelector)
 
     useEffect(() => {
-        appDispatch(findSelectableTracksCollections())
+        if (!isTracksCollectionsLoaded) {
+            appDispatch(findSelectableTracksCollections())
+        }
+
+        if (!isPerformersLoaded) {
+            appDispatch(findSelectablePerformers())
+        }
 
         return () => {
             appDispatch(resetForm())
@@ -43,10 +64,17 @@ const TrackForm = (props: Props) => {
             />
 
             <InputSelect
-                isLoading={isFindSelectableTracksCollectionsLoading}
+                isLoading={isPerformersLoading}
+                label='Исполнитель'
+                name='performerId'
+                items={performersItems}
+            />
+
+            <InputSelect
+                isLoading={isTracksCollectionsLoading}
                 label='Коллекция'
                 name='tracksCollectionId'
-                items={selectableTracksCollectionsItems}
+                items={tracksCollectionsItems}
             />
 
             <InputFile

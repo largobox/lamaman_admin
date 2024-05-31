@@ -33,3 +33,13 @@ export type FindSelectableTracksCollectionsOutput = FindOutput<
         direction: 'asc'
     }
 >
+
+export type FindSelectablePerformersInput = FindInput<'name'>
+
+export type FindSelectablePerformersOutput = FindOutput<
+    SelectableItem,
+    {
+        name: 'name'
+        direction: 'asc'
+    }
+>

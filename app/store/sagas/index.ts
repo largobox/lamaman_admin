@@ -1,7 +1,10 @@
 import { all } from 'redux-saga/effects'
 
 import { loginAuthorizationWatcherSaga } from './authorization'
-import { findSelectableTracksCollectionsWatcherSaga } from './selectables'
+import {
+    findSelectablePerformersWatcherSaga,
+    findSelectableTracksCollectionsWatcherSaga,
+} from './selectables'
 import {
     createPerformerWatcherSaga,
     deletePerformerWatcherSaga,
@@ -30,6 +33,7 @@ function* rootSaga() {
         loginAuthorizationWatcherSaga(),
 
         findSelectableTracksCollectionsWatcherSaga(),
+        findSelectablePerformersWatcherSaga(),
 
         createPerformerWatcherSaga(),
         deletePerformerWatcherSaga(),

@@ -1,7 +1,11 @@
 import { createSlice, createAction } from '@reduxjs/toolkit'
 
-import { FIND_SELECTABLE_TRACKS_COLLECTIONS } from 'consts'
 import {
+    FIND_SELECTABLE_PERFORMERS,
+    FIND_SELECTABLE_TRACKS_COLLECTIONS,
+} from 'consts'
+import {
+    FindSelectablePerformersOutput,
     FindSelectableTracksCollectionsOutput,
     SelectablesRequestNames,
     SelectablesState,
@@ -47,19 +51,49 @@ const selectablesSlice = createSlice({
             state.tracksCollections.items = action.payload.items
             state.requests.findSelectableTracksCollections = 'loaded'
         },
+
+        findSelectablePerformersSuccess(
+            state,
+            action: FindSuccessAction<FindSelectablePerformersOutput>,
+        ) {
+            state.performers.items = action.payload.items
+            state.requests.findSelectablePerformers = 'loaded'
+        },
     },
 })
 
 // Actions
-export const { changeRequestStatus, findSelectableTracksCollectionsSuccess } =
-    selectablesSlice.actions
+export const {
+    changeRequestStatus,
+    findSelectableTracksCollectionsSuccess,
+    findSelectablePerformersSuccess,
+} = selectablesSlice.actions
 
 // Custom actions
 export const findSelectableTracksCollections = createAction(
     FIND_SELECTABLE_TRACKS_COLLECTIONS,
 )
 
+export const findSelectablePerformers = createAction(FIND_SELECTABLE_PERFORMERS)
+
 // Selectors
+
+export const isFindSelectablePerformersLoadedSelector = (state: RootState) => {
+    return state.selectables.requests.findSelectablePerformers === 'loaded'
+}
+
+export const isFindSelectablePerformersLoadingSelector = (state: RootState) => {
+    return state.selectables.requests.findSelectablePerformers === 'loading'
+}
+
+export const isFindSelectableTracksCollectionsLoadedSelector = (
+    state: RootState,
+) => {
+    return (
+        state.selectables.requests.findSelectableTracksCollections === 'loaded'
+    )
+}
+
 export const isFindSelectableTracksCollectionsLoadingSelector = (
     state: RootState,
 ) => {
@@ -68,16 +102,12 @@ export const isFindSelectableTracksCollectionsLoadingSelector = (
     )
 }
 
-export const isSelectableTracksCollectionsLoadedSelector = (
-    state: RootState,
-) => {
-    return (
-        state.selectables.requests.findSelectableTracksCollections === 'loaded'
-    )
-}
-
 export const selectableTracksCollectionsItemsSelector = (state: RootState) => {
     return state.selectables.tracksCollections.items
+}
+
+export const selectablePerformersItemsSelector = (state: RootState) => {
+    return state.selectables.performers.items
 }
 
 export default selectablesSlice
