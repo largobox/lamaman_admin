@@ -40,6 +40,10 @@ const InputSelect = (props: Props) => {
     })
 
     useEffect(() => {
+        setValue(initialValue || null)
+    }, [initialValue])
+
+    useEffect(() => {
         if (ref.current !== document.activeElement) {
             return
         }
