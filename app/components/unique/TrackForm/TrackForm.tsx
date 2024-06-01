@@ -8,9 +8,7 @@ import { resetForm } from 'store/slices/tracksSlice'
 import {
     findSelectablePerformers,
     findSelectableTracksCollections,
-    isFindSelectablePerformersLoadedSelector,
     isFindSelectablePerformersLoadingSelector,
-    isFindSelectableTracksCollectionsLoadedSelector,
     isFindSelectableTracksCollectionsLoadingSelector,
     selectablePerformersItemsSelector,
     selectableTracksCollectionsItemsSelector,
@@ -20,14 +18,8 @@ import {
 const TrackForm = (props: Props) => {
     const { initialValues, isLoading, onSubmit } = props
     const appDispatch = useAppDispatch()
-    const isPerformersLoaded = useAppSelector(
-        isFindSelectablePerformersLoadedSelector,
-    )
     const isPerformersLoading = useAppSelector(
         isFindSelectablePerformersLoadingSelector,
-    )
-    const isTracksCollectionsLoaded = useAppSelector(
-        isFindSelectableTracksCollectionsLoadedSelector,
     )
     const isTracksCollectionsLoading = useAppSelector(
         isFindSelectableTracksCollectionsLoadingSelector,
@@ -38,13 +30,8 @@ const TrackForm = (props: Props) => {
     const performersItems = useAppSelector(selectablePerformersItemsSelector)
 
     useEffect(() => {
-        if (!isTracksCollectionsLoaded) {
-            appDispatch(findSelectableTracksCollections())
-        }
-
-        if (!isPerformersLoaded) {
-            appDispatch(findSelectablePerformers())
-        }
+        appDispatch(findSelectableTracksCollections())
+        appDispatch(findSelectablePerformers())
 
         return () => {
             appDispatch(resetForm())

@@ -77,21 +77,8 @@ export const findSelectableTracksCollections = createAction(
 export const findSelectablePerformers = createAction(FIND_SELECTABLE_PERFORMERS)
 
 // Selectors
-
-export const isFindSelectablePerformersLoadedSelector = (state: RootState) => {
-    return state.selectables.requests.findSelectablePerformers === 'loaded'
-}
-
 export const isFindSelectablePerformersLoadingSelector = (state: RootState) => {
     return state.selectables.requests.findSelectablePerformers === 'loading'
-}
-
-export const isFindSelectableTracksCollectionsLoadedSelector = (
-    state: RootState,
-) => {
-    return (
-        state.selectables.requests.findSelectableTracksCollections === 'loaded'
-    )
 }
 
 export const isFindSelectableTracksCollectionsLoadingSelector = (
