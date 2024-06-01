@@ -90,6 +90,14 @@ class Api {
     }
 
     static async updateTrack(id: string, data: TrackFormValues) {
+        /*
+        Договорённость. Если файл не поменялся,
+        то и обновлять на сервере его не нужно
+      */
+        if ('id' in data.file) {
+            data.file = null
+        }
+
         return this._update(`/tracks/${id}`, data)
     }
 

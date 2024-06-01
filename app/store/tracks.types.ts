@@ -1,22 +1,19 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { RequestStatus } from './store.types'
-import { Sorting } from 'common-types'
+import { FileMetaData, Sorting } from 'common-types'
 
 
 export type Track = {
     id: string
     tracksCollectionId: string // ToDo
     name: string
-    file: {
-        id: string
-        name: string
-    }
+    file: FileMetaData
     createdAt: string
     updatedAt: string
 }
 
 export type TrackFormValues = {
-    file: File
+    file: File | null
     name: string
     performerId: string
     tracksCollectionId: string
