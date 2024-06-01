@@ -1,18 +1,33 @@
 import React, { ChangeEventHandler, useEffect, useRef, useState } from 'react'
 
-import Box, { FileName, IconBox, ValueBox } from './InputFile.styles'
+import Box, {
+    FileDescription,
+    FileName,
+    IconBox,
+    LabelBox,
+    ValueBox,
+} from './InputFile.styles'
 import { Props } from './InputFile.types'
 import { ErrorMessage, Label } from 'uikit'
 import { FileIcon } from 'icons'
 import { useKeyPress } from 'hooks'
+import getFileDescription from './utils'
 
 
 const InputFile = (props: Props) => {
-    const { label, onChange, error = '' } = props
+    const { label, onChange, error = '', initialValue } = props
     const inputFileRef = useRef(null)
     const valueBoxRef = useRef(null)
-    const [fileName, setFileName] = useState('')
+    const [fileName, setFileName] = useState(initialValue?.name || null)
     const isEnterPressed = useKeyPress('Enter')
+    const [fileDescription, setFileDescription] = useState(
+        getFileDescription(initialValue),
+    )
+
+    useEffect(() => {
+        setFileName(initialValue?.name || null)
+        setFileDescription(getFileDescription(initialValue))
+    }, [initialValue])
 
     useEffect(() => {
         if (valueBoxRef.current !== document.activeElement) {
@@ -30,6 +45,8 @@ const InputFile = (props: Props) => {
         }
 
         setFileName(ev.target.files[0].name)
+        setFileDescription(getFileDescription(ev.target.files[0]))
+
         onChange(ev.target.files[0])
     }
 
@@ -39,7 +56,11 @@ const InputFile = (props: Props) => {
 
     return (
         <Box>
-            <Label>{label}</Label>
+            <LabelBox>
+                <Label>{label}</Label>
+
+                <FileDescription>{fileDescription}</FileDescription>
+            </LabelBox>
 
             <ValueBox
                 ref={valueBoxRef}

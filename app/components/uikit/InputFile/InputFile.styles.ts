@@ -7,6 +7,14 @@ const height = theme.fontSizes.base * 2 + 4
 const labelHeight = theme.fontSizes.base + 3
 const iconBoxTopOffset = labelHeight + 4
 
+export const LabelBox = styled.div<ThemedProps>`
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    padding-right: ${(props) => props.theme.spacing(2)}px;
+`
+
 export const IconBox = styled.div<ThemedProps>`
     display: flex;
     align-items: center;
@@ -15,6 +23,12 @@ export const IconBox = styled.div<ThemedProps>`
     position: absolute;
     right: 8px;
     top: ${iconBoxTopOffset}px;
+`
+
+export const FileDescription = styled.div<ThemedProps>`
+    color: ${(props) => props.theme.colors.neutral.base};
+    font-size: ${(props) => props.theme.fontSizes.hint}px;
+    margin-bottom: ${(props) => props.theme.spacing(1)}px;
 `
 
 export const FileName = styled.div<ThemedProps>`

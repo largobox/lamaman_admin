@@ -1,7 +1,11 @@
+import { FileMetaData } from 'common-types'
+
+
 export type Props = {
     label: string
     name: string
 
-    onChange?: (value: File) => void
+    initialValue?: null | FileMetaData
     error?: string
+    onChange?: (value: File) => void
 }

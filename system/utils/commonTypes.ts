@@ -17,6 +17,13 @@ export type Color =
     | 'base'
     | 'dark'
 
+export type FileMetaData = {
+    id: string
+    mimetype: string
+    name: string
+    size: string
+}
+
 export type FontSize = {
     base: number
     h1: number
