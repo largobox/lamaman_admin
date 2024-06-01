@@ -31,9 +31,10 @@ import {
 
 const initialState: TracksState = {
     formValues: {
-        name: '',
-        tracksCollectionId: '',
         file: null,
+        name: '',
+        performerId: '',
+        tracksCollectionId: '',
     },
     items: null,
     itemsTotal: null,
@@ -88,9 +89,10 @@ const tracksSlice = createSlice({
 
         resetForm(state) {
             state.formValues = {
-                name: '',
-                tracksCollectionId: '',
                 file: null,
+                name: '',
+                performerId: '',
+                tracksCollectionId: '',
             }
         },
     },

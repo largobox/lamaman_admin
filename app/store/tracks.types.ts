@@ -16,9 +16,10 @@ export type Track = {
 }
 
 export type TrackFormValues = {
-    name: string
-    tracksCollectionId: string
     file: File
+    name: string
+    performerId: string
+    tracksCollectionId: string
 }
 
 export type TracksSortings = 'name' | 'createdAt' | 'updatedAt'
