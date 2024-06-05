@@ -30,6 +30,6 @@ export type ChangeAuthorizationRequestStatusAction = PayloadAction<{
 
 export type AuthorizationState = {
     currentUser: null | CurrentUser
-    formValues: AuthorizationLoginFormValues
+    formInitialValues: AuthorizationLoginFormValues
     requests: AuthorizationRequests
 }

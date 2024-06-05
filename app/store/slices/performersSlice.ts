@@ -30,7 +30,7 @@ import {
 
 
 const initialState: PerformersState = {
-    formValues: {
+    formInitialValues: {
         name: '',
     },
     items: null,
@@ -85,12 +85,12 @@ const performersSlice = createSlice({
             state,
             action: GetSuccessAction<PerformerFormValues>,
         ) {
-            state.formValues = action.payload
+            state.formInitialValues = action.payload
             state.requests.getPerformer = 'loaded'
         },
 
         resetForm(state) {
-            state.formValues = {
+            state.formInitialValues = {
                 name: '',
             }
         },
@@ -132,8 +132,8 @@ export const findPerformersParamsSelector = (
     }
 }
 
-export const formValuesSelector = (state: RootState) => {
-    return state.performers.formValues
+export const formInitialValuesSelector = (state: RootState) => {
+    return state.performers.formInitialValues
 }
 
 export const isCreateLoadingSelector = (state: RootState) => {

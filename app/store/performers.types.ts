@@ -26,7 +26,7 @@ export type Performer = {
 export type PerformersSortings = 'name' | 'createdAt' | 'updatedAt'
 
 export type PerformersState = {
-    formValues: PerformerFormValues
+    formInitialValues: PerformerFormValues
     items: Performer[] | null
     itemsTotal: number | null
     page: number

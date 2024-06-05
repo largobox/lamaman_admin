@@ -26,7 +26,7 @@ export type TracksCollection = {
 export type TracksCollectionsSortings = 'name' | 'createdAt' | 'updatedAt'
 
 export type TracksCollectionsState = {
-    formValues: TracksCollectionFormValues
+    formInitialValues: TracksCollectionFormValues
     items: TracksCollection[] | null
     itemsTotal: number | null
     page: number

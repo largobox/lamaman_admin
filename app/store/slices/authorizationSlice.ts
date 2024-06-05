@@ -14,7 +14,7 @@ import { RootState } from 'store/store.types'
 
 const initialState: AuthorizationState = {
     currentUser: getInitialCurrentUser(),
-    formValues: {
+    formInitialValues: {
         login: '',
         password: '',
     },
@@ -61,13 +61,12 @@ export const { changeRequestStatus, signIn, signOut } =
     authorizationSlice.actions
 
 // Custom actions
-
 export const login =
     createAction<AuthorizationLoginActionPayload>(AUTHORIZATION_LOGIN)
 
 // Selectors
-export const formValuesSelector = (state: RootState) => {
-    return state.authorization.formValues
+export const formInitialValuesSelector = (state: RootState) => {
+    return state.authorization.formInitialValues
 }
 
 export const isLoadingSelector = (state: RootState) => {

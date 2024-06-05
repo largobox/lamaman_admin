@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { RequestStatus } from './store.types'
 import { FileMetaData, Sorting } from 'common-types'
+import { SelectableItem } from './selectables.types'
 
 
 export type Track = {
@@ -17,6 +18,20 @@ export type TrackFormValues = {
     name: string
     performerId: string
     tracksCollectionId: string
+}
+
+export type TrackFormInitialValues = {
+    file: FileMetaData | null
+    name: string
+    performerId: string
+    tracksCollectionId: string
+}
+
+export type TrackGetOutput = {
+    file: FileMetaData
+    name: string
+    performer: SelectableItem
+    tracksCollection: SelectableItem
 }
 
 export type TracksSortings = 'name' | 'createdAt' | 'updatedAt'
@@ -37,7 +52,7 @@ export type ChangeTracksRequestStatusAction = PayloadAction<{
 }>
 
 export type TracksState = {
-    formValues: TrackFormValues
+    formInitialValues: TrackFormInitialValues
     items: Track[] | null
     itemsTotal: number | null
     page: number

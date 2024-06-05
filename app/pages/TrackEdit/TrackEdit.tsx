@@ -6,7 +6,6 @@ import { TrackForm } from 'unique'
 import { Typography } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import {
-    formValuesSelector,
     getTrack,
     isEditLoadingSelector,
     updateTrack,
@@ -19,7 +18,6 @@ const TrackEditPage = () => {
     const navigate = useNavigate()
     const appDispatch = useAppDispatch()
     const isLoading = useAppSelector(isEditLoadingSelector)
-    const initialValues = useAppSelector(formValuesSelector)
 
     useEffect(() => {
         appDispatch(getTrack(params.id))
@@ -44,7 +42,6 @@ const TrackEditPage = () => {
                 </FormHeader>
 
                 <TrackForm
-                    initialValues={initialValues}
                     isLoading={isLoading}
                     onSubmit={submitHandler}
                 />

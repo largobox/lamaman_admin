@@ -6,7 +6,6 @@ import { PerformerForm } from 'unique'
 import { Typography } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import {
-    formValuesSelector,
     getPerformer,
     isEditLoadingSelector,
     updatePerformer,
@@ -19,7 +18,6 @@ const PerformerEditPage = () => {
     const navigate = useNavigate()
     const appDispatch = useAppDispatch()
     const isLoading = useAppSelector(isEditLoadingSelector)
-    const initialValues = useAppSelector(formValuesSelector)
 
     useEffect(() => {
         appDispatch(getPerformer(params.id))
@@ -44,7 +42,6 @@ const PerformerEditPage = () => {
                 </FormHeader>
 
                 <PerformerForm
-                    initialValues={initialValues}
                     isLoading={isLoading}
                     onSubmit={submitHandler}
                 />

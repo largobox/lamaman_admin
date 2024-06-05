@@ -22,6 +22,7 @@ import {
 } from 'store/store.types'
 import {
     Track,
+    TrackFormInitialValues,
     TrackFormValues,
     TracksRequestNames,
     TracksSortings,
@@ -30,7 +31,7 @@ import {
 
 
 const initialState: TracksState = {
-    formValues: {
+    formInitialValues: {
         file: null,
         name: '',
         performerId: '',
@@ -82,13 +83,16 @@ const tracksSlice = createSlice({
             state.requests.findTracks = 'loaded'
         },
 
-        getTrackSuccess(state, action: GetSuccessAction<TrackFormValues>) {
-            state.formValues = action.payload
+        getTrackSuccess(
+            state,
+            action: GetSuccessAction<TrackFormInitialValues>,
+        ) {
+            state.formInitialValues = action.payload
             state.requests.getTrack = 'loaded'
         },
 
         resetForm(state) {
-            state.formValues = {
+            state.formInitialValues = {
                 file: null,
                 name: '',
                 performerId: '',
@@ -133,8 +137,8 @@ export const findTracksParamsSelector = (
     }
 }
 
-export const formValuesSelector = (state: RootState) => {
-    return state.tracks.formValues
+export const formInitialValuesSelector = (state: RootState) => {
+    return state.tracks.formInitialValues
 }
 
 export const isCreateLoadingSelector = (state: RootState) => {

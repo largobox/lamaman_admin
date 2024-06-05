@@ -7,7 +7,6 @@ import { Typography } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import {
     createTracksCollection,
-    formValuesSelector,
     isCreateLoadingSelector,
 } from 'store/slices/tracksCollectionsSlice'
 import { TracksCollectionFormValues } from 'store/tracksCollections.types'
@@ -17,7 +16,6 @@ const TracksCollectionAddPage = () => {
     const appDispatch = useAppDispatch()
     const navigate = useNavigate()
     const isLoading = useAppSelector(isCreateLoadingSelector)
-    const initialValues = useAppSelector(formValuesSelector)
 
     const closeHandler = () => {
         navigate('/tracks-collections')
@@ -38,7 +36,6 @@ const TracksCollectionAddPage = () => {
                 </FormHeader>
 
                 <TracksCollectionForm
-                    initialValues={initialValues}
                     onSubmit={submitHandler}
                     isLoading={isLoading}
                 />

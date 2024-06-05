@@ -3,12 +3,16 @@ import React, { useEffect } from 'react'
 import { Button, Form, Input } from 'uikit'
 import { performerFormSchema } from 'schemas'
 import { Props } from './PerformerForm.types'
-import { useAppDispatch } from 'hooks'
-import { resetForm } from 'store/slices/performersSlice'
+import { useAppDispatch, useAppSelector } from 'hooks'
+import {
+    formInitialValuesSelector,
+    resetForm,
+} from 'store/slices/performersSlice'
 
 
 const PerformerForm = (props: Props) => {
-    const { initialValues, isLoading, onSubmit } = props
+    const { isLoading, onSubmit } = props
+    const initialValues = useAppSelector(formInitialValuesSelector)
     const appDispatch = useAppDispatch()
 
     useEffect(() => {

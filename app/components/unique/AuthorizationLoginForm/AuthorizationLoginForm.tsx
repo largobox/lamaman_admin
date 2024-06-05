@@ -3,10 +3,13 @@ import React from 'react'
 import { Button, Form, Input } from 'uikit'
 import { loginFormSchema } from 'schemas'
 import { Props } from './AuthorizationLoginForm.types'
+import { useAppSelector } from 'hooks'
+import { formInitialValuesSelector } from 'store/slices/authorizationSlice'
 
 
 const AuthorizationLoginForm = (props: Props) => {
-    const { initialValues, isLoading, onSubmit } = props
+    const { isLoading, onSubmit } = props
+    const initialValues = useAppSelector(formInitialValuesSelector)
 
     return (
         <Form

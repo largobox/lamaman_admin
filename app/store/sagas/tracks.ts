@@ -20,7 +20,12 @@ import {
 } from 'consts'
 import logger from 'logger'
 import router from 'router'
-import { Track, TrackFormValues, TracksSortings } from 'store/tracks.types'
+import {
+    Track,
+    TrackFormValues,
+    TrackGetOutput,
+    TracksSortings,
+} from 'store/tracks.types'
 import {
     CreateAction,
     DeleteAction,
@@ -135,9 +140,16 @@ function* getTrackWorkerSaga(action: GetAction) {
         )
         yield delay()
 
-        const result = (yield Api.getTrack(action.payload)) as TrackFormValues
+        const result = (yield Api.getTrack(action.payload)) as TrackGetOutput
 
-        yield put(getTrackSuccess(result))
+        const mappedResult = {
+            file: result.file,
+            name: result.name,
+            performerId: result.performer.id,
+            tracksCollectionId: result.tracksCollection.id,
+        }
+
+        yield put(getTrackSuccess(mappedResult))
     } catch (error) {
         yield put(addToast({ message: error.message, toastType: 'error' }))
         yield put(

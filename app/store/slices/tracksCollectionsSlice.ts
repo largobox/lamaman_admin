@@ -30,7 +30,7 @@ import {
 
 
 const initialState: TracksCollectionsState = {
-    formValues: {
+    formInitialValues: {
         name: '',
     },
     items: null,
@@ -88,12 +88,12 @@ const tracksCollectionsSlice = createSlice({
             state,
             action: GetSuccessAction<TracksCollectionFormValues>,
         ) {
-            state.formValues = action.payload
+            state.formInitialValues = action.payload
             state.requests.getTracksCollection = 'loaded'
         },
 
         resetForm(state) {
-            state.formValues = {
+            state.formInitialValues = {
                 name: '',
             }
         },
@@ -139,8 +139,8 @@ export const findTracksCollectionsParamsSelector = (
     }
 }
 
-export const formValuesSelector = (state: RootState) => {
-    return state.tracksCollections.formValues
+export const formInitialValuesSelector = (state: RootState) => {
+    return state.tracksCollections.formInitialValues
 }
 
 export const isCreateLoadingSelector = (state: RootState) => {

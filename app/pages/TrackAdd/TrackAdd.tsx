@@ -5,11 +5,7 @@ import { RightPanelLayout, FormLayout, FormHeader } from 'layouts'
 import { TrackForm } from 'unique'
 import { Typography } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
-import {
-    createTrack,
-    formValuesSelector,
-    isCreateLoadingSelector,
-} from 'store/slices/tracksSlice'
+import { createTrack, isCreateLoadingSelector } from 'store/slices/tracksSlice'
 import { TrackFormValues } from 'store/tracks.types'
 
 
@@ -17,7 +13,6 @@ const TrackAddPage = () => {
     const appDispatch = useAppDispatch()
     const navigate = useNavigate()
     const isLoading = useAppSelector(isCreateLoadingSelector)
-    const initialValues = useAppSelector(formValuesSelector)
 
     const closeHandler = () => {
         navigate('/tracks')
@@ -38,7 +33,6 @@ const TrackAddPage = () => {
                 </FormHeader>
 
                 <TrackForm
-                    initialValues={initialValues}
                     onSubmit={submitHandler}
                     isLoading={isLoading}
                 />

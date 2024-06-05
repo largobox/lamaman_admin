@@ -7,7 +7,6 @@ import { Typography } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import {
     createPerformer,
-    formValuesSelector,
     isCreateLoadingSelector,
 } from 'store/slices/performersSlice'
 import { PerformerFormValues } from 'store/performers.types'
@@ -17,7 +16,6 @@ const PerformerAddPage = () => {
     const appDispatch = useAppDispatch()
     const navigate = useNavigate()
     const isLoading = useAppSelector(isCreateLoadingSelector)
-    const initialValues = useAppSelector(formValuesSelector)
 
     const closeHandler = () => {
         navigate('/performers')
@@ -38,7 +36,6 @@ const PerformerAddPage = () => {
                 </FormHeader>
 
                 <PerformerForm
-                    initialValues={initialValues}
                     onSubmit={submitHandler}
                     isLoading={isLoading}
                 />

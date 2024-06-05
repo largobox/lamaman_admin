@@ -4,7 +4,7 @@ import { Button, Form, Input, InputFile, InputSelect } from 'uikit'
 import { trackFormSchema } from 'schemas'
 import { Props } from './TrackForm.types'
 import { useAppDispatch, useAppSelector } from 'hooks'
-import { resetForm } from 'store/slices/tracksSlice'
+import { formInitialValuesSelector, resetForm } from 'store/slices/tracksSlice'
 import {
     findSelectablePerformers,
     findSelectableTracksCollections,
@@ -16,8 +16,9 @@ import {
 
 
 const TrackForm = (props: Props) => {
-    const { initialValues, isLoading, onSubmit } = props
+    const { isLoading, onSubmit } = props
     const appDispatch = useAppDispatch()
+    const initialValues = useAppSelector(formInitialValuesSelector)
     const isPerformersLoading = useAppSelector(
         isFindSelectablePerformersLoadingSelector,
     )

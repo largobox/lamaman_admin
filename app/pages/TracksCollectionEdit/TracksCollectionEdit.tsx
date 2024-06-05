@@ -6,7 +6,6 @@ import { TracksCollectionForm } from 'unique'
 import { Typography } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import {
-    formValuesSelector,
     getTracksCollection,
     isEditLoadingSelector,
     updateTracksCollection,
@@ -19,7 +18,6 @@ const TracksCollectionEditPage = () => {
     const navigate = useNavigate()
     const appDispatch = useAppDispatch()
     const isLoading = useAppSelector(isEditLoadingSelector)
-    const initialValues = useAppSelector(formValuesSelector)
 
     useEffect(() => {
         appDispatch(getTracksCollection(params.id))
@@ -44,7 +42,6 @@ const TracksCollectionEditPage = () => {
                 </FormHeader>
 
                 <TracksCollectionForm
-                    initialValues={initialValues}
                     isLoading={isLoading}
                     onSubmit={submitHandler}
                 />
