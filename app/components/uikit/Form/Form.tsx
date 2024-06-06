@@ -72,15 +72,15 @@ const Form = (props: Props) => {
         onSubmit(values)
     }
 
+    const changeHandler = (name: string) => (value: FormValue) => {
+        formValuesRef.current[name] = value
+    }
+
     const content = Children.map(children, (child) => {
         if (!isValidElement(child)) return null
 
         if (isInput(child)) {
             const { name } = child.props
-
-            const changeHandler = (name: string) => (value: FormValue) => {
-                formValuesRef.current[name] = value
-            }
 
             const props = {
                 error: getErrorMesssageByInputName(formErrors, name),

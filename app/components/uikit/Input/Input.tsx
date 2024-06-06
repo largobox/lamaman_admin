@@ -17,7 +17,7 @@ const Input = (props: Props) => {
 
             <InputElement
                 defaultValue={initialValue}
-                onChange={changeHandler}
+                onInput={changeHandler}
             />
 
             <ErrorMessage>{error}</ErrorMessage>
