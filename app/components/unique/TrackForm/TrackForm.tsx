@@ -4,7 +4,11 @@ import { Button, Form, Input, InputFile, InputSelect } from 'uikit'
 import { trackFormSchema } from 'schemas'
 import { Props } from './TrackForm.types'
 import { useAppDispatch, useAppSelector } from 'hooks'
-import { formInitialValuesSelector, resetForm } from 'store/slices/tracksSlice'
+import {
+    formInitialMetaDataSelector,
+    formInitialValuesSelector,
+    resetForm,
+} from 'store/slices/tracksSlice'
 import {
     findSelectablePerformers,
     findSelectableTracksCollections,
@@ -19,6 +23,8 @@ const TrackForm = (props: Props) => {
     const { isLoading, onSubmit } = props
     const appDispatch = useAppDispatch()
     const initialValues = useAppSelector(formInitialValuesSelector)
+    const initialMetaData = useAppSelector(formInitialMetaDataSelector)
+
     const isPerformersLoading = useAppSelector(
         isFindSelectablePerformersLoadingSelector,
     )
@@ -53,6 +59,7 @@ const TrackForm = (props: Props) => {
 
             <InputSelect
                 isLoading={isPerformersLoading}
+                initialMetaData={initialMetaData.performer}
                 label='Исполнитель'
                 name='performerId'
                 items={performersItems}
@@ -60,12 +67,14 @@ const TrackForm = (props: Props) => {
 
             <InputSelect
                 isLoading={isTracksCollectionsLoading}
+                initialMetaData={initialMetaData.tracksCollections}
                 label='Коллекция'
                 name='tracksCollectionId'
                 items={tracksCollectionsItems}
             />
 
             <InputFile
+                initialMetaData={initialMetaData.file}
                 label='Файл'
                 name='file'
             />

@@ -1,16 +1,13 @@
 import { ThemedProps } from 'common-types'
+import { SelectableItem } from 'store/selectables.types'
 
-
-export type Item = {
-    id: string
-    name: string
-}
 
 export type Props = {
     label: string
     name: string
     isLoading: boolean
-    items: Item[]
+    items: SelectableItem[]
+    initialMetaData: SelectableItem | SelectableItem[]
 
     initialValue?: string
     error?: string

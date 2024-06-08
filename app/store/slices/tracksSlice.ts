@@ -24,6 +24,7 @@ import {
     Track,
     TrackFormInitialValues,
     TrackFormValues,
+    TrackGetOutput,
     TracksRequestNames,
     TracksSortings,
     TracksState,
@@ -36,6 +37,11 @@ const initialState: TracksState = {
         name: '',
         performerId: '',
         tracksCollectionId: '',
+    },
+    formInitialMetaData: {
+        file: null,
+        performer: null,
+        tracksCollections: null,
     },
     items: null,
     itemsTotal: null,
@@ -83,15 +89,32 @@ const tracksSlice = createSlice({
             state.requests.findTracks = 'loaded'
         },
 
-        getTrackSuccess(
-            state,
-            action: GetSuccessAction<TrackFormInitialValues>,
-        ) {
-            state.formInitialValues = action.payload
+        getTrackSuccess(state, action: GetSuccessAction<TrackGetOutput>) {
+            const initialValues: TrackFormInitialValues = {
+                file: action.payload.file,
+                name: action.payload.name,
+                performerId: action.payload.performer.id,
+                tracksCollectionId: action.payload.tracksCollection.id,
+            }
+
+            const initialMetaData = {
+                file: action.payload.file,
+                performer: action.payload.performer,
+                tracksCollections: action.payload.tracksCollection,
+            }
+
+            state.formInitialValues = initialValues
+            state.formInitialMetaData = initialMetaData
             state.requests.getTrack = 'loaded'
         },
 
         resetForm(state) {
+            state.formInitialMetaData = {
+                file: null,
+                performer: null,
+                tracksCollections: null,
+            }
+
             state.formInitialValues = {
                 file: null,
                 name: '',
@@ -135,6 +158,10 @@ export const findTracksParamsSelector = (
         sortingDirection: state.tracks.sorting.direction,
         limit: String(PAGINATION_LIMIT),
     }
+}
+
+export const formInitialMetaDataSelector = (state: RootState) => {
+    return state.tracks.formInitialMetaData
 }
 
 export const formInitialValuesSelector = (state: RootState) => {

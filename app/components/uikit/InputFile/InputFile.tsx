@@ -15,19 +15,19 @@ import getFileDescription from './utils'
 
 
 const InputFile = (props: Props) => {
-    const { label, onChange, error = '', initialValue } = props
+    const { label, onChange, error = '', initialMetaData } = props
     const inputFileRef = useRef(null)
     const valueBoxRef = useRef(null)
-    const [fileName, setFileName] = useState(initialValue?.name || null)
+    const [fileName, setFileName] = useState(initialMetaData?.name || null)
     const isEnterPressed = useKeyPress('Enter')
     const [fileDescription, setFileDescription] = useState(
-        getFileDescription(initialValue),
+        getFileDescription(initialMetaData),
     )
 
     useEffect(() => {
-        setFileName(initialValue?.name || null)
-        setFileDescription(getFileDescription(initialValue))
-    }, [initialValue])
+        setFileName(initialMetaData?.name || null)
+        setFileDescription(getFileDescription(initialMetaData))
+    }, [initialMetaData])
 
     useEffect(() => {
         if (valueBoxRef.current !== document.activeElement) {

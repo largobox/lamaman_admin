@@ -142,14 +142,7 @@ function* getTrackWorkerSaga(action: GetAction) {
 
         const result = (yield Api.getTrack(action.payload)) as TrackGetOutput
 
-        const mappedResult = {
-            file: result.file,
-            name: result.name,
-            performerId: result.performer.id,
-            tracksCollectionId: result.tracksCollection.id,
-        }
-
-        yield put(getTrackSuccess(mappedResult))
+        yield put(getTrackSuccess(result))
     } catch (error) {
         yield put(addToast({ message: error.message, toastType: 'error' }))
         yield put(

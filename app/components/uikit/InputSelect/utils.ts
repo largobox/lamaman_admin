@@ -1,7 +1,7 @@
-import { Item } from './InputSelect.types'
+import { SelectableItem } from 'store/selectables.types'
 
 
-export const getNextItemId = (currentId: string, items: Item[]) => {
+export const getNextItemId = (currentId: string, items: SelectableItem[]) => {
     if (currentId === null) {
         return items[0].id
     }
@@ -15,7 +15,7 @@ export const getNextItemId = (currentId: string, items: Item[]) => {
     return items[findedIndex + 1].id
 }
 
-export const getPrevItemId = (currentId: string, items: Item[]) => {
+export const getPrevItemId = (currentId: string, items: SelectableItem[]) => {
     if (currentId === null) {
         return null
     }
@@ -29,12 +29,25 @@ export const getPrevItemId = (currentId: string, items: Item[]) => {
     return items[findedIndex - 1].id
 }
 
-export const getValueLabel = (currentId: string, items: Item[]) => {
-    if (currentId === null) {
+export const getInitialValueLabel = (
+    initialMetaData: SelectableItem | SelectableItem[],
+) => {
+    if (initialMetaData === null) {
         return ''
     }
 
-    const selectedItem = items.find((item) => item.id === currentId)
+    if (Array.isArray(initialMetaData)) {
+        // ToDo
+        return 'Some complex label'
+    }
+
+    if (typeof initialMetaData === 'object') {
+        return initialMetaData.name
+    }
+}
+
+export const getValueLabel = (selectedId: string, items: SelectableItem[]) => {
+    const selectedItem = items.find((item) => item.id === selectedId)
 
     return selectedItem.name
 }

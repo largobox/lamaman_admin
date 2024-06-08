@@ -27,6 +27,12 @@ export type TrackFormInitialValues = {
     tracksCollectionId: string
 }
 
+export type TrackFormInitialMetaData = {
+    performer: SelectableItem
+    tracksCollections: SelectableItem
+    file: FileMetaData
+}
+
 export type TrackGetOutput = {
     file: FileMetaData
     name: string
@@ -53,6 +59,7 @@ export type ChangeTracksRequestStatusAction = PayloadAction<{
 
 export type TracksState = {
     formInitialValues: TrackFormInitialValues
+    formInitialMetaData: TrackFormInitialMetaData
     items: Track[] | null
     itemsTotal: number | null
     page: number

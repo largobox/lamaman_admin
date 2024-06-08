@@ -10,13 +10,19 @@ import { Props } from './InputSelect.types'
 import { ErrorMessage, Label, Spinner } from 'uikit'
 import { Value, List } from './InputSelect.styles'
 import { useKeyPress, useOutsideClick } from 'hooks'
-import { getNextItemId, getPrevItemId, getValueLabel } from './utils'
+import {
+    getNextItemId,
+    getPrevItemId,
+    getInitialValueLabel,
+    getValueLabel,
+} from './utils'
 import { SelectIcon } from 'icons'
 
 
 const InputSelect = (props: Props) => {
     const {
         initialValue,
+        initialMetaData,
         onChange,
         label,
         error = '',
@@ -30,7 +36,7 @@ const InputSelect = (props: Props) => {
     const isEnterPressed = useKeyPress('Enter')
     const isUpPressed = useKeyPress('ArrowUp')
     const isDownPressed = useKeyPress('ArrowDown')
-    const valueLabel = getValueLabel(value, items)
+    const [valueLabel, setValueLabel] = useState(null)
     const isSelectLoading = isLoading || items === null
     const tabIndex = isSelectLoading ? -1 : 0
 
@@ -38,6 +44,10 @@ const InputSelect = (props: Props) => {
         setIsListVisible(false)
         setHoveredValue(null)
     })
+
+    useEffect(() => {
+        setValueLabel(getInitialValueLabel(initialMetaData))
+    }, [initialMetaData])
 
     useEffect(() => {
         setValue(initialValue || null)
@@ -68,6 +78,7 @@ const InputSelect = (props: Props) => {
             onChange(hoveredValue)
 
             setValue(hoveredValue)
+            setValueLabel(getValueLabel(hoveredValue, items))
             setIsListVisible(false)
             setHoveredValue(null)
 
@@ -91,6 +102,7 @@ const InputSelect = (props: Props) => {
         onChange(nextValue)
 
         setValue(nextValue)
+        setValueLabel(getValueLabel(hoveredValue, items))
         setHoveredValue(null)
     }
 
