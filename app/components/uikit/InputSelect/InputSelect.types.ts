@@ -9,7 +9,8 @@ export type Props = {
     items: SelectableItem[]
     initialMetaData: SelectableItem | SelectableItem[]
 
-    initialValue?: string
+    initialValue?: string | string[]
+    isMultiselectable?: boolean
     error?: string
     onChange?: (value: string) => void
 }

@@ -27,11 +27,12 @@ const InputSelect = (props: Props) => {
         label,
         error = '',
         items,
+        // isMultiselectable = false, // ToDo
         isLoading,
     } = props
     const ref = useRef()
-    const [value, setValue] = useState(initialValue || null)
-    const [hoveredValue, setHoveredValue] = useState(null)
+    const [value, setValue] = useState<string | string[]>(initialValue || null)
+    const [hoveredValue, setHoveredValue] = useState<string>(null)
     const [isListVisible, setIsListVisible] = useState(false)
     const isEnterPressed = useKeyPress('Enter')
     const isUpPressed = useKeyPress('ArrowUp')
@@ -59,7 +60,7 @@ const InputSelect = (props: Props) => {
         }
 
         if (isUpPressed && isListVisible) {
-            const nextHoveredValue = getPrevItemId(hoveredValue || value, items)
+            const nextHoveredValue = getPrevItemId(hoveredValue, items)
 
             setHoveredValue(nextHoveredValue)
 
@@ -67,7 +68,7 @@ const InputSelect = (props: Props) => {
         }
 
         if (isDownPressed && isListVisible) {
-            const nextHoveredValue = getNextItemId(hoveredValue || value, items)
+            const nextHoveredValue = getNextItemId(hoveredValue, items)
 
             setHoveredValue(nextHoveredValue)
 

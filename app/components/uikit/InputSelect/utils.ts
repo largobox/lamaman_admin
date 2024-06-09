@@ -17,7 +17,7 @@ export const getNextItemId = (currentId: string, items: SelectableItem[]) => {
 
 export const getPrevItemId = (currentId: string, items: SelectableItem[]) => {
     if (currentId === null) {
-        return null
+        return items[0].id
     }
 
     const findedIndex = items.findIndex((item) => item.id === currentId)
