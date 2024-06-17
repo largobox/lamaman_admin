@@ -67,7 +67,7 @@ export const RemovableValuesBox = styled.div<ThemedProps>`
     margin-top: ${(props) => props.theme.spacing(1)}px;
 
     ${RemovableValueBox} + ${RemovableValueBox} {
-      margin-left: ${(props) => props.theme.spacing(1)}px;
+        margin-left: ${(props) => props.theme.spacing(1)}px;
     }
 `
 

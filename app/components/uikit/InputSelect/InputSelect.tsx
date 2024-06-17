@@ -109,12 +109,8 @@ const InputSelect = (props: Props) => {
         }
     }, [isEnterPressed, isUpPressed, isDownPressed])
 
-    const selectHandler = (nextValue: string) => () => {
-        onChange(nextValue)
-
-        setValue(nextValue)
-        setValueLabel(getValueLabel(hoveredValue, items))
-        setHoveredValue(null)
+    const blurHandler = () => {
+        setIsListVisible(false)
     }
 
     const clickHandler = () => {
@@ -136,7 +132,15 @@ const InputSelect = (props: Props) => {
     }
 
     const removeHandler = () => {
-      console.log('Remove')
+        console.log('Remove')
+    }
+
+    const selectHandler = (nextValue: string) => () => {
+        onChange(nextValue)
+
+        setValue(nextValue)
+        setValueLabel(getValueLabel(hoveredValue, items))
+        setHoveredValue(null)
     }
 
     return (
@@ -145,6 +149,7 @@ const InputSelect = (props: Props) => {
 
             <ValueBox
                 ref={ref}
+                onBlur={blurHandler}
                 tabIndex={tabIndex}
                 onClick={clickHandler}
                 $isDisabled={isSelectLoading}
