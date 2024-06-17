@@ -29,7 +29,7 @@ export type TrackFormInitialValues = {
 
 export type TrackFormInitialMetaData = {
     performer: SelectableItem
-    tracksCollections: SelectableItem
+    tracksCollections: SelectableItem | SelectableItem[]
     file: FileMetaData
 }
 

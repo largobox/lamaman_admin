@@ -48,6 +48,7 @@ declare module 'styled-components' {
         fontSizes: FontSize
 
         iconSizes: {
+            extrasmall: number
             small: number
             middle: number
             big: number

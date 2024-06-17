@@ -3,11 +3,14 @@ import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import Box, {
     IconBox,
     ListItem,
+    RemovableValue,
+    RemovableValueBox,
+    RemovableValuesBox,
     SpinnerBox,
     ValueBox,
 } from './InputSelect.styles'
 import { Props } from './InputSelect.types'
-import { ErrorMessage, Label, Spinner } from 'uikit'
+import { ErrorMessage, IconButton, Label, Spinner } from 'uikit'
 import { Value, List } from './InputSelect.styles'
 import { useKeyPress, useOutsideClick } from 'hooks'
 import {
@@ -16,7 +19,8 @@ import {
     getInitialValueLabel,
     getValueLabel,
 } from './utils'
-import { SelectIcon } from 'icons'
+import { SelectIcon, CrossIcon } from 'icons'
+import { SelectableItem } from 'store/selectables.types'
 
 
 const InputSelect = (props: Props) => {
@@ -27,7 +31,7 @@ const InputSelect = (props: Props) => {
         label,
         error = '',
         items,
-        // isMultiselectable = false, // ToDo
+        isMultiselectable = false,
         isLoading,
     } = props
     const ref = useRef()
@@ -37,9 +41,15 @@ const InputSelect = (props: Props) => {
     const isEnterPressed = useKeyPress('Enter')
     const isUpPressed = useKeyPress('ArrowUp')
     const isDownPressed = useKeyPress('ArrowDown')
-    const [valueLabel, setValueLabel] = useState(null)
+    const [valueLabel, setValueLabel] = useState<SelectableItem[] | string>(
+        null,
+    )
     const isSelectLoading = isLoading || items === null
     const tabIndex = isSelectLoading ? -1 : 0
+    const isValueLabelVisible =
+        !isMultiselectable && typeof valueLabel === 'string'
+    const isMultiValueLabelVisible =
+        isMultiselectable && Array.isArray(valueLabel)
 
     useOutsideClick(ref, () => {
         setIsListVisible(false)
@@ -125,6 +135,10 @@ const InputSelect = (props: Props) => {
         setHoveredValue(null)
     }
 
+    const removeHandler = () => {
+      console.log('Remove')
+    }
+
     return (
         <Box>
             <Label>{label}</Label>
@@ -143,7 +157,7 @@ const InputSelect = (props: Props) => {
 
                 {!isSelectLoading && (
                     <>
-                        <Value>{valueLabel}</Value>
+                        {isValueLabelVisible && <Value>{valueLabel}</Value>}
 
                         {isListVisible && (
                             <List onMouseLeave={mouseLeaveHandler}>
@@ -165,6 +179,23 @@ const InputSelect = (props: Props) => {
                     </>
                 )}
             </ValueBox>
+
+            {isMultiValueLabelVisible && (
+                <RemovableValuesBox>
+                    {valueLabel.map((item) => (
+                        <RemovableValueBox key={item.id}>
+                            <RemovableValue>{item.name}</RemovableValue>
+
+                            <IconButton
+                                onClick={removeHandler}
+                                Icon={CrossIcon}
+                                size='extrasmall'
+                                color='neutral'
+                            />
+                        </RemovableValueBox>
+                    ))}
+                </RemovableValuesBox>
+            )}
 
             <IconBox>
                 <SelectIcon color='neutral' />

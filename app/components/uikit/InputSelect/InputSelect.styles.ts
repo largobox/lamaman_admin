@@ -46,10 +46,36 @@ const disabledStyles = (props: ValueProps) => {
     `
 }
 
-export const Value = styled.div`
+export const Value = styled.div<ThemedProps>`
     margin-left: ${(props) => props.theme.spacing(2)}px;
     color: ${(props) => props.theme.colors.dark};
     font-size: ${(props) => props.theme.fontSizes.base}px;
+`
+
+export const RemovableValueBox = styled.div<ThemedProps>`
+    display: flex;
+    align-items: center;
+
+    background-color: ${(props) => props.theme.colors.neutral.dark};
+    border-radius: ${(props) => props.theme.borderRadius}px;
+    padding: ${(props) => props.theme.spacing(1)}px
+        ${(props) => props.theme.spacing(2)}px;
+`
+
+export const RemovableValuesBox = styled.div<ThemedProps>`
+    display: flex;
+    margin-top: ${(props) => props.theme.spacing(1)}px;
+
+    ${RemovableValueBox} + ${RemovableValueBox} {
+      margin-left: ${(props) => props.theme.spacing(1)}px;
+    }
+`
+
+export const RemovableValue = styled.div<ThemedProps>`
+    user-select: none;
+    margin-right: ${(props) => props.theme.spacing(1)}px;
+    font-size: ${(props) => props.theme.fontSizes.base}px;
+    color: ${(props) => props.theme.colors.light};
 `
 
 export const ValueBox = styled.div<ValueProps>`
@@ -78,6 +104,7 @@ export const ListItem = styled.div<ListItemProps>`
     padding: ${(props) => props.theme.spacing(2)}px
         ${(props) => props.theme.spacing(4)}px;
     cursor: pointer;
+    user-select: none;
 
     border-width: 1px;
     border-style: solid;

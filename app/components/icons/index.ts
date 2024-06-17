@@ -1,6 +1,7 @@
 import Icon from './Icon'
 
 import calendarSvg from './svgs/calendar.svg'
+import crossSvg from './svgs/cross.svg'
 import dangerSvg from './svgs/danger.svg'
 import editSvg from './svgs/edit.svg'
 import fileSvg from './svgs/file.svg'
@@ -19,6 +20,7 @@ import selectSvg from './svgs/select.svg'
 
 
 export const CalendarIcon = Icon(calendarSvg)
+export const CrossIcon = Icon(crossSvg)
 export const DangerIcon = Icon(dangerSvg)
 export const EditIcon = Icon(editSvg)
 export const FileIcon = Icon(fileSvg)

@@ -37,8 +37,7 @@ export const getInitialValueLabel = (
     }
 
     if (Array.isArray(initialMetaData)) {
-        // ToDo
-        return 'Some complex label'
+        return initialMetaData
     }
 
     if (typeof initialMetaData === 'object') {

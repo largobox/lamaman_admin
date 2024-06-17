@@ -66,6 +66,7 @@ const TrackForm = (props: Props) => {
             />
 
             <InputSelect
+                isMultiselectable
                 isLoading={isTracksCollectionsLoading}
                 initialMetaData={initialMetaData.tracksCollections}
                 label='Коллекция'

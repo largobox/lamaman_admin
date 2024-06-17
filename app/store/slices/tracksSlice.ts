@@ -105,6 +105,13 @@ const tracksSlice = createSlice({
 
             state.formInitialValues = initialValues
             state.formInitialMetaData = initialMetaData
+
+            // ToDo. Remove
+            state.formInitialMetaData.tracksCollections = [
+                { id: '1', name: 'Maow 1' },
+                { id: '2', name: 'Maow 2' },
+            ]
+
             state.requests.getTrack = 'loaded'
         },
 

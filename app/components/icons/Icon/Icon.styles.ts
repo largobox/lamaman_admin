@@ -15,6 +15,13 @@ const sizeStyles = (props: BoxProps) => {
         `
     }
 
+    if ($size === 'extrasmall') {
+        return css`
+            width: ${iconSizes.extrasmall}px;
+            height: ${iconSizes.extrasmall}px;
+        `
+    }
+
     if ($size === 'small') {
         return css`
             width: ${iconSizes.small}px;
