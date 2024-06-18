@@ -70,7 +70,7 @@ const TrackForm = (props: Props) => {
                 isLoading={isTracksCollectionsLoading}
                 initialMetaData={initialMetaData.tracksCollections}
                 label='Коллекция'
-                name='tracksCollectionId'
+                name='tracksCollectionIds'
                 items={tracksCollectionsItems}
             />
 

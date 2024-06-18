@@ -12,7 +12,7 @@ export type Props = {
     initialValue?: string | string[]
     isMultiselectable?: boolean
     error?: string
-    onChange?: (value: string) => void
+    onChange?: (value: string | string[]) => void
 }
 
 export type ListItemProps = ThemedProps & {

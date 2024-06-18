@@ -86,8 +86,7 @@ const Form = (props: Props) => {
                 error: getErrorMesssageByInputName(formErrors, name),
                 onChange: changeHandler(name),
                 label: child.props.label,
-                initialValue:
-                    formValuesRef.current[name] || initialValues[name],
+                initialValue: initialValues[name],
             }
 
             return cloneElement(child, props, [])

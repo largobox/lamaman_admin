@@ -13,16 +13,16 @@ const iconBoxTopOffset = labelHeight + 4
 const selectedListItemStyles = (props: ListItemProps) => {
     const { $isHovered, $isSelected, theme } = props
 
-    if ($isHovered) {
-        return css`
-            background-color: ${theme.colors.neutral.base};
-        `
-    }
-
     if ($isSelected) {
         return css`
             background-color: ${theme.colors.neutral.dark};
             color: ${(props) => props.theme.colors.light};
+        `
+    }
+
+    if ($isHovered) {
+        return css`
+            background-color: ${theme.colors.neutral.base};
         `
     }
 

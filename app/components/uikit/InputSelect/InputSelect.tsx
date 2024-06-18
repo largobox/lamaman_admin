@@ -14,10 +14,13 @@ import { ErrorMessage, IconButton, Label, Spinner } from 'uikit'
 import { Value, List } from './InputSelect.styles'
 import { useKeyPress, useOutsideClick } from 'hooks'
 import {
-    getNextItemId,
-    getPrevItemId,
+    getNextItem,
+    getPrevItem,
     getInitialValueLabel,
-    getValueLabel,
+    getNextValueLabel,
+    getNextValue,
+    isListItemHovered,
+    isListItemSelected,
 } from './utils'
 import { SelectIcon, CrossIcon } from 'icons'
 import { SelectableItem } from 'store/selectables.types'
@@ -36,11 +39,12 @@ const InputSelect = (props: Props) => {
     } = props
     const ref = useRef()
     const [value, setValue] = useState<string | string[]>(initialValue || null)
-    const [hoveredValue, setHoveredValue] = useState<string>(null)
+    const [hoveredValue, setHoveredValue] = useState<SelectableItem>(null)
     const [isListVisible, setIsListVisible] = useState(false)
     const isEnterPressed = useKeyPress('Enter')
     const isUpPressed = useKeyPress('ArrowUp')
     const isDownPressed = useKeyPress('ArrowDown')
+    const isLeftPressed = useKeyPress('ArrowLeft')
     const [valueLabel, setValueLabel] = useState<SelectableItem[] | string>(
         null,
     )
@@ -69,8 +73,13 @@ const InputSelect = (props: Props) => {
             return
         }
 
+        if (isLeftPressed && isListVisible) {
+            setHoveredValue(null)
+            setIsListVisible(false)
+        }
+
         if (isUpPressed && isListVisible) {
-            const nextHoveredValue = getPrevItemId(hoveredValue, items)
+            const nextHoveredValue = getPrevItem(hoveredValue, items)
 
             setHoveredValue(nextHoveredValue)
 
@@ -78,7 +87,7 @@ const InputSelect = (props: Props) => {
         }
 
         if (isDownPressed && isListVisible) {
-            const nextHoveredValue = getNextItemId(hoveredValue, items)
+            const nextHoveredValue = getNextItem(hoveredValue, items)
 
             setHoveredValue(nextHoveredValue)
 
@@ -86,12 +95,17 @@ const InputSelect = (props: Props) => {
         }
 
         if (isEnterPressed && isListVisible && hoveredValue) {
-            onChange(hoveredValue)
+            const nextValue = getNextValue(hoveredValue.id, value)
 
-            setValue(hoveredValue)
-            setValueLabel(getValueLabel(hoveredValue, items))
-            setIsListVisible(false)
-            setHoveredValue(null)
+            onChange(nextValue)
+
+            setValue(nextValue)
+            setValueLabel(getNextValueLabel(hoveredValue, valueLabel))
+
+            if (!isMultiselectable) {
+                setHoveredValue(null)
+                setIsListVisible(false)
+            }
 
             return
         }
@@ -107,7 +121,7 @@ const InputSelect = (props: Props) => {
 
             return
         }
-    }, [isEnterPressed, isUpPressed, isDownPressed])
+    }, [isEnterPressed, isUpPressed, isDownPressed, isLeftPressed])
 
     const blurHandler = () => {
         setIsListVisible(false)
@@ -123,7 +137,7 @@ const InputSelect = (props: Props) => {
         }
     }
 
-    const mouseEnterHandler = (nextHoveredValue: string) => () => {
+    const mouseEnterHandler = (nextHoveredValue: SelectableItem) => () => {
         setHoveredValue(nextHoveredValue)
     }
 
@@ -131,15 +145,22 @@ const InputSelect = (props: Props) => {
         setHoveredValue(null)
     }
 
-    const removeHandler = () => {
-        console.log('Remove')
-    }
+    const removeHandler = (removedItem: SelectableItem) => () => {
+        const nextValue = getNextValue(removedItem.id, value)
 
-    const selectHandler = (nextValue: string) => () => {
         onChange(nextValue)
 
         setValue(nextValue)
-        setValueLabel(getValueLabel(hoveredValue, items))
+        setValueLabel(getNextValueLabel(removedItem, valueLabel))
+    }
+
+    const selectHandler = (selectedValue: SelectableItem) => () => {
+        const nextValue = getNextValue(selectedValue.id, value)
+
+        onChange(nextValue)
+
+        setValue(nextValue)
+        setValueLabel(getNextValueLabel(hoveredValue, valueLabel))
         setHoveredValue(null)
     }
 
@@ -169,12 +190,16 @@ const InputSelect = (props: Props) => {
                                 {items.map((item) => (
                                     <ListItem
                                         key={item.id}
-                                        onClick={selectHandler(item.id)}
-                                        onMouseEnter={mouseEnterHandler(
+                                        onClick={selectHandler(item)}
+                                        onMouseEnter={mouseEnterHandler(item)}
+                                        $isHovered={isListItemHovered(
+                                            hoveredValue,
                                             item.id,
                                         )}
-                                        $isHovered={hoveredValue === item.id}
-                                        $isSelected={value === item.id}
+                                        $isSelected={isListItemSelected(
+                                            value,
+                                            item.id,
+                                        )}
                                     >
                                         {item.name}
                                     </ListItem>
@@ -192,7 +217,7 @@ const InputSelect = (props: Props) => {
                             <RemovableValue>{item.name}</RemovableValue>
 
                             <IconButton
-                                onClick={removeHandler}
+                                onClick={removeHandler(item)}
                                 Icon={CrossIcon}
                                 size='extrasmall'
                                 color='neutral'

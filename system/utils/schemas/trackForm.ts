@@ -39,15 +39,15 @@ const trackFormSchema = {
                 minLength: 'Обязательное',
             },
         },
-        tracksCollectionId: {
-            type: 'string',
-            minLength: 1,
-            errorMessage: {
-                minLength: 'Обязательное',
+        tracksCollectionIds: {
+            type: 'array',
+            items: {
+                type: 'string',
             },
+            minItems: 1,
         },
     },
-    required: ['file', 'name', 'performerId', 'tracksCollectionId'],
+    required: ['file', 'name', 'performerId', 'tracksCollectionIds'],
     additionalProperties: false,
 }
 

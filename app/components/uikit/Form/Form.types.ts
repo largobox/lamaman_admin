@@ -2,7 +2,7 @@ import { FileMetaData } from 'common-types'
 import { ReactNode } from 'react'
 
 
-export type FormValue = string | File | FileMetaData
+export type FormValue = string | string[] | File | FileMetaData
 
 export type FormValues = {
     [key: string]: FormValue

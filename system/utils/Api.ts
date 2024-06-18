@@ -109,11 +109,7 @@ class Api {
     }
 
     static async _create(path: string, data: OutputFormData) {
-        const formData = new FormData()
-
-        for (const prop in data) {
-            formData.append(prop, data[prop])
-        }
+        const formData = this._getFormData(data)
 
         const options = {
             method: 'POST',
@@ -236,11 +232,7 @@ class Api {
     }
 
     static async _update(path: string, data: OutputFormData) {
-        const formData = new FormData()
-
-        for (const prop in data) {
-            formData.append(prop, data[prop])
-        }
+        const formData = this._getFormData(data)
 
         const options = {
             method: 'PUT',
@@ -269,6 +261,36 @@ class Api {
 
             logger.error({ error, layer: API_LAYER })
         }
+    }
+
+    static _getFormData(data: OutputFormData) {
+        const formData = new FormData()
+
+        for (const prop in data) {
+            /*
+            TS. failed
+
+            if (Array.isArray(data[prop])) {
+              formData.append(prop, JSON.stringify(data[prop]))
+
+              return
+            }
+
+            formData.append(prop, data[prop])
+          */
+
+            const outputFormDataValue = data[prop]
+
+            if (Array.isArray(outputFormDataValue)) {
+                formData.append(prop, JSON.stringify(outputFormDataValue))
+
+                continue
+            }
+
+            formData.append(prop, outputFormDataValue)
+        }
+
+        return formData
     }
 
     static _isResponseError(error: Response) {

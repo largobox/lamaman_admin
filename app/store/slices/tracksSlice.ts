@@ -36,12 +36,12 @@ const initialState: TracksState = {
         file: null,
         name: '',
         performerId: '',
-        tracksCollectionId: '',
+        tracksCollectionIds: [],
     },
     formInitialMetaData: {
         file: null,
         performer: null,
-        tracksCollections: null,
+        tracksCollections: [],
     },
     items: null,
     itemsTotal: null,
@@ -90,28 +90,25 @@ const tracksSlice = createSlice({
         },
 
         getTrackSuccess(state, action: GetSuccessAction<TrackGetOutput>) {
+            const tracksCollectionIds = action.payload.tracksCollections.map(
+                (item) => item.id,
+            )
+
             const initialValues: TrackFormInitialValues = {
                 file: action.payload.file,
                 name: action.payload.name,
                 performerId: action.payload.performer.id,
-                tracksCollectionId: action.payload.tracksCollection.id,
+                tracksCollectionIds,
             }
 
             const initialMetaData = {
                 file: action.payload.file,
                 performer: action.payload.performer,
-                tracksCollections: action.payload.tracksCollection,
+                tracksCollections: action.payload.tracksCollections,
             }
 
             state.formInitialValues = initialValues
             state.formInitialMetaData = initialMetaData
-
-            // ToDo. Remove
-            state.formInitialMetaData.tracksCollections = [
-                { id: '1', name: 'Maow 1' },
-                { id: '2', name: 'Maow 2' },
-            ]
-
             state.requests.getTrack = 'loaded'
         },
 
@@ -119,14 +116,14 @@ const tracksSlice = createSlice({
             state.formInitialMetaData = {
                 file: null,
                 performer: null,
-                tracksCollections: null,
+                tracksCollections: [],
             }
 
             state.formInitialValues = {
                 file: null,
                 name: '',
                 performerId: '',
-                tracksCollectionId: '',
+                tracksCollectionIds: [],
             }
         },
     },

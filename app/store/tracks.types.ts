@@ -6,9 +6,7 @@ import { SelectableItem } from './selectables.types'
 
 export type Track = {
     id: string
-    tracksCollectionId: string // ToDo
     name: string
-    file: FileMetaData
     createdAt: string
     updatedAt: string
 }
@@ -17,19 +15,19 @@ export type TrackFormValues = {
     file: File | null
     name: string
     performerId: string
-    tracksCollectionId: string
+    tracksCollectionIds: string[] | null
 }
 
 export type TrackFormInitialValues = {
     file: FileMetaData | null
     name: string
     performerId: string
-    tracksCollectionId: string
+    tracksCollectionIds: string[]
 }
 
 export type TrackFormInitialMetaData = {
     performer: SelectableItem
-    tracksCollections: SelectableItem | SelectableItem[]
+    tracksCollections: SelectableItem[]
     file: FileMetaData
 }
 
@@ -37,7 +35,7 @@ export type TrackGetOutput = {
     file: FileMetaData
     name: string
     performer: SelectableItem
-    tracksCollection: SelectableItem
+    tracksCollections: SelectableItem[]
 }
 
 export type TracksSortings = 'name' | 'createdAt' | 'updatedAt'
