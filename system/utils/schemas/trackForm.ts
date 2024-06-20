@@ -45,6 +45,9 @@ const trackFormSchema = {
                 type: 'string',
             },
             minItems: 1,
+            errorMessage: {
+                minItems: 'Выберите хотя бы 1 элемент',
+            },
         },
     },
     required: ['file', 'name', 'performerId', 'tracksCollectionIds'],

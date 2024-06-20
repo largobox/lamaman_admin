@@ -19,6 +19,7 @@ export const ErrorMessage = styled.div<ThemedProps>`
     height: ${(props) => props.theme.fontSizes.hint}px;
     color: ${(props) => props.theme.colors.danger.base};
     margin-top: ${(props) => props.theme.spacing(1)}px;
+    margin-bottom: ${(props) => props.theme.spacing(1)}px;
 `
 
 export const InputElement = styled.input<ThemedProps>`
