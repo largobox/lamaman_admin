@@ -11,7 +11,7 @@ const listTopOffset = labelHeight + 4 + height + 4
 const iconBoxTopOffset = labelHeight + 4
 
 const selectedListItemStyles = (props: ListItemProps) => {
-    const { $isHovered, $isSelected, theme } = props
+    const { $isSelected, theme } = props
 
     if ($isSelected) {
         return css`
@@ -19,17 +19,26 @@ const selectedListItemStyles = (props: ListItemProps) => {
             color: ${(props) => props.theme.colors.light};
         `
     }
+}
 
-    if ($isHovered) {
+const hoveredListItemStyles = (props: ListItemProps) => {
+    const { $isHovered, $isSelected, theme } = props
+
+    if ($isHovered && $isSelected) {
         return css`
-            background-color: ${theme.colors.neutral.base};
+            &::before {
+                background-color: ${theme.colors.light};
+            }
         `
     }
 
-    return css`
-        background-color: ${theme.colors.neutral.light};
-        color: ${(props) => props.theme.colors.dark};
-    `
+    if ($isHovered) {
+        return css`
+            &::before {
+                background-color: ${theme.colors.dark};
+            }
+        `
+    }
 }
 
 const disabledStyles = (props: ValueProps) => {
@@ -101,10 +110,14 @@ export const ValueBox = styled.div<ValueProps>`
 
 export const ListItem = styled.div<ListItemProps>`
     font-size: ${(props) => props.theme.fontSizes.base}px;
-    padding: ${(props) => props.theme.spacing(2)}px
-        ${(props) => props.theme.spacing(4)}px;
+    padding-top: ${(props) => props.theme.spacing(2)}px;
+    padding-bottom: ${(props) => props.theme.spacing(2)}px;
+    padding-right: ${(props) => props.theme.spacing(6)}px;
     cursor: pointer;
     user-select: none;
+
+    color: ${(props) => props.theme.colors.dark};
+    background-color: ${(props) => props.theme.colors.neutral.light};
 
     border-width: 1px;
     border-style: solid;
@@ -127,7 +140,18 @@ export const ListItem = styled.div<ListItemProps>`
         border-top-color: transparent;
     }
 
+    &::before {
+        display: inline-block;
+        width: ${(props) => props.theme.spacing(2)}px;
+        height: ${(props) => props.theme.spacing(2)}px;
+        margin: 0px ${(props) => props.theme.spacing(2)}px;
+        background-color: transparent;
+        border-radius: 50%;
+        content: '';
+    }
+
     ${selectedListItemStyles}
+    ${hoveredListItemStyles}
 `
 
 export const List = styled.div<ThemedProps>`

@@ -25,7 +25,13 @@ import {
 import { SelectIcon, CrossIcon } from 'icons'
 import { SelectableItem } from 'store/selectables.types'
 
+/*
+  ToDo
 
+  2. На клик при мульти селекте, чтобы список не закрывался
+  3. Валидация ошибки при 0 консультаций
+  4. При мульти в области значения что-то писать, например, "Выбрано: 3"
+*/
 const InputSelect = (props: Props) => {
     const {
         initialValue,
