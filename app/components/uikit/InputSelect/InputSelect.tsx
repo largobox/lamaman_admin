@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
+import React, { MouseEvent, useEffect, useRef, useState } from 'react'
 
 import Box, {
     IconBox,
@@ -28,7 +28,6 @@ import { SelectableItem } from 'store/selectables.types'
 /*
   ToDo
 
-  2. На клик при мульти селекте, чтобы список не закрывался
   3. Валидация ошибки при 0 консультаций
   4. При мульти в области значения что-то писать, например, "Выбрано: 3"
 */
@@ -133,11 +132,19 @@ const InputSelect = (props: Props) => {
         setIsListVisible(false)
     }
 
-    const clickHandler = () => {
+    const clickHandler = (event: MouseEvent) => {
+        const targetEl = event.target as HTMLDivElement
+        const isListInClickArea =
+            targetEl.parentElement.getAttribute('data-islist')
+
+        if (isMultiselectable && isListInClickArea) {
+            return
+        }
+
         setIsListVisible(!isListVisible)
     }
 
-    const spinnerClickHandler: MouseEventHandler = (ev) => {
+    const clickSpinnerHandler = (ev: MouseEvent) => {
         if (isSelectLoading) {
             ev.stopPropagation()
         }
@@ -167,6 +174,11 @@ const InputSelect = (props: Props) => {
 
         setValue(nextValue)
         setValueLabel(getNextValueLabel(hoveredValue, valueLabel))
+
+        if (isMultiselectable) {
+            return
+        }
+
         setHoveredValue(null)
     }
 
@@ -182,7 +194,7 @@ const InputSelect = (props: Props) => {
                 $isDisabled={isSelectLoading}
             >
                 {isSelectLoading && (
-                    <SpinnerBox onClick={spinnerClickHandler}>
+                    <SpinnerBox onClick={clickSpinnerHandler}>
                         <Spinner size='small' />
                     </SpinnerBox>
                 )}
@@ -192,7 +204,10 @@ const InputSelect = (props: Props) => {
                         {isValueLabelVisible && <Value>{valueLabel}</Value>}
 
                         {isListVisible && (
-                            <List onMouseLeave={mouseLeaveHandler}>
+                            <List
+                                data-islist
+                                onMouseLeave={mouseLeaveHandler}
+                            >
                                 {items.map((item) => (
                                     <ListItem
                                         key={item.id}
