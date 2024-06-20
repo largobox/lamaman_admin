@@ -1,6 +1,22 @@
 import { SelectableItem } from 'store/selectables.types'
 
 
+export const getInitialValueLabel = (
+    initialMetaData: SelectableItem | SelectableItem[],
+) => {
+    if (initialMetaData === null) {
+        return ''
+    }
+
+    if (Array.isArray(initialMetaData)) {
+        return initialMetaData
+    }
+
+    if (typeof initialMetaData === 'object') {
+        return initialMetaData.name
+    }
+}
+
 export const getNextItem = (
     currentItem: SelectableItem,
     items: SelectableItem[],
@@ -82,20 +98,12 @@ export const getPrevItem = (
     return items[findedIndex - 1]
 }
 
-export const getInitialValueLabel = (
-    initialMetaData: SelectableItem | SelectableItem[],
-) => {
-    if (initialMetaData === null) {
-        return ''
+export const getSelectedItemsAmount = (value: string | string[]) => {
+    if (Array.isArray(value)) {
+        return `Выбрано: ${value.length}`
     }
 
-    if (Array.isArray(initialMetaData)) {
-        return initialMetaData
-    }
-
-    if (typeof initialMetaData === 'object') {
-        return initialMetaData.name
-    }
+    return null
 }
 
 export const isListItemHovered = (

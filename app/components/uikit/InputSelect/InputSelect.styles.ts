@@ -55,6 +55,12 @@ const disabledStyles = (props: ValueProps) => {
     `
 }
 
+export const Placeholder = styled.div<ThemedProps>`
+    margin-left: ${(props) => props.theme.spacing(2)}px;
+    color: ${(props) => props.theme.colors.neutral.base};
+    font-size: ${(props) => props.theme.fontSizes.hint}px;
+`
+
 export const Value = styled.div<ThemedProps>`
     margin-left: ${(props) => props.theme.spacing(2)}px;
     color: ${(props) => props.theme.colors.dark};

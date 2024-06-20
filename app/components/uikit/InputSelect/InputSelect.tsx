@@ -3,6 +3,7 @@ import React, { MouseEvent, useEffect, useRef, useState } from 'react'
 import Box, {
     IconBox,
     ListItem,
+    Placeholder,
     RemovableValue,
     RemovableValueBox,
     RemovableValuesBox,
@@ -21,6 +22,7 @@ import {
     getNextValue,
     isListItemHovered,
     isListItemSelected,
+    getSelectedItemsAmount,
 } from './utils'
 import { SelectIcon, CrossIcon } from 'icons'
 import { SelectableItem } from 'store/selectables.types'
@@ -59,6 +61,8 @@ const InputSelect = (props: Props) => {
         !isMultiselectable && typeof valueLabel === 'string'
     const isMultiValueLabelVisible =
         isMultiselectable && Array.isArray(valueLabel)
+    const isPlaceholderVisible = isMultiselectable
+    const selectedItemsAmount = getSelectedItemsAmount(value)
 
     useOutsideClick(ref, () => {
         setIsListVisible(false)
@@ -202,6 +206,10 @@ const InputSelect = (props: Props) => {
                 {!isSelectLoading && (
                     <>
                         {isValueLabelVisible && <Value>{valueLabel}</Value>}
+
+                        {isPlaceholderVisible && (
+                            <Placeholder>{selectedItemsAmount}</Placeholder>
+                        )}
 
                         {isListVisible && (
                             <List
