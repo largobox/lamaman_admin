@@ -13,7 +13,7 @@ import Box, {
 import { Props } from './InputSelect.types'
 import { ErrorMessage, IconButton, Label, Spinner } from 'uikit'
 import { Value, List } from './InputSelect.styles'
-import { useKeyPress, useOutsideClick } from 'hooks'
+import { useEscapeKeyPress, useKeyPress, useOutsideClick } from 'hooks'
 import {
     getNextItem,
     getPrevItem,
@@ -47,6 +47,14 @@ const InputSelect = (props: Props) => {
     const isUpPressed = useKeyPress('ArrowUp')
     const isDownPressed = useKeyPress('ArrowDown')
     const isLeftPressed = useKeyPress('ArrowLeft')
+
+    useEscapeKeyPress(
+        () => {
+            setIsListVisible(false)
+        },
+        isListVisible ? 2 : 0,
+    )
+
     const [valueLabel, setValueLabel] = useState<SelectableItem[] | string>(
         null,
     )

@@ -1,20 +1,17 @@
-import React, { MouseEvent, useEffect } from 'react'
+import React, { MouseEvent } from 'react'
 
 import Box, { Foreground } from './RightPanelLayout.styles'
 import { Paper } from 'uikit'
 import { Props } from './RightPanelLayout.types'
-import { useKeyPress } from 'hooks'
+import { useEscapeKeyPress } from 'hooks'
 
 
 const RightPanelLayout = (props: Props) => {
     const { children, onClose } = props
-    const isEscPressed = useKeyPress('Escape')
 
-    useEffect(() => {
-        if (isEscPressed) {
-            onClose()
-        }
-    }, [isEscPressed])
+    useEscapeKeyPress(() => {
+        onClose()
+    }, 1)
 
     const handleBackgroundClick = (event: MouseEvent) => {
         if (event.target === event.currentTarget) {
