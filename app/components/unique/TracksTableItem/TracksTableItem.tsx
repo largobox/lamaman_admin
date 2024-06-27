@@ -4,7 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import { RowBox, ColumnBox, ControlsBox } from 'layouts'
 import { IconButton, Typography } from 'uikit'
 import { Props } from './TracksTableItem.types'
-import { CalendarIcon, EditIcon, OutlinedClockIcon, RemoveIcon } from 'icons'
+import {
+    CalendarIcon,
+    EditIcon,
+    OutlinedClockIcon,
+    PlayIcon,
+    RemoveIcon,
+} from 'icons'
 import { useAppDispatch } from 'hooks'
 import { deleteTrack } from 'store/slices/tracksSlice'
 import { prettyDate, prettyTime } from 'utils'
@@ -31,8 +37,19 @@ const TracksCollectionsTableItem = (props: Props) => {
         appDispatch(deleteTrack(id))
     }
 
+    const playClickHandler = () => {
+        console.log('Play')
+    }
+
     return (
         <RowBox>
+            <ColumnBox>
+                <IconButton
+                    Icon={PlayIcon}
+                    onClick={playClickHandler}
+                />
+            </ColumnBox>
+
             <ColumnBox>
                 <Typography text={name} />
             </ColumnBox>

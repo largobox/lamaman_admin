@@ -15,6 +15,7 @@ import outlinedChevronRightSvg from './svgs/outlined-chevron-right.svg'
 import outlinedChevronUpSvg from './svgs/outlined-chevron-up.svg'
 import outlinedClockSvg from './svgs/outlined-clock.svg'
 import outlinedHumanSvg from './svgs/outlined-human.svg'
+import playSvg from './svgs/play.svg'
 import removeSvg from './svgs/remove.svg'
 import selectSvg from './svgs/select.svg'
 
@@ -34,5 +35,6 @@ export const OutlinedChevronRightIcon = Icon(outlinedChevronRightSvg)
 export const OutlinedChevronUpIcon = Icon(outlinedChevronUpSvg)
 export const OutlinedClockIcon = Icon(outlinedClockSvg)
 export const OutlinedHumanIcon = Icon(outlinedHumanSvg)
+export const PlayIcon = Icon(playSvg)
 export const RemoveIcon = Icon(removeSvg)
 export const SelectIcon = Icon(selectSvg)
