@@ -3,18 +3,19 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 import { ProtectedRoute } from 'uikit'
 import {
-    TracksCollectionAddPage,
-    TracksCollectionsListPage,
     AuthorizationLoginPage,
     NotFoundPage,
     PerformerAddPage,
     PerformerEditPage,
     PerformersListPage,
+    SandboxPage,
+    TracksCollectionAddPage,
+    TracksCollectionsListPage,
     TracksListPage,
     TracksCollectionEditPage,
     TrackAddPage,
     TrackEditPage,
-    SandboxPage,
+    TrackPlayPage,
 } from 'pages'
 
 
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path: ':id/edit',
                 element: <TrackEditPage />,
+            },
+            {
+                path: ':id/play',
+                element: <TrackPlayPage />,
             },
         ],
     },

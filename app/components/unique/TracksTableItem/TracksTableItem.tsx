@@ -38,7 +38,7 @@ const TracksCollectionsTableItem = (props: Props) => {
     }
 
     const playClickHandler = () => {
-        console.log('Play')
+        navigate(`/tracks/${id}/play`)
     }
 
     return (

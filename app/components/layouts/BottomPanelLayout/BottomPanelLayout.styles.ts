@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { BoxProps } from './RightPanelLayout.types'
+import { BoxProps } from './BottomPanelLayout.types'
 
 
 const boxVisibilityStyles = (props: BoxProps) => {
@@ -21,24 +21,23 @@ const foregroundVisibilityStyles = (props: BoxProps) => {
 
     if ($isVisible) {
         return css`
-            right: 0px;
+            bottom: 0px;
         `
     }
 
     return css`
-        right: -500px;
+        bottom: -200px;
     `
 }
 
 export const Foreground = styled.div<BoxProps>`
     position: fixed;
-    top: 0px;
 
-    height: 100vh;
-    width: 500px;
+    height: 200px;
+    width: 100vw;
 
     transition-duration: ${(props) => props.theme.transition.duration}ms;
-    transition-property: right;
+    transition-property: bottom;
 
     ${foregroundVisibilityStyles}
 `
