@@ -85,6 +85,10 @@ class Api {
         return this._create('/authentication', data)
     }
 
+    static async playTrack(id: string) {
+        return this._get(`/tracks/${id}/play`)
+    }
+
     static async updatePerformer(id: string, data: PerformerFormValues) {
         return this._update(`/performers/${id}`, data)
     }

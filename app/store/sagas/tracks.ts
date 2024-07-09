@@ -7,6 +7,7 @@ import {
     findTracksParamsSelector,
     findTracksSuccess,
     getTrackSuccess,
+    playTrackSuccess,
 } from 'store/slices/tracksSlice'
 import { addToast } from 'store/slices/toastsSlice'
 import { delay } from 'utils'
@@ -15,6 +16,7 @@ import {
     DELETE_TRACK,
     FIND_TRACKS,
     GET_TRACK,
+    PLAY_TRACK,
     SAGA_LAYER,
     UPDATE_TRACK,
 } from 'consts'
@@ -24,6 +26,8 @@ import {
     Track,
     TrackFormValues,
     TrackGetOutput,
+    TrackPlayAction,
+    TrackPlayOutput,
     TracksSortings,
 } from 'store/tracks.types'
 import {
@@ -156,6 +160,32 @@ function* getTrackWorkerSaga(action: GetAction) {
     }
 }
 
+function* playTrackWorkerSaga(action: TrackPlayAction) {
+    try {
+        yield put(
+            changeRequestStatus({
+                name: 'playTrack',
+                status: 'loading',
+            }),
+        )
+        yield delay()
+
+        const result = (yield Api.playTrack(action.payload)) as TrackPlayOutput
+
+        yield put(playTrackSuccess(result))
+    } catch (error) {
+        yield put(addToast({ message: error.message, toastType: 'error' }))
+        yield put(
+            changeRequestStatus({
+                name: 'playTrack',
+                status: 'error',
+            }),
+        )
+
+        logger.error({ error, layer: SAGA_LAYER })
+    }
+}
+
 function* updateTrackWorkerSaga(action: UpdateAction<TrackFormValues>) {
     try {
         yield put(
@@ -202,6 +232,10 @@ export function* findTracksWatcherSaga() {
 
 export function* getTrackWatcherSaga() {
     yield takeEvery(GET_TRACK, getTrackWorkerSaga)
+}
+
+export function* playTrackWatcherSaga() {
+    yield takeEvery(PLAY_TRACK, playTrackWorkerSaga)
 }
 
 export function* updateTrackWatcherSaga() {

@@ -16,6 +16,7 @@ export const CREATE_TRACK = 'tracks/create'
 export const DELETE_TRACK = 'tracks/delete'
 export const FIND_TRACKS = 'tracks/find'
 export const GET_TRACK = 'tracks/get'
+export const PLAY_TRACK = 'tracks/play'
 export const UPDATE_TRACK = 'tracks/update'
 
 export const CREATE_TRACKS_COLLECTION = 'tracksCollections/create'
