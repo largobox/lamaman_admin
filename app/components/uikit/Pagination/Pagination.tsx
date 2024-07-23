@@ -33,7 +33,7 @@ const Pagination = (props: Props) => {
             <LabelCont>
                 <Typography
                     text={page}
-                    size='h2'
+                    variant='h2'
                 />
             </LabelCont>
 

@@ -3,24 +3,32 @@ import styled, { css } from 'styled-components'
 import { BoxProps } from './Typography.types'
 
 
-const sizeStyles = (props: BoxProps) => {
-    const { $size } = props
+const variantStyles = (props: BoxProps) => {
+    const { $variant } = props
 
-    if ($size === 'base') {
+    if ($variant === 'base') {
         return css`
             font-size: ${props.theme.fontSizes.base}px;
             line-height: ${props.theme.fontSizes.base}px;
         `
     }
 
-    if ($size === 'h1') {
+    if ($variant === 'caption') {
+        return css`
+            font-size: ${props.theme.fontSizes.caption}px;
+            font-weight: bold;
+            line-height: ${props.theme.fontSizes.caption}px;
+        `
+    }
+
+    if ($variant === 'h1') {
         return css`
             font-size: ${props.theme.fontSizes.h1}px;
             line-height: ${props.theme.fontSizes.h1}px;
         `
     }
 
-    if ($size === 'h2') {
+    if ($variant === 'h2') {
         return css`
             font-size: ${props.theme.fontSizes.h2}px;
             line-height: ${props.theme.fontSizes.h2}px;
@@ -50,16 +58,6 @@ const colorStyles = (props: BoxProps) => {
     }
 }
 
-const isBoldStyles = (props: BoxProps) => {
-    const { $isBold } = props
-
-    if ($isBold) {
-        return css`
-            font-weight: bold;
-        `
-    }
-}
-
 const isCapitalizedStyles = (props: BoxProps) => {
     const { $isCapitalized } = props
 
@@ -84,9 +82,8 @@ const Box = styled.div<BoxProps>`
     user-select: none;
 
     ${alignStyles}
-    ${sizeStyles}
+    ${variantStyles}
     ${colorStyles}
-    ${isBoldStyles}
     ${isCapitalizedStyles}
 `
 

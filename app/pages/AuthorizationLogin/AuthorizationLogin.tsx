@@ -23,7 +23,7 @@ const AuthorizationLoginPage = () => {
                     <FormHeader>
                         <Typography
                             align='center'
-                            size='h1'
+                            variant='h1'
                             text='Авторизация'
                         />
                     </FormHeader>

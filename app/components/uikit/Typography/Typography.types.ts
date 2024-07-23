@@ -9,18 +9,13 @@ export type Props = {
 
     align?: Align
     color?: Color
-    isBold?: boolean
     isCapitalized?: boolean
-    /*
-      ToDo порефакторить в variant = size + isBold
-    */
-    size?: keyof FontSize
+    variant?: keyof FontSize
 }
 
 export type BoxProps = ThemedProps & {
     $align: Align
     $color: Color
-    $isBold: boolean
     $isCapitalized: boolean
-    $size: keyof FontSize
+    $variant: keyof FontSize
 }

@@ -16,7 +16,7 @@ const PerformersTopPanel = () => {
     return (
         <TopPanelBox>
             <Typography
-                size='h1'
+                variant='h1'
                 text='Список исполнителей'
             />
 

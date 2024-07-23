@@ -8,19 +8,17 @@ const Typography = (props: Props) => {
     const {
         align = 'left',
         color = 'base',
-        isBold,
         isCapitalized,
         text,
-        size = 'base',
+        variant = 'base',
     } = props
 
     return (
         <Box
             $align={align}
             $color={color}
-            $isBold={isBold}
             $isCapitalized={isCapitalized}
-            $size={size}
+            $variant={variant}
         >
             {text}
         </Box>

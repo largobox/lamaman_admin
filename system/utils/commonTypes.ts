@@ -26,6 +26,7 @@ export type FileMetaData = {
 
 export type FontSize = {
     base: number
+    caption: number
     h1: number
     h2: number
     hint: number

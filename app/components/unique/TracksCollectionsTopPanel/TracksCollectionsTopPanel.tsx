@@ -16,7 +16,7 @@ const TracksCollectionsTopPanel = () => {
     return (
         <TopPanelBox>
             <Typography
-                size='h1'
+                variant='h1'
                 text='Список коллекций'
             />
 

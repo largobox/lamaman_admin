@@ -40,7 +40,7 @@ const ProfileCard = () => {
 
                     <Typography
                         text={role}
-                        isBold
+                        variant='caption'
                         isCapitalized
                     />
                 </DescriptionBox>

@@ -41,7 +41,7 @@ const TableHeader = (props: Props) => {
                 <TableHeaderItem key={item.name}>
                     <Typography
                         text={item.label}
-                        size='h2'
+                        variant='h2'
                         color='light'
                     />
 

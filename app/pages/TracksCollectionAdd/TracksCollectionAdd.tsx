@@ -30,7 +30,7 @@ const TracksCollectionAddPage = () => {
             <FormLayout>
                 <FormHeader>
                     <Typography
-                        size='h1'
+                        variant='h1'
                         text='Добавить коллекцию'
                     />
                 </FormHeader>

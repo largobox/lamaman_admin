@@ -15,7 +15,7 @@ const NotFoundPage = () => {
 
             <Typography
                 color='light'
-                size='h2'
+                variant='h2'
                 text='Страница не найдена'
             />
         </ErrorLayout>

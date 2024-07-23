@@ -23,7 +23,9 @@ function* playPlayerWorkerSaga(action: PlayerPlayAction) {
         )
         yield delay()
 
-        const result = (yield Api.playPlayer(action.payload)) as PlayerPlayOutput
+        const result = (yield Api.playPlayer(
+            action.payload,
+        )) as PlayerPlayOutput
 
         yield put(playPlayerSuccess(result))
     } catch (error) {

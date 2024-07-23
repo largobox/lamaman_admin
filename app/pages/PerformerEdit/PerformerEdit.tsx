@@ -36,7 +36,7 @@ const PerformerEditPage = () => {
             <FormLayout>
                 <FormHeader>
                     <Typography
-                        size='h1'
+                        variant='h1'
                         text='Редактировать исполнителя'
                     />
                 </FormHeader>

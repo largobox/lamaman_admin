@@ -50,6 +50,7 @@ const theme: CustomTheme = {
     },
 
     fontSizes: {
+        caption: 16,
         base: 16,
         h1: 24,
         h2: 20,

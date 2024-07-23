@@ -69,7 +69,7 @@ const Player = () => {
                         <PropLabel>
                             <Typography
                                 text='Название: '
-                                isBold
+                                variant='caption'
                             />
                         </PropLabel>
 
@@ -80,7 +80,7 @@ const Player = () => {
                         <PropLabel>
                             <Typography
                                 text='Исполнитель: '
-                                isBold
+                                variant='caption'
                             />
                         </PropLabel>
 
