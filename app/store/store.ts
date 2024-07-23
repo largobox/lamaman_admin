@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import authorizationSlice from './slices/authorizationSlice'
 import performersSlice from './slices/performersSlice'
+import playerSlice from './slices/playerSlice'
 import selectablesSlice from './slices/selectablesSlice'
 import toastsSlice from './slices/toastsSlice'
 import tracksSlice from './slices/tracksSlice'
@@ -17,6 +18,7 @@ const store = configureStore({
     reducer: {
         [authorizationSlice.reducerPath]: authorizationSlice.reducer,
         [performersSlice.name]: performersSlice.reducer,
+        [playerSlice.name]: playerSlice.reducer,
         [selectablesSlice.name]: selectablesSlice.reducer,
         [toastsSlice.name]: toastsSlice.reducer,
         [tracksSlice.name]: tracksSlice.reducer,

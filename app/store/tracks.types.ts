@@ -11,14 +11,6 @@ export type Track = {
     updatedAt: string
 }
 
-export type TrackPlayAction = PayloadAction<string>
-
-export type TrackPlayOutput = {
-    // ToDo
-}
-
-export type TrackPlaySuccessAction = PayloadAction<TrackPlayOutput>
-
 export type TrackFormValues = {
     file: File | null
     name: string
@@ -53,7 +45,6 @@ type TracksRequests = {
     deleteTrack: RequestStatus
     findTracks: RequestStatus
     getTrack: RequestStatus
-    playTrack: RequestStatus
     updateTrack: RequestStatus
 }
 

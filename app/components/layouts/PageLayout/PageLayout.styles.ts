@@ -48,7 +48,6 @@ export const ColumnBox = styled.div<ThemedProps>`
 
 export const RowBox = styled.div<ThemedProps>`
     display: flex;
-    cursor: pointer;
 
     transition-duration: ${(props) => props.theme.transition.duration}ms;
     transition-property: background-color, border-color;

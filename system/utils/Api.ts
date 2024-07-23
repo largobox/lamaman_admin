@@ -85,7 +85,8 @@ class Api {
         return this._create('/authentication', data)
     }
 
-    static async playTrack(id: string) {
+    static async playPlayer(id: string) {
+        // ToDo
         return this._get(`/tracks/${id}/play`)
     }
 

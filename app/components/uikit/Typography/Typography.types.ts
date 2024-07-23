@@ -11,6 +11,9 @@ export type Props = {
     color?: Color
     isBold?: boolean
     isCapitalized?: boolean
+    /*
+      ToDo порефакторить в variant = size + isBold
+    */
     size?: keyof FontSize
 }
 

@@ -1,5 +1,6 @@
 export { default as cssBaseline } from './cssBaseline'
 export { default as delay } from './delay'
+export { default as getDurationLabel } from './getDurationLabel'
 export { default as getInitialCurrentUser } from './getInitialCurrentUser'
 export { default as prettyDate } from './prettyDate'
 export { default as prettyTime } from './prettyTime'

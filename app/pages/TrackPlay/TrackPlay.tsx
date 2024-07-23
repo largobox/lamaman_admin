@@ -2,19 +2,24 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { BottomPanelLayout } from 'layouts'
-import { Spinner, Typography } from 'uikit'
+import { Player, Spinner } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
-import { isPlayLoadingSelector, playTrack } from 'store/slices/tracksSlice'
+import {
+    isLoadedSelector,
+    isLoadingSelector,
+    playPlayer,
+} from 'store/slices/playerSlice'
 
 
 const TrackPlayPage = () => {
     const params = useParams()
     const navigate = useNavigate()
     const appDispatch = useAppDispatch()
-    const isLoading = useAppSelector(isPlayLoadingSelector)
+    const isLoading = useAppSelector(isLoadingSelector)
+    const isLoaded = useAppSelector(isLoadedSelector)
 
     useEffect(() => {
-        appDispatch(playTrack(params.id))
+        appDispatch(playPlayer(params.id))
     }, [])
 
     const closeHandler = () => {
@@ -25,7 +30,7 @@ const TrackPlayPage = () => {
         <BottomPanelLayout onClose={closeHandler}>
             {isLoading && <Spinner />}
 
-            <Typography text='Some player' />
+            {isLoaded && <Player />}
         </BottomPanelLayout>
     )
 }

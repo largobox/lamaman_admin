@@ -6,7 +6,6 @@ import {
     FIND_TRACKS,
     GET_TRACK,
     PAGINATION_LIMIT,
-    PLAY_TRACK,
     UPDATE_TRACK,
 } from 'consts'
 import {
@@ -26,7 +25,6 @@ import {
     TrackFormInitialValues,
     TrackFormValues,
     TrackGetOutput,
-    TrackPlaySuccessAction,
     TracksRequestNames,
     TracksSortings,
     TracksState,
@@ -53,7 +51,6 @@ const initialState: TracksState = {
         deleteTrack: 'initial',
         findTracks: 'initial',
         getTrack: 'initial',
-        playTrack: 'initial',
         updateTrack: 'initial',
     },
     sorting: {
@@ -115,13 +112,6 @@ const tracksSlice = createSlice({
             state.requests.getTrack = 'loaded'
         },
 
-        playTrackSuccess(state, action: TrackPlaySuccessAction) {
-            // ToDo
-            console.log('action: ', action)
-
-            state.requests.playTrack = 'loaded'
-        },
-
         resetForm(state) {
             state.formInitialMetaData = {
                 file: null,
@@ -146,7 +136,6 @@ export const {
     changeSorting,
     findTracksSuccess,
     getTrackSuccess,
-    playTrackSuccess,
     resetForm,
 } = tracksSlice.actions
 
@@ -159,8 +148,6 @@ export const deleteTrack = createAction<string>(DELETE_TRACK)
 export const findTracks = createAction(FIND_TRACKS)
 
 export const getTrack = createAction<string>(GET_TRACK)
-
-export const playTrack = createAction<string>(PLAY_TRACK)
 
 export const updateTrack =
     createAction<UpdatePayload<TrackFormValues>>(UPDATE_TRACK)
@@ -202,10 +189,6 @@ export const isFindLoadingSelector = (state: RootState) => {
 
 export const isItemsLoadedSelector = (state: RootState) => {
     return state.tracks.requests.findTracks === 'loaded'
-}
-
-export const isPlayLoadingSelector = (state: RootState) => {
-    return state.tracks.requests.playTrack === 'loading'
 }
 
 export const itemsSelector = (state: RootState) => {

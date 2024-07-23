@@ -6,6 +6,8 @@ export const PAGINATION_LIMIT = 2
 export const API_LAYER = 'api'
 export const SAGA_LAYER = 'saga'
 
+export const AUTHORIZATION_LOGIN = 'authorization/login'
+
 export const CREATE_PERFORMER = 'performers/create'
 export const DELETE_PERFORMER = 'performers/delete'
 export const FIND_PERFORMERS = 'performers/find'
@@ -16,7 +18,6 @@ export const CREATE_TRACK = 'tracks/create'
 export const DELETE_TRACK = 'tracks/delete'
 export const FIND_TRACKS = 'tracks/find'
 export const GET_TRACK = 'tracks/get'
-export const PLAY_TRACK = 'tracks/play'
 export const UPDATE_TRACK = 'tracks/update'
 
 export const CREATE_TRACKS_COLLECTION = 'tracksCollections/create'
@@ -29,4 +30,4 @@ export const FIND_SELECTABLE_TRACKS_COLLECTIONS =
     'selectableTracksCollections/find'
 export const FIND_SELECTABLE_PERFORMERS = 'selectablePerformers/find'
 
-export const AUTHORIZATION_LOGIN = 'authorization/login'
+export const PLAY_PLAYER = 'player/play'
