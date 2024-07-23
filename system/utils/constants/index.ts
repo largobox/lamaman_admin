@@ -3,6 +3,10 @@ export const LOCAL_STORAGE_AUTH_TOKEN = 'authToken'
 export const ROOT_DIV_ID = 'root'
 export const PAGINATION_LIMIT = 2
 
+/*
+  При обновлении слоёв, обновлять их и в:
+  system/logger/logger.types.ts
+*/
 export const API_LAYER = 'api'
 export const SAGA_LAYER = 'saga'
 
