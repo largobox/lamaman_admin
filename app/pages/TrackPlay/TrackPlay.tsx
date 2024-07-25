@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from 'hooks'
 import {
     isLoadedSelector,
     isLoadingSelector,
-    playPlayer,
+    getTrackDescriptionPlayer,
 } from 'store/slices/player'
 
 
@@ -19,7 +19,7 @@ const TrackPlayPage = () => {
     const isLoaded = useAppSelector(isLoadedSelector)
 
     useEffect(() => {
-        appDispatch(playPlayer(params.id))
+        appDispatch(getTrackDescriptionPlayer(params.id))
     }, [])
 
     const closeHandler = () => {

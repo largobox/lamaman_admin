@@ -13,14 +13,15 @@ type PlayerCurrentTrack = {
 }
 
 type PlayerRequests = {
-    playPlayer: RequestStatus
+    getTrackDescription: RequestStatus
 }
 
-export type PlayerPlayAction = PayloadAction<string>
+export type GetTrackDescriptionPlayerAction = PayloadAction<string>
 
-export type PlayerPlayOutput = PlayerCurrentTrack
+export type GetTrackDescriptionPlayerOutput = PlayerCurrentTrack
 
-export type PlayerPlaySuccessAction = PayloadAction<PlayerPlayOutput>
+export type GetTrackDescriptionPlayerSuccessAction =
+    PayloadAction<GetTrackDescriptionPlayerOutput>
 
 export type PlayerRequestNames = keyof PlayerRequests
 

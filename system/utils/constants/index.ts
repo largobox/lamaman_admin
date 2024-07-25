@@ -34,4 +34,4 @@ export const FIND_SELECTABLE_TRACKS_COLLECTIONS =
     'selectableTracksCollections/find'
 export const FIND_SELECTABLE_PERFORMERS = 'selectablePerformers/find'
 
-export const PLAY_PLAYER = 'player/play'
+export const GET_TRACK_DESCRIPTION_PLAYER = 'player/getTrackDescription'

@@ -3,18 +3,26 @@ import { put, takeEvery } from 'redux-saga/effects'
 import Api from 'api'
 import { addToast } from 'store/slices/toasts'
 import { delay } from 'utils'
-import { PLAY_PLAYER, SAGA_LAYER } from 'consts'
+import { GET_TRACK_DESCRIPTION_PLAYER, SAGA_LAYER } from 'consts'
 import logger from 'logger'
 
-import { PlayerPlayAction, PlayerPlayOutput } from 'store/player.types'
-import { changeRequestStatus, playPlayerSuccess } from 'store/slices/player'
+import {
+    GetTrackDescriptionPlayerAction,
+    GetTrackDescriptionPlayerOutput,
+} from 'store/player.types'
+import {
+    changeRequestStatus,
+    getTrackDescriptionPlayerSuccess,
+} from 'store/slices/player'
 
 
-function* playPlayerWorkerSaga(action: PlayerPlayAction) {
+function* getTrackDescriptionPlayerWorkerSaga(
+    action: GetTrackDescriptionPlayerAction,
+) {
     try {
         yield put(
             changeRequestStatus({
-                name: 'playPlayer',
+                name: 'getTrackDescription',
                 status: 'loading',
             }),
         )
@@ -22,14 +30,14 @@ function* playPlayerWorkerSaga(action: PlayerPlayAction) {
 
         const result = (yield Api.getTrackDescription(
             action.payload,
-        )) as PlayerPlayOutput
+        )) as GetTrackDescriptionPlayerOutput
 
-        yield put(playPlayerSuccess(result))
+        yield put(getTrackDescriptionPlayerSuccess(result))
     } catch (error) {
         yield put(addToast({ message: error.message, toastType: 'error' }))
         yield put(
             changeRequestStatus({
-                name: 'playPlayer',
+                name: 'getTrackDescription',
                 status: 'error',
             }),
         )
@@ -38,6 +46,9 @@ function* playPlayerWorkerSaga(action: PlayerPlayAction) {
     }
 }
 
-export function* playPlayerWatcherSaga() {
-    yield takeEvery(PLAY_PLAYER, playPlayerWorkerSaga)
+export function* getTrackDescriptionPlayerWatcherSaga() {
+    yield takeEvery(
+        GET_TRACK_DESCRIPTION_PLAYER,
+        getTrackDescriptionPlayerWorkerSaga,
+    )
 }

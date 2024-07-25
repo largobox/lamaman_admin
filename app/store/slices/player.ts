@@ -1,9 +1,9 @@
 import { createSlice, createAction } from '@reduxjs/toolkit'
 
-import { PLAY_PLAYER } from 'consts'
+import { GET_TRACK_DESCRIPTION_PLAYER } from 'consts'
 import { RootState, ChangeRequestStatusAction } from 'store/store.types'
 import {
-    PlayerPlaySuccessAction,
+    GetTrackDescriptionPlayerSuccessAction,
     PlayerRequestNames,
     PlayerState,
 } from 'store/player.types'
@@ -11,22 +11,12 @@ import { getDurationLabel } from 'utils'
 
 
 const initialState: PlayerState = {
-    // ToDo
-    // currentTrack: null,
-    currentTrack: {
-        id: '1',
-        name: 'Some track name',
-        duration: 182010,
-        performer: {
-            id: '2',
-            name: 'Unknown',
-        },
-    },
+    currentTrack: null,
     loadededDuration: 40000, // ToDo
     playedDuration: 15000, // ToDo
     isPlaying: true,
     requests: {
-        playPlayer: 'initial',
+        getTrackDescription: 'initial',
     },
 }
 
@@ -43,20 +33,25 @@ const playerSlice = createSlice({
             state.requests[name] = status
         },
 
-        playPlayerSuccess(state, action: PlayerPlaySuccessAction) {
-            // ToDo
-            console.log('action: ', action)
+        getTrackDescriptionPlayerSuccess(
+            state,
+            action: GetTrackDescriptionPlayerSuccessAction,
+        ) {
+            state.currentTrack = action.payload
 
-            state.requests.playPlayer = 'loaded'
+            state.requests.getTrackDescription = 'loaded'
         },
     },
 })
 
 // Actions
-export const { changeRequestStatus, playPlayerSuccess } = playerSlice.actions
+export const { changeRequestStatus, getTrackDescriptionPlayerSuccess } =
+    playerSlice.actions
 
 // Custom actions
-export const playPlayer = createAction<string>(PLAY_PLAYER)
+export const getTrackDescriptionPlayer = createAction<string>(
+    GET_TRACK_DESCRIPTION_PLAYER,
+)
 
 // Selectors
 export const isPlayingSelector = (state: RootState) => {
@@ -64,12 +59,11 @@ export const isPlayingSelector = (state: RootState) => {
 }
 
 export const isLoadingSelector = (state: RootState) => {
-    return state.player.requests.playPlayer === 'loading'
+    return state.player.requests.getTrackDescription === 'loading'
 }
 
 export const isLoadedSelector = (state: RootState) => {
-    // ToDo. Пока специально неправильно сделано
-    return state.player.requests.playPlayer !== 'loading'
+    return state.player.requests.getTrackDescription === 'loaded'
 }
 
 export const currentTrackSelector = (state: RootState) => {

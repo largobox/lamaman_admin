@@ -26,7 +26,7 @@ import {
     getTrackWatcherSaga,
     updateTrackWatcherSaga,
 } from './tracks'
-import { playPlayerWatcherSaga } from './player'
+import { getTrackDescriptionPlayerWatcherSaga } from './player'
 
 
 function* rootSaga() {
@@ -54,7 +54,7 @@ function* rootSaga() {
         getTrackWatcherSaga(),
         updateTrackWatcherSaga(),
 
-        playPlayerWatcherSaga(),
+        getTrackDescriptionPlayerWatcherSaga(),
     ])
 }
 
