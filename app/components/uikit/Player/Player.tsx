@@ -12,28 +12,25 @@ import Box, {
     TotalProgressBar,
 } from './Player.styles'
 import { IconButton, Typography } from 'uikit'
-import { getDurationLabel } from 'utils'
 import { PauseIcon, PlayIcon } from 'icons'
-import { isPlayingSelector } from 'store/slices/playerSlice'
+import {
+    currentTrackSelector,
+    isPlayingSelector,
+    loadedDurationPercentSelector,
+    playedDurationLabelSelector,
+    playedDurationPercentSelector,
+    totalDurationLabelSelector,
+} from 'store/slices/playerSlice'
 import { useAppSelector } from 'hooks'
 
 
 const Player = () => {
     const isPlaying = useAppSelector(isPlayingSelector)
-    // ToDo. Move all data to store
-    const trackData = {
-        duration: 182010,
-        name: 'Some track name',
-        performer: {
-            id: '1',
-            name: 'Unknown',
-        },
-    }
-    const playedDuration = 15000
-    const playedDurationLabel = getDurationLabel(playedDuration)
-    const totalDurationLabel = getDurationLabel(trackData.duration)
-    const playedDurationPercent = playedDuration / (trackData.duration / 100)
-    const loadedDurationPercent = 20
+    const currentTrack = useAppSelector(currentTrackSelector)
+    const playedDurationLabel = useAppSelector(playedDurationLabelSelector)
+    const totalDurationLabel = useAppSelector(totalDurationLabelSelector)
+    const playedDurationPercent = useAppSelector(playedDurationPercentSelector)
+    const loadedDurationPercent = useAppSelector(loadedDurationPercentSelector)
 
     const playHandler = () => {
         console.log('Play')
@@ -73,7 +70,7 @@ const Player = () => {
                             />
                         </PropLabel>
 
-                        <Typography text={trackData.name} />
+                        <Typography text={currentTrack.name} />
                     </PropBox>
 
                     <PropBox>
@@ -84,7 +81,7 @@ const Player = () => {
                             />
                         </PropLabel>
 
-                        <Typography text={trackData.performer.name} />
+                        <Typography text={currentTrack.performer.name} />
                     </PropBox>
                 </DescriptionBox>
             </ContorlsAndDescriptionBox>

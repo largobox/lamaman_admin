@@ -7,9 +7,23 @@ import {
     PlayerRequestNames,
     PlayerState,
 } from 'store/player.types'
+import { getDurationLabel } from 'utils'
 
 
 const initialState: PlayerState = {
+    // ToDo
+    // currentTrack: null,
+    currentTrack: {
+        id: '1',
+        name: 'Some track name',
+        duration: 182010,
+        performer: {
+            id: '2',
+            name: 'Unknown',
+        },
+    },
+    loadededDuration: 40000, // ToDo
+    playedDuration: 15000, // ToDo
     isPlaying: true,
     requests: {
         playPlayer: 'initial',
@@ -54,8 +68,32 @@ export const isLoadingSelector = (state: RootState) => {
 }
 
 export const isLoadedSelector = (state: RootState) => {
-    // ToDo
+    // ToDo. Пока специально неправильно сделано
     return state.player.requests.playPlayer !== 'loading'
+}
+
+export const currentTrackSelector = (state: RootState) => {
+    return state.player.currentTrack
+}
+
+export const loadedDurationPercentSelector = (state: RootState) => {
+    const onePercent = state.player.currentTrack.duration / 100
+
+    return state.player.loadededDuration / onePercent
+}
+
+export const playedDurationLabelSelector = (state: RootState) => {
+    return getDurationLabel(state.player.playedDuration)
+}
+
+export const playedDurationPercentSelector = (state: RootState) => {
+    const onePercent = state.player.currentTrack.duration / 100
+
+    return state.player.playedDuration / onePercent
+}
+
+export const totalDurationLabelSelector = (state: RootState) => {
+    return getDurationLabel(state.player.currentTrack.duration)
 }
 
 export default playerSlice

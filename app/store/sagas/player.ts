@@ -23,7 +23,7 @@ function* playPlayerWorkerSaga(action: PlayerPlayAction) {
         )
         yield delay()
 
-        const result = (yield Api.playPlayer(
+        const result = (yield Api.getTrackDescription(
             action.payload,
         )) as PlayerPlayOutput
 

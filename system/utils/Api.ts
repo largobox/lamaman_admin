@@ -77,17 +77,16 @@ class Api {
         return this._get(`/tracks/${id}`)
     }
 
+    static async getTrackDescription(id: string) {
+        return this._get(`/tracks/${id}/description`)
+    }
+
     static async getTracksCollection(id: string) {
         return this._get(`/tracks-collections/${id}`)
     }
 
     static async login(data: AuthorizationLoginFormValues) {
         return this._create('/authentication', data)
-    }
-
-    static async playPlayer(id: string) {
-        // ToDo
-        return this._get(`/tracks/${id}/play`)
     }
 
     static async updatePerformer(id: string, data: PerformerFormValues) {
