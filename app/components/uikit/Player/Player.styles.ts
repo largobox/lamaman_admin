@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 import { ThemedProps } from 'common-types'
 import {
@@ -6,6 +6,42 @@ import {
     PlayingProgressBarProps,
 } from './Player.types'
 
+
+const loadingAnimation = keyframes`
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+`
+
+const loadingStyles = (props: LoadingProgressBarProps) => {
+    const {
+        $isLoading,
+        theme: {
+            colors: { primary },
+        },
+    } = props
+
+    if ($isLoading) {
+        return css`
+            color: transparent;
+            background: linear-gradient(
+                100deg,
+                ${primary.base} 30%,
+                ${primary.light} 50%,
+                ${primary.base} 70%
+            );
+            background-size: 400%;
+            animation: ${loadingAnimation} 1s ease-in-out infinite;
+        `
+    }
+
+    return css`
+        background-color: ${(props) => props.theme.colors.primary.base};
+    `
+}
 
 export const LoadingProgressBar = styled.div<LoadingProgressBarProps>`
     position: absolute;
@@ -15,8 +51,9 @@ export const LoadingProgressBar = styled.div<LoadingProgressBarProps>`
     width: ${(props) => props.$width}%;
     height: 100%;
 
-    background-color: ${(props) => props.theme.colors.primary.base};
     border-radius: ${(props) => props.theme.borderRadius}px;
+
+    ${loadingStyles}
 `
 
 export const PlayingProgressBar = styled.div<PlayingProgressBarProps>`

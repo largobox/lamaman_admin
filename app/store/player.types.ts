@@ -14,6 +14,7 @@ type PlayerCurrentTrack = {
 
 type PlayerRequests = {
     getTrackDescription: RequestStatus
+    getTrackPart: RequestStatus
 }
 
 export type GetTrackDescriptionPlayerAction = PayloadAction<string>

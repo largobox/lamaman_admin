@@ -17,6 +17,7 @@ const initialState: PlayerState = {
     isPlaying: true,
     requests: {
         getTrackDescription: 'initial',
+        getTrackPart: 'initial',
     },
 }
 
@@ -56,6 +57,10 @@ export const getTrackDescriptionPlayer = createAction<string>(
 // Selectors
 export const isPlayingSelector = (state: RootState) => {
     return state.player.isPlaying
+}
+
+export const isTrackPartLoadingSelector = (state: RootState) => {
+    return state.player.requests.getTrackPart === 'loading'
 }
 
 export const isLoadingSelector = (state: RootState) => {

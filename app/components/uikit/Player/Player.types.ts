@@ -2,6 +2,7 @@ import { ThemedProps } from 'common-types'
 
 
 export type LoadingProgressBarProps = ThemedProps & {
+    $isLoading: boolean
     $width: number
 }
 

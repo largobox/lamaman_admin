@@ -16,6 +16,7 @@ import { PauseIcon, PlayIcon } from 'icons'
 import {
     currentTrackSelector,
     isPlayingSelector,
+    isTrackPartLoadingSelector,
     loadedDurationPercentSelector,
     playedDurationLabelSelector,
     playedDurationPercentSelector,
@@ -25,12 +26,13 @@ import { useAppSelector } from 'hooks'
 
 
 const Player = () => {
-    const isPlaying = useAppSelector(isPlayingSelector)
     const currentTrack = useAppSelector(currentTrackSelector)
-    const playedDurationLabel = useAppSelector(playedDurationLabelSelector)
-    const totalDurationLabel = useAppSelector(totalDurationLabelSelector)
-    const playedDurationPercent = useAppSelector(playedDurationPercentSelector)
+    const isPlaying = useAppSelector(isPlayingSelector)
+    const isTrackPartLoading = useAppSelector(isTrackPartLoadingSelector)
     const loadedDurationPercent = useAppSelector(loadedDurationPercentSelector)
+    const playedDurationLabel = useAppSelector(playedDurationLabelSelector)
+    const playedDurationPercent = useAppSelector(playedDurationPercentSelector)
+    const totalDurationLabel = useAppSelector(totalDurationLabelSelector)
 
     const playHandler = () => {
         console.log('Play')
@@ -87,7 +89,10 @@ const Player = () => {
             </ContorlsAndDescriptionBox>
 
             <TotalProgressBar>
-                <LoadingProgressBar $width={loadedDurationPercent} />
+                <LoadingProgressBar
+                    $isLoading={isTrackPartLoading}
+                    $width={loadedDurationPercent}
+                />
 
                 <PlayingProgressBar $width={playedDurationPercent} />
             </TotalProgressBar>
