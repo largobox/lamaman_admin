@@ -2,7 +2,7 @@ import { useEffect, PropsWithChildren } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from 'hooks'
-import { isAuthorizedSelector } from 'store/slices/authorizationSlice'
+import { isAuthorizedSelector } from 'store/slices/authorization'
 
 
 const ProtectedRoute = (props: PropsWithChildren) => {

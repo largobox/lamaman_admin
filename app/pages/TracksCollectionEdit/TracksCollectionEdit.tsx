@@ -9,7 +9,7 @@ import {
     getTracksCollection,
     isEditLoadingSelector,
     updateTracksCollection,
-} from 'store/slices/tracksCollectionsSlice'
+} from 'store/slices/tracksCollections'
 import { TracksCollectionFormValues } from 'store/tracksCollections.types'
 
 

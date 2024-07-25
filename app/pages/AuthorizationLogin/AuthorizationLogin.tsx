@@ -4,7 +4,7 @@ import { Paper, Typography } from 'uikit'
 import { AuthenticationLayout, FormHeader, FormLayout } from 'layouts'
 import { AuthorizationLoginForm } from 'unique'
 import { useAppDispatch, useAppSelector } from 'hooks'
-import { isLoadingSelector, login } from 'store/slices/authorizationSlice'
+import { isLoadingSelector, login } from 'store/slices/authorization'
 import { AuthorizationLoginFormValues } from 'store/authorization.types'
 
 

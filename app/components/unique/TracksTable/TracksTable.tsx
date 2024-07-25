@@ -13,7 +13,7 @@ import {
     itemsSelector,
     itemsTotalSelector,
     pageSelector,
-} from 'store/slices/tracksSlice'
+} from 'store/slices/tracks'
 import { SortSign, ChangePageSign } from 'common-types'
 import { TracksTableItem } from 'unique'
 import { Spin } from 'app/components/uikit/Spinner/Spinner.styles'

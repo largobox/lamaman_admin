@@ -13,7 +13,7 @@ import {
     currentUserNameSelector,
     currentUserRoleSelector,
     signOut,
-} from 'store/slices/authorizationSlice'
+} from 'store/slices/authorization'
 
 
 const ProfileCard = () => {

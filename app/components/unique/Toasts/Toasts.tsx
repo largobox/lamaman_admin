@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Box, { MessageBox, IconBox } from './Toasts.styles'
 import { Typography } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
-import { currentToastSelector, removeToast } from 'store/slices/toastsSlice'
+import { currentToastSelector, removeToast } from 'store/slices/toasts'
 import { defaultTheme } from 'themes'
 import { DangerIcon } from 'icons'
 

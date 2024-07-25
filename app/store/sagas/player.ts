@@ -1,16 +1,13 @@
 import { put, takeEvery } from 'redux-saga/effects'
 
 import Api from 'api'
-import { addToast } from 'store/slices/toastsSlice'
+import { addToast } from 'store/slices/toasts'
 import { delay } from 'utils'
 import { PLAY_PLAYER, SAGA_LAYER } from 'consts'
 import logger from 'logger'
 
 import { PlayerPlayAction, PlayerPlayOutput } from 'store/player.types'
-import {
-    changeRequestStatus,
-    playPlayerSuccess,
-} from 'store/slices/playerSlice'
+import { changeRequestStatus, playPlayerSuccess } from 'store/slices/player'
 
 
 function* playPlayerWorkerSaga(action: PlayerPlayAction) {

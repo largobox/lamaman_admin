@@ -8,7 +8,7 @@ import {
     formInitialMetaDataSelector,
     formInitialValuesSelector,
     resetForm,
-} from 'store/slices/tracksSlice'
+} from 'store/slices/tracks'
 import {
     findSelectablePerformers,
     findSelectableTracksCollections,
@@ -16,7 +16,7 @@ import {
     isFindSelectableTracksCollectionsLoadingSelector,
     selectablePerformersItemsSelector,
     selectableTracksCollectionsItemsSelector,
-} from 'store/slices/selectablesSlice'
+} from 'store/slices/selectables'
 
 
 const TrackForm = (props: Props) => {

@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from 'hooks'
 import {
     formInitialValuesSelector,
     resetForm,
-} from 'store/slices/tracksCollectionsSlice'
+} from 'store/slices/tracksCollections'
 
 
 const TracksCollectionForm = (props: Props) => {

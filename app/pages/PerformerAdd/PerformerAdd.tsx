@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from 'hooks'
 import {
     createPerformer,
     isCreateLoadingSelector,
-} from 'store/slices/performersSlice'
+} from 'store/slices/performers'
 import { PerformerFormValues } from 'store/performers.types'
 
 

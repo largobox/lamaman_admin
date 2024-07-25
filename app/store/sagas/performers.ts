@@ -7,8 +7,8 @@ import {
     findPerformersParamsSelector,
     findPerformersSuccess,
     getPerformerSuccess,
-} from 'store/slices/performersSlice'
-import { addToast } from 'store/slices/toastsSlice'
+} from 'store/slices/performers'
+import { addToast } from 'store/slices/toasts'
 import { delay } from 'utils'
 import {
     CREATE_PERFORMER,

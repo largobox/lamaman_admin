@@ -13,7 +13,7 @@ import {
     itemsSelector,
     itemsTotalSelector,
     pageSelector,
-} from 'store/slices/performersSlice'
+} from 'store/slices/performers'
 import { SortSign, ChangePageSign } from 'common-types'
 import { PerformersTableItem } from 'unique'
 import { Spin } from 'app/components/uikit/Spinner/Spinner.styles'

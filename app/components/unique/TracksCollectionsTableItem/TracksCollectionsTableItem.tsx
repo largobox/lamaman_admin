@@ -6,7 +6,7 @@ import { IconButton, Typography } from 'uikit'
 import { Props } from './TracksCollectionsTableItem.types'
 import { CalendarIcon, EditIcon, OutlinedClockIcon, RemoveIcon } from 'icons'
 import { useAppDispatch } from 'hooks'
-import { deleteTracksCollection } from 'store/slices/tracksCollectionsSlice'
+import { deleteTracksCollection } from 'store/slices/tracksCollections'
 import { prettyDate, prettyTime } from 'utils'
 import {
     DateBox,

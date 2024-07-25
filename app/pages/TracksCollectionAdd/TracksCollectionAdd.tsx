@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from 'hooks'
 import {
     createTracksCollection,
     isCreateLoadingSelector,
-} from 'store/slices/tracksCollectionsSlice'
+} from 'store/slices/tracksCollections'
 import { TracksCollectionFormValues } from 'store/tracksCollections.types'
 
 

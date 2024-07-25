@@ -9,7 +9,7 @@ import {
     getPerformer,
     isEditLoadingSelector,
     updatePerformer,
-} from 'store/slices/performersSlice'
+} from 'store/slices/performers'
 import { PerformerFormValues } from 'store/performers.types'
 
 

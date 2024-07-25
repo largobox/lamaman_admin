@@ -5,8 +5,8 @@ import {
     changeRequestStatus,
     findSelectablePerformersSuccess,
     findSelectableTracksCollectionsSuccess,
-} from 'store/slices/selectablesSlice'
-import { addToast } from 'store/slices/toastsSlice'
+} from 'store/slices/selectables'
+import { addToast } from 'store/slices/toasts'
 import { delay } from 'utils'
 import {
     FIND_SELECTABLE_PERFORMERS,

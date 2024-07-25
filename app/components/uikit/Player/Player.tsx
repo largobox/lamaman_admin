@@ -20,7 +20,7 @@ import {
     playedDurationLabelSelector,
     playedDurationPercentSelector,
     totalDurationLabelSelector,
-} from 'store/slices/playerSlice'
+} from 'store/slices/player'
 import { useAppSelector } from 'hooks'
 
 

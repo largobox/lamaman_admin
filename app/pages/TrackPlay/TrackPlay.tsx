@@ -8,7 +8,7 @@ import {
     isLoadedSelector,
     isLoadingSelector,
     playPlayer,
-} from 'store/slices/playerSlice'
+} from 'store/slices/player'
 
 
 const TrackPlayPage = () => {

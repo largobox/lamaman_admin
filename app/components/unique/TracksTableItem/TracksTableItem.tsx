@@ -12,7 +12,7 @@ import {
     RemoveIcon,
 } from 'icons'
 import { useAppDispatch } from 'hooks'
-import { deleteTrack } from 'store/slices/tracksSlice'
+import { deleteTrack } from 'store/slices/tracks'
 import { prettyDate, prettyTime } from 'utils'
 import {
     DateBox,

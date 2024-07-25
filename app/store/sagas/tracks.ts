@@ -7,8 +7,8 @@ import {
     findTracksParamsSelector,
     findTracksSuccess,
     getTrackSuccess,
-} from 'store/slices/tracksSlice'
-import { addToast } from 'store/slices/toastsSlice'
+} from 'store/slices/tracks'
+import { addToast } from 'store/slices/toasts'
 import { delay } from 'utils'
 import {
     CREATE_TRACK,

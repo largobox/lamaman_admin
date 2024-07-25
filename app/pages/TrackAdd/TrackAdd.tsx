@@ -5,7 +5,7 @@ import { RightPanelLayout, FormLayout, FormHeader } from 'layouts'
 import { TrackForm } from 'unique'
 import { Typography } from 'uikit'
 import { useAppDispatch, useAppSelector } from 'hooks'
-import { createTrack, isCreateLoadingSelector } from 'store/slices/tracksSlice'
+import { createTrack, isCreateLoadingSelector } from 'store/slices/tracks'
 import { TrackFormValues } from 'store/tracks.types'
 
 

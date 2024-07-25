@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'uikit'
 import { loginFormSchema } from 'schemas'
 import { Props } from './AuthorizationLoginForm.types'
 import { useAppSelector } from 'hooks'
-import { formInitialValuesSelector } from 'store/slices/authorizationSlice'
+import { formInitialValuesSelector } from 'store/slices/authorization'
 
 
 const AuthorizationLoginForm = (props: Props) => {

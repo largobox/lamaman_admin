@@ -5,7 +5,7 @@ import { RowBox, ColumnBox, ControlsBox } from 'layouts'
 import { IconButton, Typography } from 'uikit'
 import { CalendarIcon, EditIcon, OutlinedClockIcon, RemoveIcon } from 'icons'
 import { useAppDispatch } from 'hooks'
-import { deletePerformer } from 'store/slices/performersSlice'
+import { deletePerformer } from 'store/slices/performers'
 import { prettyDate, prettyTime } from 'utils'
 import {
     DateBox,
