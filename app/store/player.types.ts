@@ -5,7 +5,10 @@ import { RequestStatus } from './store.types'
 type PlayerCurrentTrack = {
     id: string
     name: string
-    duration: number
+    file: {
+        duration: number
+        size: number
+    }
     performer: {
         id: string
         name: string

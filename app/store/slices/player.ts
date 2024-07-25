@@ -76,7 +76,7 @@ export const currentTrackSelector = (state: RootState) => {
 }
 
 export const loadedDurationPercentSelector = (state: RootState) => {
-    const onePercent = state.player.currentTrack.duration / 100
+    const onePercent = state.player.currentTrack.file.duration / 100
 
     return state.player.loadededDuration / onePercent
 }
@@ -86,13 +86,13 @@ export const playedDurationLabelSelector = (state: RootState) => {
 }
 
 export const playedDurationPercentSelector = (state: RootState) => {
-    const onePercent = state.player.currentTrack.duration / 100
+    const onePercent = state.player.currentTrack.file.duration / 100
 
     return state.player.playedDuration / onePercent
 }
 
 export const totalDurationLabelSelector = (state: RootState) => {
-    return getDurationLabel(state.player.currentTrack.duration)
+    return getDurationLabel(state.player.currentTrack.file.duration)
 }
 
 export default playerSlice
