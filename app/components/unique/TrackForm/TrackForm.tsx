@@ -58,6 +58,7 @@ const TrackForm = (props: Props) => {
             />
 
             <InputSelect
+                isSearchable
                 isLoading={isPerformersLoading}
                 initialMetaData={initialMetaData.performer}
                 label='Исполнитель'

@@ -1,2 +1,7 @@
 export { default } from './Input'
-export { default as InputBox, Label, ErrorMessage } from './Input.styles'
+export {
+    default as InputBox,
+    Label,
+    ErrorMessage,
+    InputElement,
+} from './Input.styles'

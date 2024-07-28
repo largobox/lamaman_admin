@@ -37,6 +37,10 @@ export const InputElement = styled.input<ThemedProps>`
     &:focus {
         border: 1px solid ${(props) => props.theme.colors.neutral.dark};
     }
+
+    &::placeholder {
+        color: ${(props) => props.theme.colors.neutral.base};
+    }
 `
 
 const Box = styled.div``

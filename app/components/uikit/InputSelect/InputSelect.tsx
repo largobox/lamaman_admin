@@ -1,17 +1,26 @@
-import React, { MouseEvent, useEffect, useRef, useState } from 'react'
+import React, {
+    MouseEvent,
+    useEffect,
+    useRef,
+    useState,
+    KeyboardEvent,
+    ChangeEvent,
+} from 'react'
 
 import Box, {
     IconBox,
     ListItem,
+    ListSpinnerBox,
     Placeholder,
     RemovableValue,
     RemovableValueBox,
     RemovableValuesBox,
+    SearchInputBox,
     SpinnerBox,
     ValueBox,
 } from './InputSelect.styles'
 import { Props } from './InputSelect.types'
-import { ErrorMessage, IconButton, Label, Spinner } from 'uikit'
+import { ErrorMessage, IconButton, InputElement, Label, Spinner } from 'uikit'
 import { Value, List } from './InputSelect.styles'
 import { useEscapeKeyPress, useKeyPress, useOutsideClick } from 'hooks'
 import {
@@ -24,7 +33,7 @@ import {
     isListItemSelected,
     getSelectedItemsAmount,
 } from './utils'
-import { SelectIcon, CrossIcon } from 'icons'
+import { SelectIcon, CrossIcon, SearchIcon } from 'icons'
 import { SelectableItem } from 'store/selectables.types'
 
 
@@ -33,31 +42,28 @@ const InputSelect = (props: Props) => {
         initialValue,
         initialMetaData,
         onChange,
+        onSearch,
         label,
         error = '',
         items,
         isMultiselectable = false,
         isLoading,
+        isSearchable = false,
     } = props
-    const ref = useRef()
+    const ref = useRef<HTMLDivElement>(null)
+    const listRef = useRef<HTMLDivElement>(null)
+    const searchInputBoxRef = useRef<HTMLDivElement>(null)
+    const searchInputRef = useRef<HTMLInputElement>(null)
     const [value, setValue] = useState<string | string[]>(initialValue || null)
     const [hoveredValue, setHoveredValue] = useState<SelectableItem>(null)
     const [isListVisible, setIsListVisible] = useState(false)
+    const [valueLabel, setValueLabel] = useState<SelectableItem[] | string>(
+        null,
+    )
     const isEnterPressed = useKeyPress('Enter')
     const isUpPressed = useKeyPress('ArrowUp')
     const isDownPressed = useKeyPress('ArrowDown')
     const isLeftPressed = useKeyPress('ArrowLeft')
-
-    useEscapeKeyPress(
-        () => {
-            setIsListVisible(false)
-        },
-        isListVisible ? 2 : 0,
-    )
-
-    const [valueLabel, setValueLabel] = useState<SelectableItem[] | string>(
-        null,
-    )
     const isSelectLoading = isLoading || items === null
     const tabIndex = isSelectLoading ? -1 : 0
     const isValueLabelVisible =
@@ -66,6 +72,17 @@ const InputSelect = (props: Props) => {
         isMultiselectable && Array.isArray(valueLabel)
     const isPlaceholderVisible = isMultiselectable
     const selectedItemsAmount = getSelectedItemsAmount(value)
+
+    useEscapeKeyPress(
+        () => {
+            if (isSearchable) {
+                ref.current.focus()
+            }
+
+            setIsListVisible(false)
+        },
+        isListVisible ? 2 : 0,
+    )
 
     useOutsideClick(ref, () => {
         setIsListVisible(false)
@@ -81,7 +98,13 @@ const InputSelect = (props: Props) => {
     }, [initialValue])
 
     useEffect(() => {
-        if (ref.current !== document.activeElement) {
+        const isActiveElementValid =
+            (!isSearchable && document.activeElement === ref.current) ||
+            (isSearchable &&
+                (document.activeElement === ref.current ||
+                    document.activeElement === searchInputRef.current))
+
+        if (!isActiveElementValid) {
             return
         }
 
@@ -117,6 +140,8 @@ const InputSelect = (props: Props) => {
             if (!isMultiselectable) {
                 setHoveredValue(null)
                 setIsListVisible(false)
+
+                ref.current.focus()
             }
 
             return
@@ -135,16 +160,39 @@ const InputSelect = (props: Props) => {
         }
     }, [isEnterPressed, isUpPressed, isDownPressed, isLeftPressed])
 
+    useEffect(() => {
+        if (!isSearchable) {
+            return
+        }
+
+        if (isListVisible) {
+            searchInputRef.current.focus()
+        }
+    }, [isListVisible])
+
     const blurHandler = () => {
+        if (isSearchable) {
+            return
+        }
+
         setIsListVisible(false)
     }
 
-    const clickHandler = (event: MouseEvent) => {
-        const targetEl = event.target as HTMLDivElement
-        const isListInClickArea =
-            targetEl.parentElement.getAttribute('data-islist')
+    const changeSearchHandler = (ev: ChangeEvent<HTMLInputElement>) => {
+        if (typeof onSearch === 'function') {
+            onSearch(ev.target.value)
+        }
+    }
 
-        if (isMultiselectable && isListInClickArea) {
+    const clickHandler = (ev: MouseEvent) => {
+        const targetEl = ev.target as HTMLDivElement
+        const isListArea =
+            listRef.current !== null && listRef.current.contains(targetEl)
+        const isSearchInputBoxArea =
+            searchInputBoxRef.current !== null &&
+            searchInputBoxRef.current.contains(targetEl)
+
+        if (isSearchInputBoxArea || (isMultiselectable && isListArea)) {
             return
         }
 
@@ -154,6 +202,12 @@ const InputSelect = (props: Props) => {
     const clickSpinnerHandler = (ev: MouseEvent) => {
         if (isSelectLoading) {
             ev.stopPropagation()
+        }
+    }
+
+    const keyDownSearchInputHandler = (ev: KeyboardEvent<HTMLInputElement>) => {
+        if (ev.key === 'Enter') {
+            ev.preventDefault()
         }
     }
 
@@ -216,26 +270,51 @@ const InputSelect = (props: Props) => {
 
                         {isListVisible && (
                             <List
-                                data-islist
+                                ref={listRef}
                                 onMouseLeave={mouseLeaveHandler}
                             >
-                                {items.map((item) => (
-                                    <ListItem
-                                        key={item.id}
-                                        onClick={selectHandler(item)}
-                                        onMouseEnter={mouseEnterHandler(item)}
-                                        $isHovered={isListItemHovered(
-                                            hoveredValue,
-                                            item.id,
-                                        )}
-                                        $isSelected={isListItemSelected(
-                                            value,
-                                            item.id,
-                                        )}
-                                    >
-                                        {item.name}
-                                    </ListItem>
-                                ))}
+                                {isSearchable && (
+                                    <SearchInputBox ref={searchInputBoxRef}>
+                                        <SearchIcon />
+
+                                        <InputElement
+                                            ref={searchInputRef}
+                                            onChange={changeSearchHandler}
+                                            onKeyDown={
+                                                keyDownSearchInputHandler
+                                            }
+                                            placeholder='Поиск'
+                                        />
+                                    </SearchInputBox>
+                                )}
+
+                                {isSearchable && isSelectLoading && (
+                                    <ListSpinnerBox>
+                                        <Spinner />
+                                    </ListSpinnerBox>
+                                )}
+
+                                {!isSelectLoading &&
+                                    items.map((item) => (
+                                        <ListItem
+                                            key={item.id}
+                                            onClick={selectHandler(item)}
+                                            onMouseEnter={mouseEnterHandler(
+                                                item,
+                                            )}
+                                            $isHovered={isListItemHovered(
+                                                hoveredValue,
+                                                item.id,
+                                            )}
+                                            $isSearchable={isSearchable}
+                                            $isSelected={isListItemSelected(
+                                                value,
+                                                item.id,
+                                            )}
+                                        >
+                                            {item.name}
+                                        </ListItem>
+                                    ))}
                             </List>
                         )}
                     </>

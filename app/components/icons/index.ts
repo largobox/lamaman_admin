@@ -18,6 +18,7 @@ import outlinedHumanSvg from './svgs/outlined-human.svg'
 import pauseSvg from './svgs/pause.svg'
 import playSvg from './svgs/play.svg'
 import removeSvg from './svgs/remove.svg'
+import searchSvg from './svgs/search.svg'
 import selectSvg from './svgs/select.svg'
 
 
@@ -39,4 +40,5 @@ export const OutlinedHumanIcon = Icon(outlinedHumanSvg)
 export const PauseIcon = Icon(pauseSvg)
 export const PlayIcon = Icon(playSvg)
 export const RemoveIcon = Icon(removeSvg)
+export const SearchIcon = Icon(searchSvg)
 export const SelectIcon = Icon(selectSvg)

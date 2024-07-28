@@ -15,22 +15,26 @@ const selectedListItemStyles = (props: ListItemProps) => {
 
     if ($isSelected) {
         return css`
-            background-color: ${theme.colors.neutral.dark};
-            color: ${(props) => props.theme.colors.light};
+            background-color: ${theme.colors.neutral.base};
+        `
+    }
+}
+
+const searchableListItemStyles = (props: ListItemProps) => {
+    const { $isSearchable } = props
+
+    if ($isSearchable) {
+        return css`
+            &:first-child {
+                border-top-left-radius: 0px;
+                border-top-right-radius: 0px;
+            }
         `
     }
 }
 
 const hoveredListItemStyles = (props: ListItemProps) => {
-    const { $isHovered, $isSelected, theme } = props
-
-    if ($isHovered && $isSelected) {
-        return css`
-            &::before {
-                background-color: ${theme.colors.light};
-            }
-        `
-    }
+    const { $isHovered, theme } = props
 
     if ($isHovered) {
         return css`
@@ -41,18 +45,18 @@ const hoveredListItemStyles = (props: ListItemProps) => {
     }
 }
 
-const disabledStyles = (props: ValueProps) => {
+const disabledValueBoxStyles = (props: ValueProps) => {
     const { $isDisabled, theme } = props
 
-    if ($isDisabled) {
-        return css``
+    if (!$isDisabled) {
+        return css`
+            &:focus {
+                border-color: ${theme.colors.neutral.dark};
+            }
+        `
     }
 
-    return css`
-        &:focus {
-            border-color: ${theme.colors.neutral.dark};
-        }
-    `
+    return css``
 }
 
 export const Placeholder = styled.div<ThemedProps>`
@@ -111,7 +115,7 @@ export const ValueBox = styled.div<ValueProps>`
 
     cursor: pointer;
 
-    ${disabledStyles}
+    ${disabledValueBoxStyles}
 `
 
 export const ListItem = styled.div<ListItemProps>`
@@ -133,8 +137,8 @@ export const ListItem = styled.div<ListItemProps>`
     transition-property: background-color;
 
     &:first-child {
-        border-top-left-radius: ${(props) => props.theme.borderRadius}px;
-        border-top-right-radius: ${(props) => props.theme.borderRadius}px;
+        border-top-left-radius: ${theme.borderRadius}px;
+        border-top-right-radius: ${theme.borderRadius}px;
     }
 
     &:last-child {
@@ -143,7 +147,7 @@ export const ListItem = styled.div<ListItemProps>`
     }
 
     &:not(:first-child) {
-        border-top-color: transparent;
+        border-top: none;
     }
 
     &::before {
@@ -156,6 +160,7 @@ export const ListItem = styled.div<ListItemProps>`
         content: '';
     }
 
+    ${searchableListItemStyles}
     ${selectedListItemStyles}
     ${hoveredListItemStyles}
 `
@@ -173,23 +178,58 @@ export const List = styled.div<ThemedProps>`
     z-index: ${(props) => props.theme.zIndex.menu};
 `
 
+export const ListSpinnerBox = styled.div<ThemedProps>`
+    position: relative;
+
+    width: 100%;
+    height: 80px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${(props) => props.theme.colors.neutral.dark};
+    border-top: none;
+    border-bottom-left-radius: ${(props) => props.theme.borderRadius}px;
+    border-bottom-right-radius: ${(props) => props.theme.borderRadius}px;
+
+    box-sizing: border-box;
+
+    background-color: ${(props) => props.theme.colors.neutral.light};
+`
+
 export const SpinnerBox = styled.div`
+    position: relative;
+
     width: 100%;
     height: 100%;
 
     cursor: not-allowed;
-
-    position: relative;
 `
 
-export const IconBox = styled.div<ThemedProps>`
-    display: flex;
-    align-items: center;
-    height: ${height}px;
-
+export const IconBox = styled.div`
     position: absolute;
     right: 8px;
     top: ${iconBoxTopOffset}px;
+
+    display: flex;
+    align-items: center;
+    height: ${height}px;
+`
+
+export const SearchInputBox = styled.div<ThemedProps>`
+    display: flex;
+    align-items: center;
+    gap: ${(props) => props.theme.spacing(2)}px;
+
+    padding: ${(props) => props.theme.spacing(4)}px
+        ${(props) => props.theme.spacing(4)}px;
+    background-color: ${theme.colors.primary.light};
+    padding-right: ${(props) => props.theme.spacing(6)}px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${(props) => props.theme.colors.neutral.dark};
+    border-top-left-radius: ${(props) => props.theme.borderRadius}px;
+    border-top-right-radius: ${(props) => props.theme.borderRadius}px;
 `
 
 const Box = styled.div<ThemedProps>`

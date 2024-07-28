@@ -11,11 +11,14 @@ export type Props = {
 
     initialValue?: string | string[]
     isMultiselectable?: boolean
+    isSearchable?: boolean
     error?: string
     onChange?: (value: string | string[]) => void
+    onSearch?: (value: string) => void
 }
 
 export type ListItemProps = ThemedProps & {
+    $isSearchable: boolean
     $isSelected: boolean
     $isHovered: boolean
 }
