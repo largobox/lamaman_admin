@@ -11,6 +11,7 @@ import Box, {
     IconBox,
     ListItem,
     ListSpinnerBox,
+    MoreBtnBox,
     Placeholder,
     RemovableValue,
     RemovableValueBox,
@@ -20,7 +21,14 @@ import Box, {
     ValueBox,
 } from './InputSelect.styles'
 import { Props } from './InputSelect.types'
-import { ErrorMessage, IconButton, InputElement, Label, Spinner } from 'uikit'
+import {
+    Button,
+    ErrorMessage,
+    IconButton,
+    InputElement,
+    Label,
+    Spinner,
+} from 'uikit'
 import { Value, List } from './InputSelect.styles'
 import { useEscapeKeyPress, useKeyPress, useOutsideClick } from 'hooks'
 import {
@@ -45,7 +53,7 @@ const InputSelect = (props: Props) => {
         onSearch,
         label,
         error = '',
-        items,
+        items, // ToDo. Нужно др структура для доп. загрузки
         isMultiselectable = false,
         isLoading,
         isSearchable = false,
@@ -72,6 +80,7 @@ const InputSelect = (props: Props) => {
         isMultiselectable && Array.isArray(valueLabel)
     const isPlaceholderVisible = isMultiselectable
     const selectedItemsAmount = getSelectedItemsAmount(value)
+    const isMoreBtnVisible = false // ToDo
 
     useEscapeKeyPress(
         () => {
@@ -275,7 +284,7 @@ const InputSelect = (props: Props) => {
                             >
                                 {isSearchable && (
                                     <SearchInputBox ref={searchInputBoxRef}>
-                                        <SearchIcon />
+                                        <SearchIcon color='secondary' />
 
                                         <InputElement
                                             ref={searchInputRef}
@@ -315,6 +324,16 @@ const InputSelect = (props: Props) => {
                                             {item.name}
                                         </ListItem>
                                     ))}
+
+                                {isMoreBtnVisible && (
+                                    <MoreBtnBox>
+                                        <Button
+                                            fullWidth
+                                            label='Ещё'
+                                            color='secondary'
+                                        />
+                                    </MoreBtnBox>
+                                )}
                             </List>
                         )}
                     </>

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { ThemedProps } from 'common-types'
 import { InputBox } from 'app/components/uikit/Input'
 import { ButtonBox } from 'app/components/uikit/Button'
+import { FormWrapper } from 'app/components/uikit/Form'
 
 
 export const FormHeader = styled.div<ThemedProps>`
@@ -17,8 +18,10 @@ const Box = styled.div<ThemedProps>`
         margin-top: ${(props) => props.theme.spacing(3)}px;
     }
 
-    ${ButtonBox} {
-        margin-top: ${(props) => props.theme.spacing(6)}px;
+    ${FormWrapper} {
+        & > ${ButtonBox} {
+            margin-top: ${(props) => props.theme.spacing(6)}px;
+        }
     }
 `
 

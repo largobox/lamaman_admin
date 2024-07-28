@@ -220,9 +220,9 @@ export const SearchInputBox = styled.div<ThemedProps>`
     align-items: center;
     gap: ${(props) => props.theme.spacing(2)}px;
 
-    padding: ${(props) => props.theme.spacing(4)}px
+    padding: ${(props) => props.theme.spacing(2)}px
         ${(props) => props.theme.spacing(4)}px;
-    background-color: ${theme.colors.primary.light};
+    background-color: ${theme.colors.secondary.light};
     padding-right: ${(props) => props.theme.spacing(6)}px;
 
     border-width: 1px;
@@ -230,6 +230,19 @@ export const SearchInputBox = styled.div<ThemedProps>`
     border-color: ${(props) => props.theme.colors.neutral.dark};
     border-top-left-radius: ${(props) => props.theme.borderRadius}px;
     border-top-right-radius: ${(props) => props.theme.borderRadius}px;
+`
+
+export const MoreBtnBox = styled.div<ThemedProps>`
+    background-color: ${theme.colors.secondary.light};
+    padding: ${(props) => props.theme.spacing(2)}px
+        ${(props) => props.theme.spacing(40)}px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${(props) => props.theme.colors.neutral.dark};
+    border-bottom-left-radius: ${(props) => props.theme.borderRadius}px;
+    border-bottom-right-radius: ${(props) => props.theme.borderRadius}px;
+    border-top: none;
 `
 
 const Box = styled.div<ThemedProps>`
