@@ -30,7 +30,12 @@ import {
     Spinner,
 } from 'uikit'
 import { Value, List } from './InputSelect.styles'
-import { useEscapeKeyPress, useKeyPress, useOutsideClick } from 'hooks'
+import {
+    useDebounceCallback,
+    useEscapeKeyPress,
+    useKeyPress,
+    useOutsideClick,
+} from 'hooks'
 import {
     getNextItem,
     getPrevItem,
@@ -63,6 +68,7 @@ const InputSelect = (props: Props) => {
     const searchInputBoxRef = useRef<HTMLDivElement>(null)
     const searchInputRef = useRef<HTMLInputElement>(null)
     const [value, setValue] = useState<string | string[]>(initialValue || null)
+    const [searchValue, setSearchValue] = useState<string>('')
     const [hoveredValue, setHoveredValue] = useState<SelectableItem>(null)
     const [isListVisible, setIsListVisible] = useState(false)
     const [valueLabel, setValueLabel] = useState<SelectableItem[] | string>(
@@ -81,6 +87,12 @@ const InputSelect = (props: Props) => {
     const isPlaceholderVisible = isMultiselectable
     const selectedItemsAmount = getSelectedItemsAmount(value)
     const isMoreBtnVisible = false // ToDo
+
+    useDebounceCallback(() => {
+        if (typeof onSearch === 'function') {
+            onSearch(searchValue)
+        }
+    }, searchValue)
 
     useEscapeKeyPress(
         () => {
@@ -188,9 +200,7 @@ const InputSelect = (props: Props) => {
     }
 
     const changeSearchHandler = (ev: ChangeEvent<HTMLInputElement>) => {
-        if (typeof onSearch === 'function') {
-            onSearch(ev.target.value)
-        }
+        setSearchValue(ev.target.value)
     }
 
     const clickHandler = (ev: MouseEvent) => {
