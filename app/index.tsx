@@ -5,7 +5,10 @@ import { ROOT_DIV_ID } from 'consts'
 import { cssBaseline } from 'utils'
 import App from './App'
 
-
+/*
+  ToDo. Нужен обработчик на unhandledrejection
+  и вроде еще что-то было около этого
+*/
 const main = async () => {
     cssBaseline()
 

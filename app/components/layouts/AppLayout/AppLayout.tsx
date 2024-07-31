@@ -1,13 +1,12 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 
 import Box, { ContentBox, LeftPanelBox } from './AppLayout.styles'
 import { NavigationMenu, ProfileCard } from 'unique'
 import { Paper } from 'uikit'
+import { Outlet } from 'react-router-dom'
 
 
-const AppLayout = (props: PropsWithChildren) => {
-    const { children } = props
-
+const AppLayout = () => {
     return (
         <Box>
             <LeftPanelBox>
@@ -18,7 +17,9 @@ const AppLayout = (props: PropsWithChildren) => {
                 </Paper>
             </LeftPanelBox>
 
-            <ContentBox>{children}</ContentBox>
+            <ContentBox>
+                <Outlet />
+            </ContentBox>
         </Box>
     )
 }

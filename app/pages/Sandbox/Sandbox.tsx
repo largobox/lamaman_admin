@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
-import { AppLayout, PageLayout } from 'layouts'
+import { PageLayout } from 'layouts'
 import { Typography } from 'uikit'
 
 
@@ -36,17 +36,15 @@ const SandboxPage = () => {
     }, [])
 
     return (
-        <AppLayout>
-            <PageLayout>
-                <Typography text='Тестирование видео/аудио передачи' />
+        <PageLayout>
+            <Typography text='Тестирование видео/аудио передачи' />
 
-                <video
-                    id='test-video'
-                    ref={videoRef}
-                    autoPlay
-                />
-            </PageLayout>
-        </AppLayout>
+            <video
+                id='test-video'
+                ref={videoRef}
+                autoPlay
+            />
+        </PageLayout>
     )
 }
 

@@ -1,4 +1,5 @@
 export { default as AuthorizationLoginPage } from './AuthorizationLogin'
+export { default as ErrorPage } from './Error'
 export { default as NotFoundPage } from './NotFound'
 export { default as PerformerAddPage } from './PerformerAdd'
 export { default as PerformerEditPage } from './PerformerEdit'

@@ -1,21 +1,19 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { AppLayout, PageLayout } from 'layouts'
+import { PageLayout } from 'layouts'
 import { TracksTable, TracksTopPanel } from 'unique'
 
 
 const TracksListPage = () => {
     return (
-        <AppLayout>
-            <PageLayout>
-                <TracksTopPanel />
+        <PageLayout>
+            <TracksTopPanel />
 
-                <TracksTable />
+            <TracksTable />
 
-                <Outlet />
-            </PageLayout>
-        </AppLayout>
+            <Outlet />
+        </PageLayout>
     )
 }
 

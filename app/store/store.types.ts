@@ -10,6 +10,7 @@ export type RootState = ReturnType<typeof store.getState>
 export type RequestStatus = 'initial' | 'loading' | 'loaded' | 'error'
 
 export type FindInput<T> = {
+    // search: string // ToDo
     sortingName: T
     sortingDirection: SortingDirection
     page: string

@@ -1,4 +1,5 @@
 export { default as AuthorizationLoginForm } from './AuthorizationLoginForm'
+export { default as ErrorBoundary } from './ErrorBoundary'
 export { default as NavigationMenu } from './NavigationMenu'
 export { default as NavigationMenuItem } from './NavigationMenuItem'
 export { default as PerformerForm } from './PerformerForm'

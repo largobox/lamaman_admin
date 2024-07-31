@@ -1,13 +1,13 @@
 import React from 'react'
 
 import { Typography } from 'uikit'
-import { ErrorLayout } from 'layouts'
 import { HumanSorryIcon } from 'icons'
+import Box from './NotFound.styles'
 
 
 const NotFoundPage = () => {
     return (
-        <ErrorLayout>
+        <Box>
             <HumanSorryIcon
                 color='light'
                 size='big'
@@ -18,7 +18,7 @@ const NotFoundPage = () => {
                 variant='h2'
                 text='Страница не найдена'
             />
-        </ErrorLayout>
+        </Box>
     )
 }
 

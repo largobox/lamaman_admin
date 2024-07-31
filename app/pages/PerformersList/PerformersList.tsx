@@ -1,21 +1,19 @@
 import React from 'react'
 
-import { AppLayout, PageLayout } from 'layouts'
+import { PageLayout } from 'layouts'
 import { PerformersTable, PerformersTopPanel } from 'unique'
 import { Outlet } from 'react-router-dom'
 
 
 const PerformersListPage = () => {
     return (
-        <AppLayout>
-            <PageLayout>
-                <PerformersTopPanel />
+        <PageLayout>
+            <PerformersTopPanel />
 
-                <PerformersTable />
+            <PerformersTable />
 
-                <Outlet />
-            </PageLayout>
-        </AppLayout>
+            <Outlet />
+        </PageLayout>
     )
 }
 

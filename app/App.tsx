@@ -5,18 +5,20 @@ import { Provider } from 'react-redux'
 
 import { defaultTheme } from 'themes'
 import { store } from 'store'
-import { Toasts } from 'unique'
+import { ErrorBoundary, Toasts } from 'unique'
 import router from 'router'
 
 
 const App = () => {
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Provider store={store}>
-                <RouterProvider router={router} />
+            <ErrorBoundary>
+                <Provider store={store}>
+                    <RouterProvider router={router} />
 
-                <Toasts />
-            </Provider>
+                    <Toasts />
+                </Provider>
+            </ErrorBoundary>
         </ThemeProvider>
     )
 }

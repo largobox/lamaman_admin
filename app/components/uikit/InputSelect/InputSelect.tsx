@@ -63,6 +63,23 @@ const InputSelect = (props: Props) => {
         isLoading,
         isSearchable = false,
     } = props
+
+    if (isMultiselectable && !Array.isArray(initialMetaData)) {
+        throw new Error(
+            `InputSelect. Prop "initialMetaData" must be array. Current value: ${initialMetaData}`,
+        )
+    }
+
+    if (
+        !isMultiselectable &&
+        !Array.isArray(initialMetaData) &&
+        typeof initialMetaData !== 'object'
+    ) {
+        throw new Error(
+            `InputSelect. Prop "initialMetaData" must be object. Current value: ${initialMetaData}`,
+        )
+    }
+
     const ref = useRef<HTMLDivElement>(null)
     const listRef = useRef<HTMLDivElement>(null)
     const searchInputBoxRef = useRef<HTMLDivElement>(null)

@@ -24,17 +24,16 @@ const TrackForm = (props: Props) => {
     const appDispatch = useAppDispatch()
     const initialValues = useAppSelector(formInitialValuesSelector)
     const initialMetaData = useAppSelector(formInitialMetaDataSelector)
-
     const isPerformersLoading = useAppSelector(
         isFindSelectablePerformersLoadingSelector,
     )
     const isTracksCollectionsLoading = useAppSelector(
         isFindSelectableTracksCollectionsLoadingSelector,
     )
+    const performersItems = useAppSelector(selectablePerformersItemsSelector)
     const tracksCollectionsItems = useAppSelector(
         selectableTracksCollectionsItemsSelector,
     )
-    const performersItems = useAppSelector(selectablePerformersItemsSelector)
 
     useEffect(() => {
         appDispatch(findSelectableTracksCollections())
@@ -44,6 +43,11 @@ const TrackForm = (props: Props) => {
             appDispatch(resetForm())
         }
     }, [])
+
+    const searchPerformersHandler = () => {
+        // ToDo
+        // appDispatch(findSelectablePerformers())
+    }
 
     return (
         <Form
@@ -64,6 +68,7 @@ const TrackForm = (props: Props) => {
                 label='Исполнитель'
                 name='performerId'
                 items={performersItems}
+                onSearch={searchPerformersHandler}
             />
 
             <InputSelect
