@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Paper, Typography } from 'uikit'
-import { AuthenticationLayout, FormHeader, FormLayout } from 'layouts'
+import { FormHeader, FormLayout } from 'layouts'
 import { AuthorizationLoginForm } from 'unique'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import { isLoadingSelector, login } from 'store/slices/authorization'
@@ -17,24 +17,22 @@ const AuthorizationLoginPage = () => {
     }
 
     return (
-        <AuthenticationLayout>
-            <Paper>
-                <FormLayout>
-                    <FormHeader>
-                        <Typography
-                            align='center'
-                            variant='h1'
-                            text='Авторизация'
-                        />
-                    </FormHeader>
-
-                    <AuthorizationLoginForm
-                        onSubmit={submitHandler}
-                        isLoading={isLoading}
+        <Paper>
+            <FormLayout>
+                <FormHeader>
+                    <Typography
+                        align='center'
+                        variant='h1'
+                        text='Авторизация'
                     />
-                </FormLayout>
-            </Paper>
-        </AuthenticationLayout>
+                </FormHeader>
+
+                <AuthorizationLoginForm
+                    onSubmit={submitHandler}
+                    isLoading={isLoading}
+                />
+            </FormLayout>
+        </Paper>
     )
 }
 

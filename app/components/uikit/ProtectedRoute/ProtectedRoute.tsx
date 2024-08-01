@@ -12,7 +12,7 @@ const ProtectedRoute = (props: PropsWithChildren) => {
 
     useEffect(() => {
         if (!isAuthorized) {
-            navigate('/login')
+            navigate('authorization/login')
         }
     }, [isAuthorized])
 

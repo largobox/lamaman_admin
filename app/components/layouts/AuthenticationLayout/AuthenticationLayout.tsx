@@ -1,13 +1,14 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import Box, { Content } from './AuthenticationLayout.styles'
+import { Outlet } from 'react-router-dom'
 
 
-const AuthenticationLayout = (props: PropsWithChildren) => {
-    const { children } = props
-
+const AuthenticationLayout = () => {
     return (
         <Box>
-            <Content>{children}</Content>
+            <Content>
+                <Outlet />
+            </Content>
         </Box>
     )
 }

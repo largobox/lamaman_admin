@@ -18,22 +18,22 @@ import {
     TrackPlayPage,
     ErrorPage,
 } from 'pages'
-import { AppLayout } from 'layouts'
+import { AppLayout, AuthenticationLayout } from 'layouts'
 
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <AppLayout />,
+        element: (
+            <ProtectedRoute>
+                <AppLayout />
+            </ProtectedRoute>
+        ),
         errorElement: <ErrorPage />,
         children: [
             {
                 path: '/performers',
-                element: (
-                    <ProtectedRoute>
-                        <PerformersListPage />
-                    </ProtectedRoute>
-                ),
+                element: <PerformersListPage />,
                 children: [
                     {
                         path: 'add',
@@ -47,11 +47,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/tracks-collections',
-                element: (
-                    <ProtectedRoute>
-                        <TracksCollectionsListPage />
-                    </ProtectedRoute>
-                ),
+                element: <TracksCollectionsListPage />,
                 children: [
                     {
                         path: 'add',
@@ -65,11 +61,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/tracks',
-                element: (
-                    <ProtectedRoute>
-                        <TracksListPage />
-                    </ProtectedRoute>
-                ),
+                element: <TracksListPage />,
                 children: [
                     {
                         path: 'add',
@@ -86,22 +78,29 @@ const router = createBrowserRouter([
                 ],
             },
             {
-                path: '/login',
-                element: <AuthorizationLoginPage />,
-            },
-            {
-                path: '/sandbox',
+                path: '/sandbox', // Местечко для тестов
                 element: <SandboxPage />,
             },
             {
                 path: '/',
                 element: <Navigate to='/tracks' />,
             },
+        ],
+    },
+    {
+        path: '/authorization',
+        element: <AuthenticationLayout />,
+        errorElement: <ErrorPage />,
+        children: [
             {
-                path: '/*',
-                element: <NotFoundPage />,
+                path: 'login',
+                element: <AuthorizationLoginPage />,
             },
         ],
+    },
+    {
+        path: '/*',
+        element: <NotFoundPage />,
     },
 ])
 
