@@ -6,6 +6,7 @@ import { IconButton, Typography } from 'uikit'
 import { Props } from './TracksTableItem.types'
 import {
     CalendarIcon,
+    DownloadIcon,
     EditIcon,
     OutlinedClockIcon,
     PlayIcon,
@@ -28,6 +29,11 @@ const TracksCollectionsTableItem = (props: Props) => {
     } = props
     const appDispatch = useAppDispatch()
     const navigate = useNavigate()
+
+    const downloadClickHandler = () => {
+        // ToDo
+        console.log('Download')
+    }
 
     const editClickHandler = () => {
         navigate(`/tracks/${id}/edit`)
@@ -108,6 +114,11 @@ const TracksCollectionsTableItem = (props: Props) => {
 
             <ColumnBox>
                 <ControlsBox>
+                    <IconButton
+                        onClick={downloadClickHandler}
+                        Icon={DownloadIcon}
+                    />
+
                     <IconButton
                         onClick={editClickHandler}
                         Icon={EditIcon}

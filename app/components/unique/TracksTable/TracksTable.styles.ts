@@ -5,7 +5,7 @@ import { TableHeaderItem } from 'app/components/uikit/TableHeader'
 import { sideOffset } from 'app/components/uikit/TableHeader/TableHeader.styles'
 
 
-const controlsWidth = 140
+const controlsWidth = 190
 const firstItemOffset = sideOffset + 90
 const lastItemOffset = sideOffset + controlsWidth
 
