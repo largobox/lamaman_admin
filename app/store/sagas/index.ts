@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects'
 
 import { loginAuthorizationWatcherSaga } from './authorization'
+import { downloadFileWatcherSaga } from './files'
 import {
     findSelectablePerformersWatcherSaga,
     findSelectableTracksCollectionsWatcherSaga,
@@ -32,6 +33,8 @@ import { getTrackDescriptionPlayerWatcherSaga } from './player'
 function* rootSaga() {
     yield all([
         loginAuthorizationWatcherSaga(),
+
+        downloadFileWatcherSaga(),
 
         findSelectableTracksCollectionsWatcherSaga(),
         findSelectablePerformersWatcherSaga(),

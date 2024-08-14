@@ -6,6 +6,7 @@ import { SelectableItem } from './selectables.types'
 
 export type Track = {
     id: string
+    fileId: string
     name: string
     createdAt: string
     updatedAt: string

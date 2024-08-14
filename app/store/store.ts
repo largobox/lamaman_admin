@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import authorizationSlice from './slices/authorization'
+import filesSlice from './slices/files'
 import performersSlice from './slices/performers'
 import playerSlice from './slices/player'
 import selectablesSlice from './slices/selectables'
@@ -17,6 +18,7 @@ const sagaMiddleware = createSagaMiddleware()
 const store = configureStore({
     reducer: {
         [authorizationSlice.reducerPath]: authorizationSlice.reducer,
+        [filesSlice.reducerPath]: filesSlice.reducer,
         [performersSlice.name]: performersSlice.reducer,
         [playerSlice.name]: playerSlice.reducer,
         [selectablesSlice.name]: selectablesSlice.reducer,

@@ -1,6 +1,6 @@
-import { TracksCollection } from 'store/tracksCollections.types'
+import { Track } from 'store/tracks.types'
 
 
 export type Props = {
-    data: TracksCollection
+    data: Track
 }

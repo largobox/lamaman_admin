@@ -21,18 +21,18 @@ import {
     IconBox,
     TimeBox,
 } from './TracksTableItem.styles'
+import { downloadFile } from 'store/slices/files'
 
 
 const TracksCollectionsTableItem = (props: Props) => {
     const {
-        data: { name, createdAt, id, updatedAt },
+        data: { name, createdAt, id, updatedAt, fileId },
     } = props
     const appDispatch = useAppDispatch()
     const navigate = useNavigate()
 
     const downloadClickHandler = () => {
-        // ToDo
-        console.log('Download')
+        appDispatch(downloadFile(fileId))
     }
 
     const editClickHandler = () => {

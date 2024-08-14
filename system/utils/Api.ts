@@ -55,6 +55,10 @@ class Api {
         return this._delete(`/tracks-collections/${id}`)
     }
 
+    static async downloadFile(id: string) {
+        return this._get(`/files/${id}`)
+    }
+
     static async findPerformers(params: FindInput<PerformersSortings>) {
         return this._find('/performers', params)
     }

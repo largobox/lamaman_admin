@@ -12,6 +12,8 @@ export const SAGA_LAYER = 'saga'
 
 export const AUTHORIZATION_LOGIN = 'authorization/login'
 
+export const DOWNLOAD_FILE = 'files/download'
+
 export const CREATE_PERFORMER = 'performers/create'
 export const DELETE_PERFORMER = 'performers/delete'
 export const FIND_PERFORMERS = 'performers/find'
