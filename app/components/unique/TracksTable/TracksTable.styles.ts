@@ -21,7 +21,7 @@ const Box = styled.div`
         }
 
         &:nth-child(3) {
-            width: 400px;
+            width: 450px;
             padding-right: ${lastItemOffset}px;
         }
     }
