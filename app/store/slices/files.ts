@@ -54,10 +54,18 @@ export const { changeFileRequestStatus, donwloadFileSuccess } =
 export const downloadFile = createAction<string>(DOWNLOAD_FILE)
 
 // Selectors
-export const isFileLoadingSelector = (id: string) => (state: RootState) => {
-    const findedFile = state.files.items.find((item) => item.id === id)
+export const isFileLoadingOrHasErrorSelector =
+    (id: string) => (state: RootState) => {
+        const findedFile = state.files.items.find((item) => item.id === id)
 
-    return findedFile.status === 'loading'
-}
+        if (findedFile === undefined) {
+            return false
+        }
+
+        const result =
+            findedFile.status === 'loading' || findedFile.status === 'error'
+
+        return result
+    }
 
 export default filesSlice

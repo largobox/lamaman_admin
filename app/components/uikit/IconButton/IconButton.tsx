@@ -12,6 +12,7 @@ const IconButton = (props: Props) => {
         size = 'middle',
         isDisabled = false,
     } = props
+    const iconColor = isDisabled ? 'neutral' : color
 
     const clickHandler = () => {
         if (isDisabled) {
@@ -28,7 +29,7 @@ const IconButton = (props: Props) => {
             $isDisabled={isDisabled}
         >
             <Icon
-                color={color}
+                color={iconColor}
                 size={size}
             />
         </Box>

@@ -12,7 +12,7 @@ import {
     PlayIcon,
     RemoveIcon,
 } from 'icons'
-import { useAppDispatch } from 'hooks'
+import { useAppDispatch, useAppSelector } from 'hooks'
 import { deleteTrack } from 'store/slices/tracks'
 import { prettyDate, prettyTime } from 'utils'
 import {
@@ -21,7 +21,10 @@ import {
     IconBox,
     TimeBox,
 } from './TracksTableItem.styles'
-import { downloadFile } from 'store/slices/files'
+import {
+    downloadFile,
+    isFileLoadingOrHasErrorSelector,
+} from 'store/slices/files'
 
 
 const TracksCollectionsTableItem = (props: Props) => {
@@ -30,6 +33,9 @@ const TracksCollectionsTableItem = (props: Props) => {
     } = props
     const appDispatch = useAppDispatch()
     const navigate = useNavigate()
+    const isDownloadBtnDisabled = useAppSelector(
+        isFileLoadingOrHasErrorSelector(fileId),
+    )
 
     const downloadClickHandler = () => {
         appDispatch(downloadFile(fileId))
@@ -115,6 +121,7 @@ const TracksCollectionsTableItem = (props: Props) => {
             <ColumnBox>
                 <ControlsBox>
                     <IconButton
+                        isDisabled={isDownloadBtnDisabled}
                         onClick={downloadClickHandler}
                         Icon={DownloadIcon}
                     />
