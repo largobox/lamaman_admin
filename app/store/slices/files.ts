@@ -19,6 +19,13 @@ const filesSlice = createSlice({
     reducers: {
         changeFileRequestStatus(state, action: ChangeFileRequestStatusAction) {
             const { id, status } = action.payload
+            const findedFile = state.items.find((item) => item.id === id)
+
+            if (findedFile && status === 'loading') {
+                findedFile.status = status
+
+                return
+            }
 
             if (status === 'loading') {
                 state.items.push({
@@ -26,6 +33,8 @@ const filesSlice = createSlice({
                     status,
                     data: null,
                 })
+
+                return
             }
 
             if (status === 'error') {
@@ -33,6 +42,8 @@ const filesSlice = createSlice({
 
                 findedFile.status = 'error'
                 findedFile.data = null
+
+                return
             }
         },
 

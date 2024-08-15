@@ -5,6 +5,7 @@ import {
     UnauthorizedError,
     NotFoundError,
     ServerError,
+    ServiceUnavailableError,
 } from 'errors'
 import { FindInput } from 'store/store.types'
 import { TrackFormValues, TracksSortings } from 'store/tracks.types'
@@ -301,28 +302,43 @@ class Api {
         return formData
     }
 
-    static _isResponseError(error: Response) {
-        if (
-            error.status === 500 ||
-            error.status === 422 ||
-            error.status === 401 ||
-            error.status === 404
-        )
+    static _isResponseError(error: Response | Error) {
+        const isCommonError = 'message' in error
+        const isResponseError =
+            'status' in error &&
+            (error.status === 500 ||
+                error.status === 422 ||
+                error.status === 401 ||
+                error.status === 404)
+
+        if (isCommonError && error.message === 'Failed to fetch') {
             return true
+        }
+
+        if (isResponseError) {
+            return true
+        }
 
         return false
     }
 
-    static async _handleResponseError(error: Response) {
-        if (error.status === 500) {
+    static async _handleResponseError(error: Response | Error) {
+        const isCommonError = 'message' in error
+        const isResponseError = 'status' in error
+
+        if (isCommonError && error.message === 'Failed to fetch') {
+            throw new ServiceUnavailableError()
+        }
+
+        if (isResponseError && error.status === 500) {
             throw new ServerError()
         }
 
-        if (error.status === 422) {
+        if (isResponseError && error.status === 422) {
             throw new UnprocessableContentError()
         }
 
-        if (error.status === 401) {
+        if (isResponseError && error.status === 401) {
             const result = await error.json()
 
             if ('message' in result) {
@@ -332,7 +348,7 @@ class Api {
             throw new UnauthorizedError()
         }
 
-        if (error.status === 404) {
+        if (isResponseError && error.status === 404) {
             throw new NotFoundError()
         }
     }
