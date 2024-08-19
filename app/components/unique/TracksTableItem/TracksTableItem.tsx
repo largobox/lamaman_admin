@@ -14,7 +14,7 @@ import {
 } from 'icons'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import { deleteTrack } from 'store/slices/tracks'
-import { prettyDate, prettyTime } from 'utils'
+import { prettyDate, prettyDuration, prettyFileSize, prettyTime } from 'utils'
 import {
     DateBox,
     DateTimeBox,
@@ -29,7 +29,13 @@ import {
 
 const TracksCollectionsTableItem = (props: Props) => {
     const {
-        data: { name, createdAt, id, updatedAt, fileId },
+        data: {
+            name,
+            createdAt,
+            id,
+            updatedAt,
+            file: { id: fileId, size, duration },
+        },
     } = props
     const appDispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -64,6 +70,14 @@ const TracksCollectionsTableItem = (props: Props) => {
 
             <ColumnBox>
                 <Typography text={name} />
+            </ColumnBox>
+
+            <ColumnBox>
+                <Typography text={prettyDuration(duration)} />
+            </ColumnBox>
+
+            <ColumnBox>
+                <Typography text={prettyFileSize(size)} />
             </ColumnBox>
 
             <ColumnBox>

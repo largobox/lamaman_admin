@@ -5,13 +5,23 @@ export const tableHeaderItems = [
         isSortable: true,
     },
     {
+        name: 'duration',
+        label: 'длительность',
+        isSortable: true,
+    },
+    {
+        name: 'size',
+        label: 'размер',
+        isSortable: true,
+    },
+    {
         name: 'createdAt',
-        label: 'дата создания',
+        label: 'создан',
         isSortable: true,
     },
     {
         name: 'updatedAt',
-        label: 'дата редактирования',
+        label: 'изменён',
         isSortable: true,
     },
 ]

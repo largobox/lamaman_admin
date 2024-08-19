@@ -17,11 +17,19 @@ const Box = styled.div`
         }
 
         &:nth-child(2) {
-            width: 200px;
+            width: 190px;
         }
 
         &:nth-child(3) {
-            width: 450px;
+            width: 140px;
+        }
+
+        &:nth-child(4) {
+            width: 140px;
+        }
+
+        &:nth-child(5) {
+            width: 340px;
             padding-right: ${lastItemOffset}px;
         }
     }
@@ -38,14 +46,22 @@ const Box = styled.div`
         }
 
         &:nth-child(3) {
-            width: 200px;
+            width: 190px;
         }
 
         &:nth-child(4) {
-            width: 260px;
+            width: 140px;
         }
 
         &:nth-child(5) {
+            width: 140px;
+        }
+
+        &:nth-child(6) {
+            width: 150px;
+        }
+
+        &:nth-child(7) {
             width: ${controlsWidth}px;
         }
     }
