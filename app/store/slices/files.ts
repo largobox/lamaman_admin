@@ -2,11 +2,7 @@ import { createSlice, createAction } from '@reduxjs/toolkit'
 
 import { DOWNLOAD_FILE } from 'consts'
 import { RootState } from 'store/store.types'
-import {
-    ChangeFileRequestStatusAction,
-    DonwloadFileSuccessAction,
-    FilesState,
-} from 'store/files.types'
+import { ChangeFileRequestStatusAction, FilesState } from 'store/files.types'
 
 
 const initialState: FilesState = {
@@ -21,45 +17,22 @@ const filesSlice = createSlice({
             const { id, status } = action.payload
             const findedFile = state.items.find((item) => item.id === id)
 
-            if (findedFile && status === 'loading') {
+            if (findedFile) {
                 findedFile.status = status
 
                 return
             }
 
-            if (status === 'loading') {
-                state.items.push({
-                    id,
-                    status,
-                    data: null,
-                })
-
-                return
-            }
-
-            if (status === 'error') {
-                const findedFile = state.items.find((item) => item.id === id)
-
-                findedFile.status = 'error'
-                findedFile.data = null
-
-                return
-            }
-        },
-
-        donwloadFileSuccess(state, action: DonwloadFileSuccessAction) {
-            const { id, data } = action.payload
-            const findedFile = state.items.find((item) => item.id === id)
-
-            findedFile.data = data
-            findedFile.status = 'loaded'
+            state.items.push({
+                id,
+                status,
+            })
         },
     },
 })
 
 // Actions
-export const { changeFileRequestStatus, donwloadFileSuccess } =
-    filesSlice.actions
+export const { changeFileRequestStatus } = filesSlice.actions
 
 // Custom actions
 export const downloadFile = createAction<string>(DOWNLOAD_FILE)

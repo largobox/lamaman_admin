@@ -57,7 +57,7 @@ class Api {
     }
 
     static async downloadFile(id: string) {
-        return this._get(`/files/${id}`)
+        return this._download(`/files/${id}`)
     }
 
     static async findPerformers(params: FindInput<PerformersSortings>) {
@@ -200,6 +200,46 @@ class Api {
             const result = await response.json()
 
             return result
+        } catch (error) {
+            if (this._isResponseError(error)) {
+                await this._handleResponseError(error)
+
+                return
+            }
+
+            logger.error({ error, layer: API_LAYER })
+        }
+    }
+
+    static async _download(path: string) {
+        const options = {
+            method: 'GET',
+            headers: {
+                Authorization: this.token,
+            },
+        }
+
+        try {
+            const response = await fetch(`${url}${path}`, options)
+
+            if (this._isResponseError(response)) {
+                throw response
+            }
+
+            const blob = await response.blob()
+            const blobUrl = window.URL.createObjectURL(blob)
+            const tempLink = document.createElement('a')
+
+            tempLink.href = blobUrl
+            tempLink.setAttribute('download', 'fake filename')
+
+            document.body.appendChild(tempLink)
+
+            tempLink.click()
+
+            document.body.removeChild(tempLink)
+
+            window.URL.revokeObjectURL(blobUrl)
         } catch (error) {
             if (this._isResponseError(error)) {
                 await this._handleResponseError(error)

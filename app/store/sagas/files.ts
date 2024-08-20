@@ -6,10 +6,7 @@ import Api from 'api'
 import { addToast } from 'store/slices/toasts'
 import { delay } from 'utils'
 import { DOWNLOAD_FILE, SAGA_LAYER } from 'consts'
-import {
-    changeFileRequestStatus,
-    donwloadFileSuccess,
-} from 'store/slices/files'
+import { changeFileRequestStatus } from 'store/slices/files'
 
 
 function* downloadFileWorkerSaga(action: PayloadAction<string>) {
@@ -22,12 +19,12 @@ function* downloadFileWorkerSaga(action: PayloadAction<string>) {
         )
         yield delay()
 
-        const result = (yield Api.downloadFile(action.payload)) as Blob
+        yield Api.downloadFile(action.payload)
 
         yield put(
-            donwloadFileSuccess({
+            changeFileRequestStatus({
                 id: action.payload,
-                data: result,
+                status: 'loaded',
             }),
         )
     } catch (error) {
