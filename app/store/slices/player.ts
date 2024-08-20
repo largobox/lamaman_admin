@@ -12,8 +12,8 @@ import { getDurationLabel } from 'utils'
 
 const initialState: PlayerState = {
     currentTrack: null,
-    loadededDuration: 40000, // ToDo
-    playedDuration: 15000, // ToDo
+    loadededDuration: 30000, // ToDo
+    playedDuration: 10000, // ToDo
     isPlaying: true,
     requests: {
         getTrackDescription: 'initial',
@@ -39,6 +39,8 @@ const playerSlice = createSlice({
             action: GetTrackDescriptionPlayerSuccessAction,
         ) {
             state.currentTrack = action.payload
+            state.currentTrack.file.duration =
+                action.payload.file.duration * 1000
 
             state.requests.getTrackDescription = 'loaded'
         },
