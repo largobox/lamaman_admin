@@ -1,6 +1,9 @@
-const getDurationLabel = (milliseconds: number) => {
-    const millisecondsPart = milliseconds % 1000
-    const seconds = (milliseconds - millisecondsPart) / 1000
+const getDurationLabel = (milliseconds: number | null) => {
+    if (milliseconds === null) {
+        return '--:--'
+    }
+
+    const seconds = Math.round(milliseconds / 1000)
     const secondsPart = seconds % 60
     const minutes = (seconds - secondsPart) / 60
     const minutesPart = minutes % 60

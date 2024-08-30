@@ -1,3 +1,4 @@
+export { default as AudioPlayback } from './AudioPlayback'
 export { default as cssBaseline } from './cssBaseline'
 export { default as delay } from './delay'
 export { default as getDurationLabel } from './getDurationLabel'

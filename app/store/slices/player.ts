@@ -1,24 +1,31 @@
 import { createSlice, createAction } from '@reduxjs/toolkit'
 
-import { GET_TRACK_DESCRIPTION_PLAYER } from 'consts'
+import {
+    GET_TRACK_DESCRIPTION_PLAYER,
+    GET_TRACK_FILE_PART_PLAYER,
+} from 'consts'
 import { RootState, ChangeRequestStatusAction } from 'store/store.types'
 import {
     GetTrackDescriptionPlayerSuccessAction,
     PlayerRequestNames,
     PlayerState,
+    SetPlayedDurationAction,
+    SetTrackFilePartDurationEnd,
+    SetTrackFilePartStartByteIndexAction,
 } from 'store/player.types'
-import { getDurationLabel } from 'utils'
+import { AudioPlayback, getDurationLabel } from 'utils'
 
 
 const initialState: PlayerState = {
     currentTrack: null,
-    loadededDuration: 30000, // ToDo
-    playedDuration: 10000, // ToDo
     isPlaying: true,
+    playedDuration: 0,
     requests: {
         getTrackDescription: 'initial',
-        getTrackPart: 'initial',
+        getTrackFilePart: 'initial',
     },
+    trackFilePartDurationEnd: 0,
+    trackFilePartStartByteIndex: 0,
 }
 
 const playerSlice = createSlice({
@@ -44,14 +51,79 @@ const playerSlice = createSlice({
 
             state.requests.getTrackDescription = 'loaded'
         },
+
+        end(state) {
+            state.isPlaying = false
+        },
+
+        play(state) {
+            const noAnyTrackFilePartWasLoaded =
+                state.requests.getTrackFilePart === 'loading' ||
+                state.trackFilePartStartByteIndex === 0
+
+            if (noAnyTrackFilePartWasLoaded) {
+                return
+            }
+
+            AudioPlayback.play()
+
+            state.isPlaying = true
+        },
+
+        pause(state) {
+            state.isPlaying = false
+
+            AudioPlayback.pause()
+        },
+
+        reset(state) {
+            state.currentTrack = null
+            state.isPlaying = true
+            state.playedDuration = 0
+            state.requests = {
+                getTrackDescription: 'initial',
+                getTrackFilePart: 'initial',
+            }
+            state.trackFilePartDurationEnd = 0
+            state.trackFilePartStartByteIndex = 0
+        },
+
+        setTrackFilePartDurationEnd(
+            state,
+            action: SetTrackFilePartDurationEnd,
+        ) {
+            state.trackFilePartDurationEnd = action.payload
+        },
+
+        setPlayedDuration(state, action: SetPlayedDurationAction) {
+            state.playedDuration = action.payload
+        },
+
+        setTrackFilePartStartByteIndex(
+            state,
+            action: SetTrackFilePartStartByteIndexAction,
+        ) {
+            state.trackFilePartStartByteIndex = action.payload
+        },
     },
 })
 
 // Actions
-export const { changeRequestStatus, getTrackDescriptionPlayerSuccess } =
-    playerSlice.actions
+export const {
+    changeRequestStatus,
+    end,
+    getTrackDescriptionPlayerSuccess,
+    pause,
+    play,
+    reset,
+    setPlayedDuration,
+    setTrackFilePartDurationEnd,
+    setTrackFilePartStartByteIndex,
+} = playerSlice.actions
 
 // Custom actions
+export const getTrackFilePartPlayer = createAction(GET_TRACK_FILE_PART_PLAYER)
+
 export const getTrackDescriptionPlayer = createAction<string>(
     GET_TRACK_DESCRIPTION_PLAYER,
 )
@@ -61,8 +133,16 @@ export const isPlayingSelector = (state: RootState) => {
     return state.player.isPlaying
 }
 
-export const isTrackPartLoadingSelector = (state: RootState) => {
-    return state.player.requests.getTrackPart === 'loading'
+export const isGetTrackFilePartLoadingSelector = (state: RootState) => {
+    return state.player.requests.getTrackFilePart === 'loading'
+}
+
+export const hasErrorSelector = (state: RootState) => {
+    const hasError =
+        state.player.requests.getTrackFilePart === 'error' ||
+        state.player.requests.getTrackDescription === 'error'
+
+    return hasError
 }
 
 export const isLoadingSelector = (state: RootState) => {
@@ -80,7 +160,7 @@ export const currentTrackSelector = (state: RootState) => {
 export const loadedDurationPercentSelector = (state: RootState) => {
     const onePercent = state.player.currentTrack.file.duration / 100
 
-    return state.player.loadededDuration / onePercent
+    return state.player.trackFilePartDurationEnd / onePercent
 }
 
 export const playedDurationLabelSelector = (state: RootState) => {
@@ -95,6 +175,20 @@ export const playedDurationPercentSelector = (state: RootState) => {
 
 export const totalDurationLabelSelector = (state: RootState) => {
     return getDurationLabel(state.player.currentTrack.file.duration)
+}
+
+export const getTrackFilePartPlayerParamsSelector = (state: RootState) => {
+    const fileId = state.player.currentTrack.file.id
+    const byteStep = 100000
+    const start = state.player.trackFilePartStartByteIndex
+    const end = start + byteStep - 1
+    const params = {
+        fileId,
+        start,
+        end,
+    }
+
+    return params
 }
 
 export default playerSlice

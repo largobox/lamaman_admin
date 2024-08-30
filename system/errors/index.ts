@@ -1,4 +1,5 @@
 export { default as NotFoundError } from './NotFound'
+export { default as RangeNotSatisfiableError } from './RangeNotSatisfiable'
 export { default as ServerError } from './Server'
 export { default as ServiceUnavailableError } from './ServiceUnavailable'
 export { default as UnauthorizedError } from './Unauthorized'

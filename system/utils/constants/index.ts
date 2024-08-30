@@ -37,3 +37,4 @@ export const FIND_SELECTABLE_TRACKS_COLLECTIONS =
 export const FIND_SELECTABLE_PERFORMERS = 'selectablePerformers/find'
 
 export const GET_TRACK_DESCRIPTION_PLAYER = 'player/getTrackDescription'
+export const GET_TRACK_FILE_PART_PLAYER = 'player/getTrackFilePart'

@@ -6,6 +6,7 @@ import {
     NotFoundError,
     ServerError,
     ServiceUnavailableError,
+    RangeNotSatisfiableError,
 } from 'errors'
 import { FindInput } from 'store/store.types'
 import { TrackFormValues, TracksSortings } from 'store/tracks.types'
@@ -80,6 +81,10 @@ class Api {
 
     static async getTrack(id: string) {
         return this._get(`/tracks/${id}`)
+    }
+
+    static async getTrackFilePart(id: string, start: number, end: number) {
+        return this._getPartialContent(`/files/${id}`, start, end)
     }
 
     static async getTrackDescription(id: string) {
@@ -280,6 +285,36 @@ class Api {
         }
     }
 
+    static async _getPartialContent(path: string, start: number, end: number) {
+        const options = {
+            method: 'GET',
+            headers: {
+                Authorization: this.token,
+                Range: `bytes=${start}-${end}`,
+            },
+        }
+
+        try {
+            const response = await fetch(`${url}${path}`, options)
+
+            if (this._isResponseError(response)) {
+                throw response
+            }
+
+            const result = await response.arrayBuffer()
+
+            return result
+        } catch (error) {
+            if (this._isResponseError(error)) {
+                await this._handleResponseError(error)
+
+                return
+            }
+
+            logger.error({ error, layer: API_LAYER })
+        }
+    }
+
     static async _update(path: string, data: OutputFormData) {
         const formData = this._getFormData(data)
 
@@ -349,7 +384,8 @@ class Api {
             (error.status === 500 ||
                 error.status === 422 ||
                 error.status === 401 ||
-                error.status === 404)
+                error.status === 404 ||
+                error.status === 416)
 
         if (isCommonError && error.message === 'Failed to fetch') {
             return true
@@ -370,14 +406,6 @@ class Api {
             throw new ServiceUnavailableError()
         }
 
-        if (isResponseError && error.status === 500) {
-            throw new ServerError()
-        }
-
-        if (isResponseError && error.status === 422) {
-            throw new UnprocessableContentError()
-        }
-
         if (isResponseError && error.status === 401) {
             const result = await error.json()
 
@@ -390,6 +418,18 @@ class Api {
 
         if (isResponseError && error.status === 404) {
             throw new NotFoundError()
+        }
+
+        if (isResponseError && error.status === 416) {
+            throw new RangeNotSatisfiableError()
+        }
+
+        if (isResponseError && error.status === 422) {
+            throw new UnprocessableContentError()
+        }
+
+        if (isResponseError && error.status === 500) {
+            throw new ServerError()
         }
     }
 }

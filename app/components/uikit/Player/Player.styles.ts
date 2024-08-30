@@ -4,6 +4,7 @@ import { ThemedProps } from 'common-types'
 import {
     LoadingProgressBarProps,
     PlayingProgressBarProps,
+    TotalProgressBarProps,
 } from './Player.types'
 
 
@@ -16,11 +17,12 @@ const loadingAnimation = keyframes`
   }
 `
 
-const loadingStyles = (props: LoadingProgressBarProps) => {
+const loadingProgressBarColorStyles = (props: LoadingProgressBarProps) => {
     const {
+        $hasError,
         $isLoading,
         theme: {
-            colors: { primary },
+            colors: { primary, danger },
         },
     } = props
 
@@ -38,8 +40,52 @@ const loadingStyles = (props: LoadingProgressBarProps) => {
         `
     }
 
+    if ($hasError) {
+        return css`
+            background-color: ${danger.base};
+        `
+    }
+
     return css`
-        background-color: ${(props) => props.theme.colors.primary.base};
+        background-color: ${primary.base};
+    `
+}
+
+const playingProgressBarColorStyles = (props: PlayingProgressBarProps) => {
+    const {
+        $hasError,
+        theme: {
+            colors: { danger, primary },
+        },
+    } = props
+
+    if ($hasError) {
+        return css`
+            background-color: ${danger.dark};
+        `
+    }
+
+    return css`
+        background-color: ${primary.dark};
+    `
+}
+
+const totalProgressBarColorStyles = (props: TotalProgressBarProps) => {
+    const {
+        $hasError,
+        theme: {
+            colors: { danger, primary },
+        },
+    } = props
+
+    if ($hasError) {
+        return css`
+            background-color: ${danger.light};
+        `
+    }
+
+    return css`
+        background-color: ${primary.light};
     `
 }
 
@@ -51,9 +97,12 @@ export const LoadingProgressBar = styled.div<LoadingProgressBarProps>`
     width: ${(props) => props.$width}%;
     height: 100%;
 
+    transition-duration: ${(props) => props.theme.transition.duration}ms;
+    transition-property: background-color;
+
     border-radius: ${(props) => props.theme.borderRadius}px;
 
-    ${loadingStyles}
+    ${loadingProgressBarColorStyles}
 `
 
 export const PlayingProgressBar = styled.div<PlayingProgressBarProps>`
@@ -64,18 +113,25 @@ export const PlayingProgressBar = styled.div<PlayingProgressBarProps>`
     width: ${(props) => props.$width}%;
     height: 100%;
 
-    background-color: ${(props) => props.theme.colors.primary.dark};
     border-radius: ${(props) => props.theme.borderRadius}px;
+
+    transition-duration: ${(props) => props.theme.transition.duration}ms;
+    transition-property: background-color;
+
+    ${playingProgressBarColorStyles}
 `
 
-export const TotalProgressBar = styled.div`
+export const TotalProgressBar = styled.div<TotalProgressBarProps>`
     position: relative;
 
     width: 100%;
     height: 26px;
     border-radius: ${(props) => props.theme.borderRadius}px;
 
-    background-color: ${(props) => props.theme.colors.primary.light};
+    transition-duration: ${(props) => props.theme.transition.duration}ms;
+    transition-property: background-color;
+
+    ${totalProgressBarColorStyles}
 `
 
 export const PropLabel = styled.div<ThemedProps>`

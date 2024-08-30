@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Box, {
     ContorlsBox,
@@ -15,31 +15,85 @@ import { IconButton, Typography } from 'uikit'
 import { PauseIcon, PlayIcon } from 'icons'
 import {
     currentTrackSelector,
+    end,
+    hasErrorSelector,
     isPlayingSelector,
-    isTrackPartLoadingSelector,
+    isGetTrackFilePartLoadingSelector,
+    getTrackFilePartPlayer,
     loadedDurationPercentSelector,
+    pause,
+    play,
     playedDurationLabelSelector,
     playedDurationPercentSelector,
+    reset,
+    setTrackFilePartDurationEnd,
+    setPlayedDuration,
     totalDurationLabelSelector,
 } from 'store/slices/player'
-import { useAppSelector } from 'hooks'
+import { useAppDispatch, useAppSelector, useKeyPress } from 'hooks'
+import { AudioPlayback } from 'utils'
 
 
 const Player = () => {
+    const appDispatch = useAppDispatch()
     const currentTrack = useAppSelector(currentTrackSelector)
+    const hasError = useAppSelector(hasErrorSelector)
     const isPlaying = useAppSelector(isPlayingSelector)
-    const isTrackPartLoading = useAppSelector(isTrackPartLoadingSelector)
+    const isGetTrackFilePartLoading = useAppSelector(
+        isGetTrackFilePartLoadingSelector,
+    )
     const loadedDurationPercent = useAppSelector(loadedDurationPercentSelector)
     const playedDurationLabel = useAppSelector(playedDurationLabelSelector)
     const playedDurationPercent = useAppSelector(playedDurationPercentSelector)
     const totalDurationLabel = useAppSelector(totalDurationLabelSelector)
 
+    const isSpacePressed = useKeyPress(' ')
+
+    useEffect(() => {
+        AudioPlayback.init({
+            onTick: (ms) => {
+                appDispatch(setPlayedDuration(ms))
+            },
+            onEnd: () => {
+                appDispatch(end())
+            },
+            onNextChunkNeeded: () => {
+                appDispatch(getTrackFilePartPlayer())
+            },
+            onChunkLoaded: (ms) => {
+                appDispatch(setTrackFilePartDurationEnd(ms))
+            },
+            size: currentTrack.file.size,
+        })
+
+        appDispatch(getTrackFilePartPlayer())
+
+        return () => {
+            appDispatch(reset())
+            AudioPlayback.clear()
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isSpacePressed && !isPlaying) {
+            appDispatch(play())
+
+            return
+        }
+
+        if (isSpacePressed && isPlaying) {
+            appDispatch(pause())
+
+            return
+        }
+    }, [isSpacePressed])
+
     const playHandler = () => {
-        console.log('Play')
+        appDispatch(play())
     }
 
     const pauseHandler = () => {
-        console.log('Pause')
+        appDispatch(pause())
     }
 
     return (
@@ -48,6 +102,7 @@ const Player = () => {
                 <ContorlsBox>
                     {!isPlaying && (
                         <IconButton
+                            isDisabled={hasError}
                             Icon={PlayIcon}
                             onClick={playHandler}
                             size='big'
@@ -56,6 +111,7 @@ const Player = () => {
 
                     {isPlaying && (
                         <IconButton
+                            isDisabled={hasError}
                             Icon={PauseIcon}
                             onClick={pauseHandler}
                             size='big'
@@ -88,13 +144,17 @@ const Player = () => {
                 </DescriptionBox>
             </ContorlsAndDescriptionBox>
 
-            <TotalProgressBar>
+            <TotalProgressBar $hasError={hasError}>
                 <LoadingProgressBar
-                    $isLoading={isTrackPartLoading}
+                    $hasError={hasError}
+                    $isLoading={isGetTrackFilePartLoading}
                     $width={loadedDurationPercent}
                 />
 
-                <PlayingProgressBar $width={playedDurationPercent} />
+                <PlayingProgressBar
+                    $hasError={hasError}
+                    $width={playedDurationPercent}
+                />
             </TotalProgressBar>
 
             <DurationBox>
