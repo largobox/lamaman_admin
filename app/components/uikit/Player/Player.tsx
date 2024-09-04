@@ -75,6 +75,8 @@ const Player = () => {
     }, [])
 
     useEffect(() => {
+        if (hasError) return
+
         if (isSpacePressed && !isPlaying) {
             appDispatch(play())
 

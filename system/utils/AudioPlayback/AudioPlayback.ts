@@ -19,35 +19,21 @@ class AudioPlayback {
     static onNextChunkNeeded: onNextChunkNeeded = null
     static onTick: OnTickFunc = null
     static pausedAt = 0
-    static playedTimeInMs = 0
     static size = 0
     static sourceNode: AudioBufferSourceNode = null
     static startedAt = 0
     static tickTimerId: ReturnType<typeof setTimeout> = null
 
     static async addChunk(chunk: ArrayBuffer, start: number) {
-        const nextSourceNode = AudioPlayback.audioContext.createBufferSource()
-
-        nextSourceNode.addEventListener('onended', () => {
-            AudioPlayback.onEnd()
-            AudioPlayback.endTick()
-        })
-
         AudioPlayback.chunksArr.push({
             buffer: chunk,
             offset: start,
         })
 
-        const decodedAudioBuffer =
-            await AudioPlayback.audioContext.decodeAudioData(
-                AudioPlayback.getConcatenateChunksArr(),
-            )
+        const nextSourceNode = await AudioPlayback.getNextSourceNode()
 
-        AudioPlayback.lastLoadedTimeInMs = decodedAudioBuffer.duration * 1000
+        AudioPlayback.lastLoadedTimeInMs = nextSourceNode.buffer.duration * 1000
         AudioPlayback.onChunkLoaded(AudioPlayback.lastLoadedTimeInMs)
-
-        nextSourceNode.buffer = decodedAudioBuffer
-        nextSourceNode.connect(AudioPlayback.audioContext.destination)
 
         if (AudioPlayback.sourceNode !== null) {
             const playedAt =
@@ -86,7 +72,6 @@ class AudioPlayback {
         AudioPlayback.onNextChunkNeeded = null
         AudioPlayback.onTick = null
         AudioPlayback.pausedAt = 0
-        AudioPlayback.playedTimeInMs = 0
         AudioPlayback.size = 0
         AudioPlayback.sourceNode = null
         AudioPlayback.startedAt = 0
@@ -122,6 +107,34 @@ class AudioPlayback {
         return resultBuffer
     }
 
+    static async getNextSourceNode() {
+        if (AudioPlayback.sourceNode !== null) {
+            AudioPlayback.sourceNode.removeEventListener(
+                'onended',
+                AudioPlayback.handleEnded,
+            )
+        }
+
+        const nextSourceNode = AudioPlayback.audioContext.createBufferSource()
+
+        nextSourceNode.addEventListener('onended', AudioPlayback.handleEnded)
+
+        const decodedAudioBuffer =
+            await AudioPlayback.audioContext.decodeAudioData(
+                AudioPlayback.getConcatenateChunksArr(),
+            )
+
+        nextSourceNode.buffer = decodedAudioBuffer
+        nextSourceNode.connect(AudioPlayback.audioContext.destination)
+
+        return nextSourceNode
+    }
+
+    static handleEnded() {
+        AudioPlayback.onEnd()
+        AudioPlayback.endTick()
+    }
+
     static init(options: AudioPlaybackInitOptions) {
         const { onChunkLoaded, onEnd, onNextChunkNeeded, onTick, size } =
             options
@@ -135,20 +148,22 @@ class AudioPlayback {
         AudioPlayback.size = size
     }
 
-    static pause() {
+    static async pause() {
         AudioPlayback.endTick()
 
+        const nextSourceNode = await AudioPlayback.getNextSourceNode()
         const pausedAt =
             AudioPlayback.audioContext.currentTime - AudioPlayback.startedAt
 
         AudioPlayback.sourceNode.stop()
-        AudioPlayback.pausedAt = pausedAt
+        AudioPlayback.pausedAt += pausedAt
+        AudioPlayback.sourceNode = nextSourceNode
     }
 
     static play() {
         AudioPlayback.endTick()
 
-        AudioPlayback.sourceNode.start()
+        AudioPlayback.sourceNode.start(0, AudioPlayback.pausedAt)
         AudioPlayback.startedAt = AudioPlayback.audioContext.currentTime
 
         AudioPlayback.startTick()
@@ -166,14 +181,13 @@ class AudioPlayback {
         AudioPlayback.tickTimerId = setTimeout(() => {
             const durationInSeconds =
                 AudioPlayback.audioContext.currentTime - AudioPlayback.startedAt
+            const playedTimeInMs = durationInSeconds * 1000
 
-            AudioPlayback.playedTimeInMs = durationInSeconds * 1000
-            AudioPlayback.onTick(AudioPlayback.playedTimeInMs)
+            AudioPlayback.onTick(playedTimeInMs)
             AudioPlayback.tick()
 
             const isNextChunkNeeded =
-                AudioPlayback.lastLoadedTimeInMs -
-                    AudioPlayback.playedTimeInMs <
+                AudioPlayback.lastLoadedTimeInMs - playedTimeInMs <
                 msBeforeNextChunkNeeded
 
             if (isNextChunkNeeded) {
